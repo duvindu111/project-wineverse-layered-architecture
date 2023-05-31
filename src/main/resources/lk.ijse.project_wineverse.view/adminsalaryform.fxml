@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="adminchangingPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.AdminSalaryController">
+   <children>
+      <ImageView fitHeight="731.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/homelatest.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="logoutlabel1" layoutX="1174.0" layoutY="649.0" onMousePressed="#logoutlabelMousePressed" opacity="0.55" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Log Out">
+         <styleClass>
+            <String fx:value="logoutlabel" />
+            <String fx:value="hover-button" />
+         </styleClass></Label>
+      <ImageView fx:id="logoutbtn1" fitHeight="38.0" fitWidth="32.0" layoutX="1226.0" layoutY="637.0" onMousePressed="#logoutbtnMousePressed" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/logout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="612.0" layoutY="38.0" opacity="0.8" text="SALARY MANAGEMENT" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblSalary" layoutX="297.0" layoutY="371.0" onMouseClicked="#tblOnMouseClicked" opacity="0.9" prefHeight="243.0" prefWidth="951.0">
+         <columns>
+            <TableColumn fx:id="colempid" prefWidth="139.33334350585938" text="Employee ID" />
+            <TableColumn fx:id="colslryid" prefWidth="144.00003051757812" text="Salary ID" />
+            <TableColumn fx:id="colslryamount" prefWidth="238.6666259765625" text="Salary Amount" />
+            <TableColumn fx:id="colot" minWidth="2.00006103515625" prefWidth="232.0" text="OverTime" />
+            <TableColumn fx:id="colpaymethod" minWidth="0.0" prefWidth="199.3333740234375" text="Payment Method" />
+         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TableView>
+      <TextField fx:id="txtsalaryid" layoutX="655.0" layoutY="117.0" onMouseClicked="#txtsalaryidOnMouseClicked" opacity="0.9" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <TextField fx:id="txtsalary" layoutX="998.0" layoutY="117.0" opacity="0.9" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <TextField fx:id="txtot" layoutX="312.0" layoutY="186.0" onMouseClicked="#txtotOnMouseClicked" opacity="0.9" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <Label layoutX="312.0" layoutY="94.0" prefHeight="17.0" prefWidth="86.0" text="Employee ID:" textFill="WHITE" />
+      <Label layoutX="655.0" layoutY="94.0" prefHeight="17.0" prefWidth="100.0" text="Salary ID:" textFill="WHITE" />
+      <Label layoutX="998.0" layoutY="94.0" prefHeight="17.0" prefWidth="100.0" text="Salary Amount:" textFill="WHITE" />
+      <Label layoutX="655.0" layoutY="166.0" prefHeight="17.0" prefWidth="111.0" text="Payment Method:" textFill="WHITE" />
+      <Label layoutX="312.0" layoutY="164.0" prefHeight="17.0" prefWidth="86.0" text="OverTime:" textFill="WHITE" />
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="916.0" layoutY="317.0" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Save">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="1032.0" layoutY="317.0" onAction="#btnUpdateOnAction" onMousePressed="#btnUpdateMousePressed" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Update">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="1148.0" layoutY="317.0" onAction="#btnDeleteOnAction" onMousePressed="#btnDeleteMousePressed" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Delete">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TextField fx:id="txtSearch" layoutX="997.0" layoutY="43.0" onAction="#txtSearchOnAction" onKeyPressed="#txtSearchKeyPressed" onKeyTyped="#txtSearchKeyTyped" prefHeight="25.0" prefWidth="250.0" promptText="Search by employee Id" styleClass="search" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <ComboBox fx:id="cmbempid" layoutX="312.0" layoutY="117.0" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <ComboBox fx:id="cmbpaymethod" layoutX="655.0" layoutY="186.0" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="997.0" layoutY="186.0" onMouseClicked="#clearbtnOnMouseClicked" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/refresh2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="1028.0" layoutY="190.0" onMouseClicked="#clearlblOnMouseClicked" opacity="0.71" text="Clear fields" textFill="WHITE" />
+      <JFXButton fx:id="btnShowAll" buttonType="RAISED" layoutX="297.0" layoutY="623.0" onAction="#btnShowAllOnAction" prefHeight="32.0" prefWidth="115.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Show All">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

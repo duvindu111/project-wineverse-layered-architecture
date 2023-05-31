@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="adminchangingPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.CashierDeliveryController">
+   <children>
+      <ImageView fitHeight="729.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/homelatest.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="logoutlabel" layoutX="1175.0" layoutY="644.0" onMousePressed="#logoutlabelMousePressed" opacity="0.55" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Log Out">
+         <styleClass>
+            <String fx:value="logoutlabel" />
+            <String fx:value="hover-button" />
+         </styleClass></Label>
+      <ImageView fx:id="logoutbtn" fitHeight="38.0" fitWidth="32.0" layoutX="1227.0" layoutY="635.0" onMousePressed="#logoutbtnMousePressed" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/logout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="622.0" layoutY="33.0" opacity="0.8" text="UPDATE DELIVERY DETAILS" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblDelivery" layoutX="307.0" layoutY="374.0" onMouseClicked="#tblDeliveryOnMouseClicked" opacity="0.9" prefHeight="250.0" prefWidth="951.0">
+         <columns>
+            <TableColumn fx:id="colorderid" prefWidth="91.33331298828125" text="Order ID" />
+            <TableColumn fx:id="coldeliid" prefWidth="89.99996948242188" text="Delivery ID" />
+            <TableColumn fx:id="coldelstatus" prefWidth="175.33334350585938" text="Delivery Status" />
+            <TableColumn fx:id="colduedate" prefWidth="117.99993896484375" text="Due Date" />
+            <TableColumn fx:id="coldeldate" prefWidth="127.333251953125" text="Delivered Date" />
+            <TableColumn fx:id="collocation" prefWidth="220.666748046875" text="Location" />
+            <TableColumn fx:id="colempid" prefWidth="127.333251953125" text="Employee ID" />
+         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TableView>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="1042.0" layoutY="322.0" onAction="#btnUpdateOnAction" onMousePressed="#btnUpdateMousePressed" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Update">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="1158.0" layoutY="322.0" onAction="#btnDeleteOnAction" onMousePressed="#btnDeleteMousePressed" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Delete">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TextField fx:id="txtSearchByOrder" layoutX="1075.0" layoutY="113.0" onAction="#txtSearchByOrderOnAction" onKeyTyped="#txtSearchByOrderKeyTyped" prefHeight="25.0" prefWidth="183.0" promptText="Search by Order Id" styleClass="search" stylesheets="@../lk.ijse.project_wineverse.styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="txtSearchByDeliveryId" layoutX="1076.0" layoutY="268.0" onAction="#txtSearchByDeliveryIdOnAction" onKeyTyped="#txtSearchByDeliveryIdKeyTyped" prefHeight="25.0" prefWidth="183.0" promptText="Search by Delivery Id" styleClass="search" stylesheets="@../lk.ijse.project_wineverse.styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="txtSearchByDate" layoutX="1076.0" layoutY="214.0" onAction="#txtSearchByDateOnAction" onKeyTyped="#txtSearchByDateKeyTyped" prefHeight="25.0" prefWidth="183.0" promptText="Search by Due Date" styleClass="search" stylesheets="@../lk.ijse.project_wineverse.styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TextField>
+      <Label layoutX="1146.0" layoutY="94.0" text="Search By Order ID:" textFill="WHITE" />
+      <Label layoutX="1113.0" layoutY="144.0" text="Search By Delivery Status:" textFill="WHITE" />
+      <Label layoutX="1144.0" layoutY="196.0" text="Search By Due Date:" textFill="WHITE" />
+      <Label layoutX="1134.0" layoutY="250.0" text="Search By Delivery ID:" textFill="WHITE" />
+      <Label layoutX="349.0" layoutY="94.0" text="Order ID:" textFill="WHITE" />
+      <Label layoutX="521.0" layoutY="94.0" text="Delivery ID:" textFill="WHITE" />
+      <Label fx:id="lblorderid" layoutX="349.0" layoutY="116.0" prefHeight="45.0" prefWidth="143.0" textFill="RED">
+         <font>
+            <Font name="Agency FB" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbldelid" layoutX="517.0" layoutY="115.0" prefHeight="45.0" prefWidth="136.0" textFill="RED">
+         <font>
+            <Font name="Agency FB" size="37.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbdeliverystatus" disable="true" layoutX="347.0" layoutY="217.0" prefHeight="25.0" prefWidth="204.0" promptText="Completed / To Be Completed" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <Label layoutX="347.0" layoutY="194.0" text="Delivery Status:" textFill="WHITE" />
+      <Label layoutX="347.0" layoutY="272.0" text="Delivered Date:" textFill="WHITE" />
+      <TextField fx:id="txtdelidate" disable="true" layoutX="346.0" layoutY="297.0" onMouseClicked="#txtdelidateOnMouseClicked" prefHeight="25.0" prefWidth="204.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <Label layoutX="677.0" layoutY="94.0" text="Employee ID:" textFill="WHITE" />
+      <ComboBox fx:id="cmbempid" disable="true" layoutX="677.0" layoutY="125.0" prefWidth="150.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <Label layoutX="677.0" layoutY="196.0" text="Location:" textFill="WHITE" />
+      <TextField fx:id="txtlocation" disable="true" layoutX="672.0" layoutY="217.0" prefHeight="25.0" prefWidth="265.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <Label layoutX="677.0" layoutY="272.0" text="Due Date:" textFill="WHITE" />
+      <TextField fx:id="txtduedate" disable="true" layoutX="671.0" layoutY="297.0" onMouseClicked="#txtduedateOnMouseClicked" prefHeight="25.0" prefWidth="204.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <ComboBox fx:id="cmbSearchByDeliverySts" layoutX="1073.0" layoutY="167.0" onAction="#cmbSearchByDeliverySts" prefHeight="25.0" prefWidth="183.0" />
+      <JFXButton fx:id="btnShowAll" buttonType="RAISED" layoutX="307.0" layoutY="639.0" onAction="#btnShowAllOnAction" prefHeight="32.0" prefWidth="115.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Show All">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label fx:id="lblinvalidwrongdeldate" layoutX="351.0" layoutY="326.0" prefHeight="17.0" prefWidth="195.0" text="Wrong Date Format" textFill="RED" />
+      <Label fx:id="lblinvalidwrongduedate" layoutX="674.0" layoutY="325.0" prefHeight="17.0" prefWidth="195.0" text="Wrong Date Format" textFill="RED" />
+   </children>
+</AnchorPane>

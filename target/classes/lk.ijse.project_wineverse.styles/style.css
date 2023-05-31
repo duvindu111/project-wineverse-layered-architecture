@@ -1,0 +1,208 @@
+@font-face {
+    font-family: 'Playball';
+    src: url('../lk.ijse.project_wineverse.assets/fonts/Playball.ttf');
+}
+
+@font-face {
+    font-family: 'Offside';
+    src: url('../lk.ijse.project_wineverse.assets/fonts/Offside.ttf');
+}
+
+@font-face {
+    font-family: 'GOODTIME';
+    src: url('../lk.ijse.project_wineverse.assets/fonts/GOODTIME.ttf');
+}
+
+@font-face {
+    font-family: 'pocket_calcuatlor_tt';
+    src: url('../lk.ijse.project_wineverse.assets/fonts/pocket_calcuatlor_tt.ttf');
+}
+
+.proBar > .track{
+    /*-fx-accent: grey;*/
+    -fx-background-color: transparent;
+    /*-fx-accent: linear-gradient(to right, lightskyblue, blue);*/
+    /*-fx-margin: 0px;*/
+    /*-fx-background-color: red;*/
+    /*-fx-border-radius: 30px;*/
+    /*-fx-opacity: 0.6;*/
+    /*-fx-border-style: none;*/
+    /*-fx-border-color: red;*/
+}
+
+/*.progress-bar > .track {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+.loginlbl{
+    -fx-text-fill: linear-gradient(to top right  ,#FAFF02 ,#EEC228);
+    -fx-font: 45 "Playball";
+}
+
+.loginusername{
+    -fx-background-radius: 10;
+    -fx-font: 10 "Offside";
+}
+
+.loginpassword{
+    -fx-background-radius: 10;
+    -fx-font: 10 "Offside";
+}
+
+.logincombo{
+    -fx-background-radius: 20;
+    -fx-font: 10 "Offside";
+}
+
+.combo-box .cell:selected {
+    -fx-text-fill: rgba(0, 0, 0, 0.5);
+}
+
+.forgotpass{
+    -fx-font: 10 "Offside";
+}
+
+.loginbtn{
+    -fx-background-radius: 10;
+    -fx-font: 10 "Offside";
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.donthaveaccount{
+    -fx-font: 10 "Offside";
+}
+
+/*.createaccount{*/
+/*    -fx-font: 10 "Offside";*/
+/*}*/
+
+.homebtn{
+    -fx-background-radius: 2 10px 10px 2;
+    -fx-font: 14 "Offside";
+    -fx-background-color: #3C4043;
+    -fx-text-fill: white;
+}
+
+.logoutlabel{
+    -fx-text-fill: white;
+    -fx-font-family: Offside;
+}
+
+.dateandtime{
+    -fx-text-fill: grey;
+    -fx-font: 14 "Good Times";
+}
+
+.loadstackpane{
+    -fx-background-size: 347 516;
+    -fx-background-radius: 18 18 18 18;
+    -fx-border-radius: 18 18 18 18;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 10, 10, 10);
+}
+
+.notification-box .title,
+.notification-box .text {
+    -fx-font-family: Arial;
+    -fx-font-size: 14pt;
+}
+
+/*.loadingview{*/
+/*    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
+/*}*/
+
+.savebtn{
+    -fx-background-radius: 10px 10px 10px 10px;
+    -fx-font: 11 "Offside";
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.text1{
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.search{
+    -fx-background-radius: 10;
+    -fx-font-family: Offside;
+}
+
+/*#ffcc66*/
+/*#471010*/
+.hover-button:hover {
+    -fx-background-color: #8c0c0c; /* Change the button background color on hover */
+    -fx-text-fill: white; /* Change the text color on hover */
+}
+
+.localtime{
+    -fx-background-color: white;
+}
+
+.eventlabel{
+    -fx-effect: dropshadow(three-pass-box, #5a5959, 20, 0.6, 0, 0);
+}
+
+.piecharttitle{
+    -fx-text-fill: white;
+    -fx-font-family: "Offside";
+}
+
+.barcharttitle{
+    -fx-text-fill: black;
+    -fx-font-family: "Offside";
+}
+
+.chart-pie-label {
+    -fx-fill: black;
+}
+
+.chart-pie-label-line {
+    -fx-stroke: red;
+}
+
+/*.chart-pie {*/
+/*    -fx-pie-colors: red, red,red,red,red;*/
+/*}*/
+
+.chart-pie {
+    -fx-pie-color: #534a4a;
+}
+
+/*.chart-pie > .chart-pie-legend-symbol {*/
+/*    -fx-background-color: red, red,red,red,red;*/
+/*}*/
+
+/*.chart-legend-item-text {*/
+/*    -fx-text-fill: blue;*/
+/*}*/
+
+/*.chart-bar-axis .axis-label {*/
+/*    -fx-text-fill: blue;*/
+/*}*/
+
+/*.chart-legend {*/
+/*    -fx-text-fill: blue;*/
+/*}*/
+
+/*.chart-x-axis .axis-label {*/
+/*    -fx-text-fill: blue;*/
+/*}*/
+
+.reportbtn{
+    -fx-background-radius: 10px 10px 10px 10px;
+    -fx-font: 14 "Offside";
+    -fx-background-color: linear-gradient(to top right  ,#3C4043 ,#8c0c0c);
+    -fx-text-fill: white;
+}
+
+.chart-bar {
+    -fx-bar-fill: #534a4a;
+}
+
+
+
+
+
+

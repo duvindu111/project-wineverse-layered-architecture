@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="cashDashPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.CashierDashController">
+   <children>
+      <AnchorPane fx:id="cashchangingPane" layoutX="-1.0" prefHeight="700.0" prefWidth="1300.0">
+         <children>
+            <ImageView fitHeight="729.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../lk.ijse.project_wineverse.assets/Dashboardlatest.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="logoutlabel" layoutX="1175.0" layoutY="644.0" onMousePressed="#logoutlabelMousePressed" opacity="0.55" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Log Out">
+               <styleClass>
+                  <String fx:value="logoutlabel" />
+                  <String fx:value="hover-button" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Label>
+            <ImageView fx:id="logoutbtn" fitHeight="38.0" fitWidth="32.0" layoutX="1227.0" layoutY="635.0" onMousePressed="#logoutbtnMousePressed" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../lk.ijse.project_wineverse.assets/logout.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="1.0" prefHeight="700.0" prefWidth="293.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1007.0" AnchorPane.topAnchor="1.0">
+         <children>
+            <Label fx:id="date" layoutX="52.0" layoutY="26.0" prefHeight="25.0" prefWidth="188.0" styleClass="dateandtime" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Label">
+               <font>
+                  <Font name="Good Times" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="time" layoutX="52.0" layoutY="51.0" prefHeight="25.0" prefWidth="188.0" styleClass="dateandtime" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Label" />
+            <ImageView fx:id="adminfb" depthTest="DISABLE" fitHeight="45.0" fitWidth="38.0" layoutX="75.0" layoutY="637.0" onMouseEntered="#fbOnMouseEntered" onMouseExited="#fbOnMouseExited" onMouseMoved="#fbOnMouseMoved" onMousePressed="#fbOnMousePressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../lk.ijse.project_wineverse.assets/fb.png" />
+               </image>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.1108674481511116" green="0.1108674481511116" blue="0.5526315569877625" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="admingoogle" depthTest="DISABLE" fitHeight="38.0" fitWidth="38.0" layoutX="115.0" layoutY="637.0" onMouseEntered="#googleOnMouseEntered" onMouseExited="#googleOnMouseExited" onMousePressed="#googleOnMousePressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../lk.ijse.project_wineverse.assets/google.png" />
+               </image>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.1108674481511116" green="0.1108674481511116" blue="0.5526315569877625" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+            <JFXButton fx:id="cashhomebtn" buttonType="RAISED" focusTraversable="false" layoutX="52.0" layoutY="101.0" onAction="#cashhomebtnOnAction" prefHeight="45.0" prefWidth="188.0" styleClass="homebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Home">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="cashinventbtn" buttonType="RAISED" focusTraversable="false" layoutX="52.0" layoutY="179.0" onAction="#cashinventbtnOnAction" prefHeight="45.0" prefWidth="188.0" styleClass="homebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Inventory">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="cashcustbtn" buttonType="RAISED" focusTraversable="false" layoutX="52.0" layoutY="258.0" onAction="#cashcustOnAction" prefHeight="45.0" prefWidth="188.0" styleClass="homebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Customers">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="cashorderbtn" buttonType="RAISED" focusTraversable="false" layoutX="52.0" layoutY="337.0" onAction="#cashordersOnAction" prefHeight="45.0" prefWidth="188.0" styleClass="homebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="New Order">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="cashdelbtn" buttonType="RAISED" focusTraversable="false" layoutX="52.0" layoutY="490.0" onAction="#cashdeliveryOnAction" prefHeight="45.0" prefWidth="188.0" styleClass="homebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Delivery">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="casheventbtn" buttonType="RAISED" focusTraversable="false" layoutX="52.0" layoutY="566.0" onAction="#cashEventOnAction" prefHeight="45.0" prefWidth="188.0" styleClass="homebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Events">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <Group fx:id="drag" layoutX="43.0" layoutY="631.0">
+               <children>
+                  <ImageView fx:id="dragimage" fitHeight="32.0" fitWidth="126.0" layoutX="14.0" layoutY="9.0" onMouseEntered="#dragOnMouseEntered" onMouseExited="#dragOnMouseExited" opacity="0.54" pickOnBounds="true">
+                     <image>
+                        <Image url="@../lk.ijse.project_wineverse.assets/redlabel.png" />
+                     </image>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ImageView>
+                  <Label layoutX="49.0" layoutY="17.0" text="Websites" textFill="WHITE" />
+               </children>
+            </Group>
+            <JFXButton fx:id="cashnewSupplyLoadbtn" buttonType="RAISED" focusTraversable="false" layoutX="52.0" layoutY="414.0" onAction="#cashnewSupplyLoadbtnOnAction" prefHeight="45.0" prefWidth="188.0" styleClass="homebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="New Supply Load">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

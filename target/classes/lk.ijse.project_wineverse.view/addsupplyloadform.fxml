@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="adminchangingPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.SupplyLoadController">
+   <children>
+      <ImageView fx:id="lblbalance" fitHeight="730.0" fitWidth="1345.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/homelatest.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="logoutlabel1" layoutX="1174.0" layoutY="649.0" onMousePressed="#logoutlabelMousePressed" opacity="0.55" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Log Out">
+         <styleClass>
+            <String fx:value="logoutlabel" />
+            <String fx:value="hover-button" />
+         </styleClass>
+      </Label>
+      <ImageView fx:id="logoutbtn1" fitHeight="38.0" fitWidth="32.0" layoutX="1226.0" layoutY="637.0" onMousePressed="#logoutbtnMousePressed" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/logout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="680.0" layoutY="33.0" opacity="0.8" text="NEW SUPPLY LOAD" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblplaceLoad" layoutX="297.0" layoutY="371.0" onMouseClicked="#tblOnMouseClicked" opacity="0.9" prefHeight="243.0" prefWidth="951.0">
+         <columns>
+            <TableColumn fx:id="colitemcode" prefWidth="127.33334350585938" text="Item Code" />
+            <TableColumn fx:id="colitemname" prefWidth="298.6666564941406" text="Item Name" />
+            <TableColumn fx:id="colcategory" prefWidth="286.66668701171875" text="Category" />
+            <TableColumn fx:id="colquantity" prefWidth="122.666748046875" text="Quantity" />
+            <TableColumn fx:id="colaction" prefWidth="117.33331298828125" text="Action" />
+         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TableView>
+      <JFXButton fx:id="btnAddToLoad" buttonType="RAISED" layoutX="301.0" layoutY="316.0" onAction="#btnaddcartOnAction" onMousePressed="#btnDeleteMousePressed" prefHeight="34.0" prefWidth="143.0" ripplerFill="#19c33e" style="-fx-background-color: #82CD47; -fx-text-fill: white;" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Add To Load">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="616.0" layoutY="91.0" prefHeight="17.0" prefWidth="93.0" text="Supply Load ID:" textFill="WHITE" />
+      <Label layoutX="298.0" layoutY="85.0" prefHeight="17.0" prefWidth="100.0" text="Supplier ID:" textFill="WHITE" />
+      <Label layoutX="616.0" layoutY="168.0" prefHeight="17.0" prefWidth="86.0" text="Date:" textFill="WHITE" />
+      <Label layoutX="616.0" layoutY="242.0" prefHeight="17.0" prefWidth="86.0" text="Time:" textFill="WHITE" />
+      <Label layoutX="298.0" layoutY="172.0" prefHeight="17.0" prefWidth="86.0" text="Item Code:" textFill="WHITE" />
+      <Label layoutX="432.0" layoutY="641.0" prefHeight="17.0" prefWidth="86.0" text="Load Payment:" textFill="WHITE" />
+      <Label fx:id="lblloadid" layoutX="616.0" layoutY="114.0" prefHeight="17.0" prefWidth="250.0" text="Load ID" textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="25.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbsuppid" layoutX="298.0" layoutY="108.0" onAction="#cmbSuppIdOnAction" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <Label fx:id="lblsuppliername" layoutX="301.0" layoutY="136.0" prefHeight="17.0" prefWidth="93.0" text="Supplier Name :" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblchangingsuppname" layoutX="398.0" layoutY="136.0" prefHeight="17.0" prefWidth="202.0" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbitemcode" layoutX="298.0" layoutY="194.0" onAction="#cmbitemcodeOnAction" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" />
+      <Label fx:id="lblitemname" layoutX="305.0" layoutY="231.0" prefHeight="17.0" prefWidth="86.0" text="Item Name:" textFill="WHITE" />
+      <Label fx:id="lblitemcategory" layoutX="305.0" layoutY="247.0" prefHeight="17.0" prefWidth="86.0" text="Category:" textFill="WHITE" />
+      <Label fx:id="lblitemqtyonhand" layoutX="305.0" layoutY="264.0" prefHeight="17.0" prefWidth="86.0" text="qty On Hands:" textFill="WHITE" />
+      <Label fx:id="lblsupplydate" layoutX="616.0" layoutY="188.0" prefHeight="17.0" prefWidth="250.0" text="Load Date" textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblsupplytime" layoutX="616.0" layoutY="261.0" prefHeight="17.0" prefWidth="250.0" text="Load Time" textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblchangingitmname" layoutX="389.0" layoutY="232.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingcategory" layoutX="389.0" layoutY="248.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <Label fx:id="lblchangingqtyonhands" layoutX="389.0" layoutY="265.0" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" />
+      <JFXButton fx:id="btnAddSupplyLoad" buttonType="RAISED" layoutX="658.0" layoutY="632.0" onAction="#btnplaceorderOnAction" onMousePressed="#btnDeleteMousePressed" prefHeight="34.0" prefWidth="143.0" ripplerFill="#19c33e" style="-fx-background-color: #82CD47 #82CD47; -fx-text-fill: white;" styleClass="savebtn" stylesheets="@../lk.ijse.project_wineverse.styles/style.css" text="Add Supply Load">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="867.0" layoutY="89.0" prefHeight="17.0" prefWidth="86.0" text="Item Quantity:" textFill="WHITE" />
+      <TextField fx:id="supplyqty" layoutX="865.0" layoutY="117.0" onMouseClicked="#supplyqtyOnMouseClicked" prefHeight="32.0" prefWidth="93.0" />
+      <ImageView fx:id="addicon" fitHeight="25.0" fitWidth="32.0" layoutX="1047.0" layoutY="107.0" onMouseClicked="#addiconOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/addicon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1080.0" layoutY="111.0" text="New Supplier" textFill="WHITE" />
+      <Label fx:id="balancelbl" layoutX="517.0" layoutY="644.0" prefHeight="17.0" prefWidth="100.0" textFill="RED" />
+      <Label fx:id="txtmoremoney" layoutX="418.0" layoutY="669.0" prefHeight="17.0" prefWidth="100.0" textFill="RED" />
+      <ImageView fx:id="seesupplydet" fitHeight="39.0" fitWidth="32.0" layoutX="1041.0" layoutY="150.0" onMouseClicked="#seesupplyloaddetOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lk.ijse.project_wineverse.assets/showdetails.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1080.0" layoutY="155.0" text="See Supply Load Details" textFill="WHITE" />
+      <TextField fx:id="txttotalprice" layoutX="530.0" layoutY="633.0" onMouseClicked="#txttotalpriceOnMouseClicked" prefHeight="32.0" prefWidth="93.0" />
+   </children>
+</AnchorPane>
