@@ -28,7 +28,7 @@ public class AdminReportsFormController implements Initializable {
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -39,7 +39,7 @@ public class AdminReportsFormController implements Initializable {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -49,7 +49,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void btnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/placeorder.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/placeorder.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -60,7 +60,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void custbtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/customer.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/customer.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -74,7 +74,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void inventbtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/inventory.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/inventory.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -85,7 +85,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void employeebtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/employee.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/employee.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -96,7 +96,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void supplierbtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/supplier.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/supplier.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -107,7 +107,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void eventbtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/event.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/event.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -118,7 +118,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void salarybtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/salary.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/salary.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -129,7 +129,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void deliverybtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/delivery.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/delivery.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -140,7 +140,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void orderbtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/orders.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/orders.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
@@ -151,7 +151,7 @@ public class AdminReportsFormController implements Initializable {
     }
 
     public void supplyloaddetailsbtnOnAction(ActionEvent actionEvent) {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/supplyloaddetails.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/supplyloaddetails.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());

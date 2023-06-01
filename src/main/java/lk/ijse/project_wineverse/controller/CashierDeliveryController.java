@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.project_wineverse.dto.DeliveryDTO;
-import lk.ijse.project_wineverse.dto.tm.DeliveryTM;
+import lk.ijse.project_wineverse.view.tdm.DeliveryTM;
 import lk.ijse.project_wineverse.model.CashierOrderModel;
 import lk.ijse.project_wineverse.model.DeliveryModel;
 import lk.ijse.project_wineverse.model.EmployeeModel;
@@ -121,7 +121,7 @@ public class CashierDeliveryController implements Initializable {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -132,7 +132,7 @@ public class CashierDeliveryController implements Initializable {
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 

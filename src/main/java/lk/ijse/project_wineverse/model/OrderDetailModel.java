@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import lk.ijse.project_wineverse.dto.OrderDetailDTO;
-import lk.ijse.project_wineverse.dto.tm.OrderDetailTM;
+import lk.ijse.project_wineverse.view.tdm.OrderDetailTM;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.ResultSet;

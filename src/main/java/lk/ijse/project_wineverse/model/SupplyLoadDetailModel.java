@@ -2,8 +2,7 @@ package lk.ijse.project_wineverse.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lk.ijse.project_wineverse.dto.tm.OrderDetailTM;
-import lk.ijse.project_wineverse.dto.tm.SupplyLoadDetailTM;
+import lk.ijse.project_wineverse.view.tdm.SupplyLoadDetailTM;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.ResultSet;

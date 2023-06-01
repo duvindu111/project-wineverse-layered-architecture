@@ -4,10 +4,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.Optional;
 
 public class AlertController {
@@ -24,7 +22,7 @@ public class AlertController {
         alert.getDialogPane().setHeaderText(null); // Remove the header text from the alert dialog pane
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("lk.ijse.project_wineverse.assets/wrongicon.png"));
+        stage.getIcons().add(new Image("assets/images/wrongicon.png"));
         ButtonType cancelButton = new ButtonType("Ok", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(cancelButton);
 
@@ -44,7 +42,7 @@ public class AlertController {
         alert.getDialogPane().setHeaderText(null); // Remove the header text from the alert dialog pane
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("lk.ijse.project_wineverse.assets/tick.png"));
+        stage.getIcons().add(new Image("assets/images/tick.png"));
         ButtonType cancelButton = new ButtonType("Ok", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(cancelButton);
 
@@ -64,7 +62,7 @@ public class AlertController {
         alert.getDialogPane().setHeaderText(null); // Remove the header text from the alert dialog pane
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("lk.ijse.project_wineverse.assets/tick.png"));
+        stage.getIcons().add(new Image("assets/images/tick.png"));
         ButtonType okButton = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
         ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(okButton,cancelButton);
@@ -89,7 +87,7 @@ public class AlertController {
         alert.getDialogPane().setHeaderText(null); // Remove the header text from the alert dialog pane
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("lk.ijse.project_wineverse.assets/wrongicon.png"));
+        stage.getIcons().add(new Image("assets/images/wrongicon.png"));
         ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(cancelButton);
 

@@ -91,7 +91,7 @@ public class SignUpFormController {
 
     @FXML
     void initialize() {
-        Font customFont = Font.loadFont(getClass().getResourceAsStream("/lk.ijse.project_wineverse.assets/fonts/Offside.ttf"), 11);
+        Font customFont = Font.loadFont(getClass().getResourceAsStream("/assets/fonts/Offside.ttf"), 11);
         createlabel.setFont(customFont);
 
         assert alreadyhaveaccount != null : "fx:id=\"alreadyhaveaccount\" was not injected: check your FXML file 'signupform.fxml'.";
@@ -130,7 +130,7 @@ public class SignUpFormController {
                             Stage stage = new Stage();
                             Parent root = null;
                             try {
-                                root = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+                                root = FXMLLoader.load(getClass().getResource("/view/loginform.fxml"));
                             } catch (IOException ex) {
                                 Logger.getLogger(LoadingFormController.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -163,7 +163,7 @@ public class SignUpFormController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/view/loginform.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoadingFormController.class.getName()).log(Level.SEVERE, null, ex);
         }

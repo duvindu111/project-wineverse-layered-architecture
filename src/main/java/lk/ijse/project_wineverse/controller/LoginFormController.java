@@ -126,7 +126,7 @@ public class LoginFormController {
 
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
                     loginbtn.getScene().getWindow().hide();
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/admindashboardform.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/admindashboardform.fxml"));
                     Parent root1 = null;
                     try {
                         root1 = fxmlLoader.load();
@@ -145,7 +145,7 @@ public class LoginFormController {
 
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
                     loginbtn.getScene().getWindow().hide();
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/cashierdashboardform.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cashierdashboardform.fxml"));
                     Parent root1 = null;
                     try {
                         root1 = fxmlLoader.load();
@@ -182,7 +182,7 @@ public class LoginFormController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/forgotpasswordform.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/view/forgotpasswordform.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoadingFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -222,7 +222,7 @@ public class LoginFormController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/signupform.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/view/signupform.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoadingFormController.class.getName()).log(Level.SEVERE, null, ex);
         }

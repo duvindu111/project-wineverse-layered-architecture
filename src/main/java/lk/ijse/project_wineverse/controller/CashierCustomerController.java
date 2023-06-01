@@ -1,6 +1,7 @@
 package lk.ijse.project_wineverse.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +16,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.CashierCustomerBO;
+import lk.ijse.project_wineverse.bo.custom.impl.CashierCustomerBOImpl;
 import lk.ijse.project_wineverse.dto.CustomerDTO;
-import lk.ijse.project_wineverse.dto.tm.CustomerTM;
+import lk.ijse.project_wineverse.view.tdm.CustomerTM;
 import lk.ijse.project_wineverse.model.CustomerModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
@@ -26,6 +30,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -97,9 +102,11 @@ public class CashierCustomerController implements Initializable {
     @FXML
     private Label lblinvalidcustid;
 
+    CashierCustomerBO cashierCustomerBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CUSTOMER_BO);
+
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -110,7 +117,7 @@ public class CashierCustomerController implements Initializable {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -133,7 +140,7 @@ public class CashierCustomerController implements Initializable {
 
         ///////////
         String id = txtid.getText();
-        int ordercount = CustomerModel.ordercountbycustid(id);
+        int ordercount = cashierCustomerBO.orderCountByCustID(id);
         lbltotalordersbycustomer.setVisible(true);
         lbltotorders.setVisible(true);
         lbltotorders.setText(String.valueOf(ordercount));
@@ -142,7 +149,7 @@ public class CashierCustomerController implements Initializable {
     }
 
 
-    public void btnSaveOnAction(ActionEvent actionEvent) {
+    public void btnSaveOnAction(ActionEvent actionEvent) throws ClassNotFoundException {
         String id = txtid.getText();
         String name = txtname.getText();
         String email = txtemail.getText();
@@ -155,10 +162,8 @@ public class CashierCustomerController implements Initializable {
                 if (ValidateField.emailCheck(email) || ValidateField.contactCheck(contact)) {
                     if (ValidateField.contactCheck(contact)) {
                         if (ValidateField.emailCheck(email) || email.isEmpty()) {
-                            CustomerDTO customer = new CustomerDTO(id, name, email, contact);
-
                             try {
-                                boolean isSaved = CustomerModel.save(customer);
+                                boolean isSaved = cashierCustomerBO.saveCustomer(new CustomerDTO(id, name, email, contact));
                                 if (isSaved) {
                                     AlertController.confirmmessage("Customer Added Successfully");
                                     txtid.setText("");
@@ -192,9 +197,13 @@ public class CashierCustomerController implements Initializable {
     }
 
     private void getAll() {
-        ObservableList<CustomerTM> obList = null;
+        ObservableList<CustomerTM> obList = FXCollections.observableArrayList();
         try {
-            obList = CustomerModel.getAll();
+            ArrayList<CustomerDTO> all = cashierCustomerBO.getAllCustomers();
+
+            for (CustomerDTO c : all) {
+                obList.add(new CustomerTM(c.getId(),c.getName(),c.getEmail(),c.getContact()));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -224,8 +233,8 @@ public class CashierCustomerController implements Initializable {
         lbltotorders.setText("");
 
         try {
-            CustomerDTO customer = CustomerModel.findById(id);
-            int ordercount = CustomerModel.ordercountbycustid(id);
+            CustomerDTO customer = cashierCustomerBO.findByCustomerId(id);
+            int ordercount = cashierCustomerBO.orderCountByCustID(id);
             if (customer != null) {
                 txtid.setText(customer.getId());
                 txtid.setDisable(true);
@@ -251,7 +260,15 @@ public class CashierCustomerController implements Initializable {
 
     public void txtSearchKeyTyped(KeyEvent keyEvent) throws SQLException {
         String searchValue = txtSearch.getText().trim();
-        ObservableList<CustomerTM> obList = CustomerModel.getAll();
+      //  ObservableList<CustomerTM> obList = CustomerModel.getAll();
+
+        ObservableList<CustomerTM> obList = FXCollections.observableArrayList();
+        ArrayList<CustomerDTO> all = cashierCustomerBO.getAllCustomers();
+
+        for (CustomerDTO c : all) {
+            obList.add(new CustomerTM(c.getId(),c.getName(),c.getEmail(),c.getContact()));
+        }
+
 
         if (!searchValue.isEmpty()) {
             ObservableList<CustomerTM> filteredData = obList.filtered(new Predicate<CustomerTM>() {
@@ -289,7 +306,7 @@ public class CashierCustomerController implements Initializable {
                         if (ValidateField.emailCheck(email)) {
                             try {
                                 CustomerDTO customer = new CustomerDTO(id, name, email, contact);
-                                boolean isUpdated = CustomerModel.update(customer);
+                                boolean isUpdated = cashierCustomerBO.updateCustomer(customer);
                                 if (isUpdated) {
                                     AlertController.confirmmessage("Customer Details Updated");
                                     txtid.setText("");
@@ -326,7 +343,7 @@ public class CashierCustomerController implements Initializable {
         boolean result = AlertController.okconfirmmessage("Are you sure you want to remove this customer?");
         if (result == true) {
             try {
-                boolean isDeleted = CustomerModel.delete(id);
+                boolean isDeleted = cashierCustomerBO.deleteCustomer(id);
                 if (isDeleted) {
                     AlertController.confirmmessage("Customer Deleted Successfully");
                     txtid.setText("");

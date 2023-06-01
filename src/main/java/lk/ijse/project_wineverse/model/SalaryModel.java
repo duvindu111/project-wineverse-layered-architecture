@@ -3,7 +3,7 @@ package lk.ijse.project_wineverse.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.project_wineverse.dto.SalaryDTO;
-import lk.ijse.project_wineverse.dto.tm.SalaryTM;
+import lk.ijse.project_wineverse.view.tdm.SalaryTM;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.ResultSet;

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class LogOutController {
     public static void logout(AnchorPane anc) throws IOException {
         anc.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(LogOutController.class.getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LogOutController.class.getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 

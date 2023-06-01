@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
-import lk.ijse.project_wineverse.dto.tm.PlaceOrderTM;
+import lk.ijse.project_wineverse.view.tdm.PlaceOrderTM;
 import lk.ijse.project_wineverse.model.CashierOrderModel;
 import lk.ijse.project_wineverse.model.CustomerModel;
 import lk.ijse.project_wineverse.model.ItemModel;
@@ -216,7 +216,7 @@ public class CashierPlaceOrderFormController {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -227,7 +227,7 @@ public class CashierPlaceOrderFormController {
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -426,7 +426,7 @@ public class CashierPlaceOrderFormController {
                         parameters.put("param1", printcash);
                         parameters.put("param2", balance);
 
-                        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/placeorder.jrxml");
+                        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/placeorder.jrxml");
                         try {
                             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
                             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DBConnection.getInstance().getConnection());
@@ -444,7 +444,7 @@ public class CashierPlaceOrderFormController {
                             Map<String, Object> parameters = new HashMap<>();
                             parameters.put("param1", printcash);
                             parameters.put("param2", balance);
-                            InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/placeorder.jrxml");
+                            InputStream resource = this.getClass().getResourceAsStream("/assets/reports/placeorder.jrxml");
                             String outputFilePath = "C:/Users/Owner/OneDrive/Documents/IJSE/Assignments/project-wineverse/src/main/resources/lk.ijse.project_wineverse.jasperpdfs/output.pdf";
                             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
                             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DBConnection.getInstance().getConnection());
@@ -474,7 +474,7 @@ public class CashierPlaceOrderFormController {
         Stage stage = new Stage();
         stage.resizableProperty().setValue(false);
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/newcustomerform.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/newcustomerform.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -520,7 +520,7 @@ public class CashierPlaceOrderFormController {
             Stage stage = new Stage();
             stage.resizableProperty().setValue(false);
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/newdeliveryform.fxml"))));
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/newdeliveryform.fxml"))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -533,7 +533,7 @@ public class CashierPlaceOrderFormController {
         Stage stage = new Stage();
         stage.resizableProperty().setValue(false);
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/orderdetailform.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/orderdetailform.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -8,7 +8,7 @@ import org.controlsfx.control.Notifications;
 public class LoginMessageController {
 
     public static void loginsuccessfulmsg(){
-        Image img = new Image("lk.ijse.project_wineverse.assets/righticon.png", 96, 96, true, true);
+        Image img = new Image("assets/images/righticon.png", 96, 96, true, true);
 
         Notifications notificationBuilder = Notifications.create()
                 .title("Login ")
@@ -20,7 +20,7 @@ public class LoginMessageController {
     }
 
     public static void loginunsuccessfulmsg(){
-        Image img = new Image("lk.ijse.project_wineverse.assets/wrongicon.png", 96, 96, true, true);
+        Image img = new Image("assets/images/wrongicon.png", 96, 96, true, true);
 
         Notifications notificationBuilder = Notifications.create()
                 .title("Login ")

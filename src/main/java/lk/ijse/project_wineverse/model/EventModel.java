@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import lk.ijse.project_wineverse.dto.EventDTO;
-import lk.ijse.project_wineverse.dto.tm.EventTM;
+import lk.ijse.project_wineverse.view.tdm.EventTM;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.io.ByteArrayInputStream;

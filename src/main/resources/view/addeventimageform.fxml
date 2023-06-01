@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="addeventimageancpane" prefHeight="418.0" prefWidth="429.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.AddEventImageController">
+   <children>
+      <ComboBox fx:id="cmbeventid" layoutX="82.0" layoutY="145.0" prefHeight="25.0" prefWidth="271.0" styleClass="text1" stylesheets="@../assets/styles/style.css" />
+      <JFXButton fx:id="gtetheimagebtn" buttonType="RAISED" layoutX="82.0" layoutY="207.0" onAction="#gtetheimagebtnOnAction" prefHeight="25.0" prefWidth="271.0" style="-fx-background-color: white;" styleClass="text1" stylesheets="@../assets/styles/style.css" text="Get The Image" />
+      <Label layoutX="84.0" layoutY="117.0" text="Event ID:" textFill="WHITE" />
+      <JFXButton fx:id="savebtn" buttonType="RAISED" layoutX="171.0" layoutY="274.0" onAction="#savebtnOnAction" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: white;" styleClass="text1" stylesheets="@../assets/styles/style.css" text="Save" />
+      <Label layoutX="70.0" layoutY="36.0" prefHeight="49.0" prefWidth="296.0" text="ADD EVENT IMAGE" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="31.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="deletebtn" buttonType="RAISED" layoutX="171.0" layoutY="309.0" onAction="#deletebtnOnAction" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: white;" styleClass="text1" stylesheets="@../assets/styles/style.css" text="Delete" />
+   </children>
+</AnchorPane>

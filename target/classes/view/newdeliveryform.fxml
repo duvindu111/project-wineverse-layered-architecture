@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="newdeliveryAncPane" prefHeight="377.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.NewDeliveryFormController">
+   <children>
+      <ImageView fitHeight="470.0" fitWidth="681.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/homelatest.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="215.0" layoutY="36.0" opacity="0.8" text="Add New Delivery" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtlocation" layoutX="58.0" layoutY="211.0" onMouseClicked="#txtcontactOnMouseClicked" opacity="0.9" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TextField>
+      <JFXButton fx:id="btnAddNew" buttonType="RAISED" layoutX="373.0" layoutY="287.0" onAction="#btnAddNewOnAction" prefHeight="25.0" prefWidth="250.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../assets/styles/style.css" text="Add New Delivery">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="373.0" layoutY="107.0" prefHeight="17.0" prefWidth="86.0" text="Delivery ID:" textFill="WHITE" />
+      <Label layoutX="62.0" layoutY="107.0" prefHeight="17.0" prefWidth="100.0" text="Order ID:" textFill="WHITE" />
+      <Label layoutX="60.0" layoutY="191.0" prefHeight="17.0" prefWidth="117.0" text="Location:" textFill="WHITE" />
+      <TextField fx:id="txtdelid" editable="false" layoutX="373.0" layoutY="126.0" onMouseClicked="#txtdelidOnMouseClicked" opacity="0.9" prefHeight="34.0" prefWidth="250.0" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Agency FB Bold" size="21.0" />
+         </font>
+      </TextField>
+      <Label layoutX="373.0" layoutY="186.0" prefHeight="17.0" prefWidth="117.0" text="Employee ID:" textFill="WHITE" />
+      <Label fx:id="lblorderid" layoutX="58.0" layoutY="123.0" prefHeight="34.0" prefWidth="250.0" textFill="RED">
+         <font>
+            <Font name="Agency FB" size="37.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbempid" layoutX="373.0" layoutY="209.0" prefHeight="25.0" prefWidth="250.0" />
+      <Label layoutX="62.0" layoutY="265.0" prefHeight="17.0" prefWidth="117.0" text="Due Date:" textFill="WHITE" />
+      <TextField fx:id="txtduedate" layoutX="57.0" layoutY="287.0" onMouseClicked="#txtduedateOnMouseClicked" opacity="0.9" prefHeight="25.0" prefWidth="250.0" promptText="(yyyy-mm-dd)" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TextField>
+      <Label fx:id="lblwrongdateformat" layoutX="62.0" layoutY="321.0" prefHeight="17.0" prefWidth="290.0" text="Wrong Date Format. Required Format :(yyyy-mm-dd)" textFill="RED" />
+      <Label fx:id="lblwrongdelid" layoutX="373.0" layoutY="168.0" prefHeight="17.0" prefWidth="290.0" text="Wrong Delivery ID Format. Required Format : DL-000" textFill="RED" />
+   </children>
+</AnchorPane>

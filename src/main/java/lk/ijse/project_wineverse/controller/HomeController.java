@@ -123,7 +123,7 @@ public class HomeController {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -134,7 +134,7 @@ public class HomeController {
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -235,7 +235,7 @@ public class HomeController {
 
 
     public void lowstockitemsOnMouseClicked(MouseEvent mouseEvent) throws IOException {
-        InputStream resource = this.getClass().getResourceAsStream("/lk.ijse.project_wineverse.reports/inventory.jrxml");
+        InputStream resource = this.getClass().getResourceAsStream("/assets/reports/inventory.jrxml");
         try {
             JasperReport jasperReport = JasperCompileManager.compileReport(resource);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());

@@ -170,14 +170,14 @@ public class AdminDashController {
     }
 
     public void adminhomebtnOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/homeform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/homeform.fxml"));
         adminchangingPane.getChildren().clear();
         adminchangingPane.getChildren().add(load);
         BtnColorController.btncolor(adminhomebtn,adminchangingPane);
     }
 
     public void admininventbtnOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/inventoryform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/inventoryform.fxml"));
         adminchangingPane.getChildren().clear();
         adminchangingPane.getChildren().add(load);
         BtnColorController.btncolor(admininventbtn,adminchangingPane);
@@ -187,7 +187,7 @@ public class AdminDashController {
         Stage stage = new Stage();
         stage.resizableProperty().setValue(false);
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/orderdetailform.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/orderdetailform.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -196,28 +196,28 @@ public class AdminDashController {
     }
 
     public void adminemployeesbtnOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/adminemployeeform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/adminemployeeform.fxml"));
         adminchangingPane.getChildren().clear();
         adminchangingPane.getChildren().add(load);
         BtnColorController.btncolor(adminemployeebtn,adminchangingPane);
     }
 
     public void adminReportsOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/adminreportsform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/adminreportsform.fxml"));
         adminchangingPane.getChildren().clear();
         adminchangingPane.getChildren().add(load);
         BtnColorController.btncolor(adminreportbtn,adminchangingPane);
     }
 
     public void adminsuppliersOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/adminsuppliersform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/adminsuppliersform.fxml"));
         adminchangingPane.getChildren().clear();
         adminchangingPane.getChildren().add(load);
         BtnColorController.btncolor(adminsupplierbtn,adminchangingPane);
     }
 
     public void adminSalaryOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/adminsalaryform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/adminsalaryform.fxml"));
         adminchangingPane.getChildren().clear();
         adminchangingPane.getChildren().add(load);
         BtnColorController.btncolor(adminsalarybtn,adminchangingPane);

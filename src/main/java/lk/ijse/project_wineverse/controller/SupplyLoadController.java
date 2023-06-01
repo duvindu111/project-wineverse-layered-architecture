@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
-import lk.ijse.project_wineverse.dto.tm.AddSupplyLoadTM;
+import lk.ijse.project_wineverse.view.tdm.AddSupplyLoadTM;
 import lk.ijse.project_wineverse.model.CashierSupplyLoadModel;
 import lk.ijse.project_wineverse.model.ItemModel;
 import lk.ijse.project_wineverse.model.SupplierModel;
@@ -185,7 +185,7 @@ public class SupplyLoadController {
         Stage stage = new Stage();
         stage.resizableProperty().setValue(false);
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/newsupplierform.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/newsupplierform.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -356,7 +356,7 @@ public class SupplyLoadController {
     @FXML
     void logoutbtnMousePressed(MouseEvent event) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -368,7 +368,7 @@ public class SupplyLoadController {
     @FXML
     void logoutlabelMousePressed(MouseEvent event) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -442,7 +442,7 @@ public class SupplyLoadController {
         Stage stage = new Stage();
         stage.resizableProperty().setValue(false);
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/supplydetailsform.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/supplydetailsform.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }

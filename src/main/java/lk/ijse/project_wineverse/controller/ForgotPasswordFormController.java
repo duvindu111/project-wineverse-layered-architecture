@@ -152,7 +152,7 @@ public class ForgotPasswordFormController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/view/loginform.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoadingFormController.class.getName()).log(Level.SEVERE, null, ex);
         }

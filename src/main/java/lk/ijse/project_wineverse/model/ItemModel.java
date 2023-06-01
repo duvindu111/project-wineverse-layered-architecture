@@ -6,7 +6,7 @@ import javafx.scene.chart.XYChart;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
-import lk.ijse.project_wineverse.dto.tm.ItemTM;
+import lk.ijse.project_wineverse.view.tdm.ItemTM;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.ResultSet;

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import jfxtras.scene.control.LocalTimeTextField?>
+
+<AnchorPane fx:id="adminchangingPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.CashierEventFormController">
+   <children>
+      <ImageView fitHeight="729.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/homelatest.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="logoutlabel" layoutX="1175.0" layoutY="644.0" onMousePressed="#logoutlabelMousePressed" opacity="0.55" stylesheets="@../assets/styles/style.css" text="Log Out">
+         <styleClass>
+            <String fx:value="logoutlabel" />
+            <String fx:value="hover-button" />
+         </styleClass></Label>
+      <ImageView fx:id="logoutbtn" fitHeight="38.0" fitWidth="32.0" layoutX="1227.0" layoutY="635.0" onMousePressed="#logoutbtnMousePressed" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/logout.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="618.0" layoutY="38.0" opacity="0.8" text="EVENT MANAGEMENT" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblEvent" layoutX="297.0" layoutY="371.0" onMouseClicked="#tblOnMouseClicked" opacity="0.9" prefHeight="243.0" prefWidth="951.0">
+         <columns>
+            <TableColumn fx:id="colempid" prefWidth="101.33331298828125" text="Employee ID" />
+            <TableColumn fx:id="coleventid" prefWidth="100.0" text="Event ID" />
+            <TableColumn fx:id="coleventname" prefWidth="255.99993896484375" text="Event Name" />
+            <TableColumn fx:id="coleventtype" prefWidth="222.0" text="Event Type" />
+            <TableColumn fx:id="coleventdate" prefWidth="156.0" text="Event Date" />
+            <TableColumn fx:id="coleventtime" prefWidth="119.333251953125" text="Event Time" />
+         </columns>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TableView>
+      <TextField fx:id="txteventid" layoutX="655.0" layoutY="117.0" onMouseClicked="#txteventidOnMouseClicked" opacity="0.9" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></TextField>
+      <TextField fx:id="txteventname" layoutX="998.0" layoutY="117.0" opacity="0.9" prefHeight="25.0" prefWidth="250.0" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></TextField>
+      <TextField fx:id="txteventtype" layoutX="312.0" layoutY="188.0" opacity="0.9" prefHeight="25.0" prefWidth="250.0" promptText="(Optional)" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></TextField>
+      <Label layoutX="312.0" layoutY="94.0" prefHeight="17.0" prefWidth="86.0" text="Employee ID:" textFill="WHITE" />
+      <Label layoutX="655.0" layoutY="94.0" prefHeight="17.0" prefWidth="100.0" text="Event ID:" textFill="WHITE" />
+      <Label layoutX="998.0" layoutY="94.0" prefHeight="17.0" prefWidth="100.0" text="Event Name:" textFill="WHITE" />
+      <Label layoutX="312.0" layoutY="166.0" prefHeight="17.0" prefWidth="86.0" text="Event Type:" textFill="WHITE" />
+      <Label layoutX="655.0" layoutY="166.0" prefHeight="17.0" prefWidth="86.0" text="Event Date:" textFill="WHITE" />
+      <Label layoutX="998.0" layoutY="164.0" prefHeight="17.0" prefWidth="86.0" text="Event Time:" textFill="WHITE" />
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="916.0" layoutY="317.0" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../assets/styles/style.css" text="Save">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="1032.0" layoutY="317.0" onAction="#btnUpdateOnAction" onMousePressed="#btnUpdateMousePressed" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../assets/styles/style.css" text="Update">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="1148.0" layoutY="317.0" onAction="#btnDeleteOnAction" onMousePressed="#btnDeleteMousePressed" prefHeight="25.0" prefWidth="100.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../assets/styles/style.css" text="Delete">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <DatePicker fx:id="txteventdate" layoutX="655.0" layoutY="188.0" opacity="0.9" prefHeight="25.0" prefWidth="250.0" promptText="Date" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></DatePicker>
+      <TextField fx:id="txtSearch" layoutX="997.0" layoutY="43.0" onAction="#txtSearchOnAction" onKeyPressed="#txtSearchKeyPressed" onKeyTyped="#txtSearchKeyTyped" prefHeight="25.0" prefWidth="250.0" promptText="Search by Event Id" styleClass="search" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></TextField>
+      <ImageView fx:id="searchIcon" fitHeight="17.0" fitWidth="19.0" layoutX="1214.0" layoutY="48.0" onMousePressed="#searchIconOnMousePressed" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/search.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <LocalTimeTextField fx:id="txteventtime" layoutX="997.0" layoutY="188.0" prefHeight="25.0" prefWidth="250.0" styleClass="localtime" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></LocalTimeTextField>
+      <ComboBox fx:id="cmbempid" layoutX="312.0" layoutY="117.0" prefHeight="25.0" prefWidth="250.0" promptText="(Optional)" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ComboBox>
+      <Label fx:id="invalideventidformat" layoutX="656.0" layoutY="143.0" prefHeight="17.0" prefWidth="280.0" text="Invalid event ID format. (Valid format -&quot;event-000&quot;)" textFill="RED" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="312.0" layoutY="245.0" onMouseClicked="#clearbtnOnMouseClicked" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/refresh2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="343.0" layoutY="249.0" onMouseClicked="#clearlblOnMouseClicked" opacity="0.71" text="Clear fields" textFill="WHITE" />
+      <JFXButton fx:id="btnShowAll" buttonType="RAISED" layoutX="297.0" layoutY="628.0" onAction="#btnShowAllOnAction" prefHeight="32.0" prefWidth="115.0" ripplerFill="BLACK" styleClass="savebtn" stylesheets="@../assets/styles/style.css" text="Show All">
+         <effect>
+            <DropShadow height="54.65" radius="34.2475" width="84.34">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Group fx:id="addimagegroup" layoutX="312.0" layoutY="317.0" onMousePressed="#addimagegroupOnMousePressed">
+         <children>
+            <ImageView fx:id="addimagesbtn" fitHeight="25.0" fitWidth="25.0" onMousePressed="#addimagesbtnOnMousePressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/addimages.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="31.0" layoutY="4.0" text="Add images to events" textFill="WHITE" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

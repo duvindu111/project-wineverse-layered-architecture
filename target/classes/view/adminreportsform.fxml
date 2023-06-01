@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="adminchangingPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.AdminReportsFormController">
+   <children>
+      <ImageView fitHeight="731.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/homelatest.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="logoutlabel1" layoutX="1174.0" layoutY="649.0" onMousePressed="#logoutlabelMousePressed" opacity="0.55" stylesheets="@../assets/styles/style.css" text="Log Out">
+         <styleClass>
+            <String fx:value="logoutlabel" />
+            <String fx:value="hover-button" />
+         </styleClass></Label>
+      <ImageView fx:id="logoutbtn1" fitHeight="38.0" fitWidth="32.0" layoutX="1226.0" layoutY="637.0" onMousePressed="#logoutbtnMousePressed" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/logout.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="custbtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="66.0" onAction="#custbtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Customer Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="inventbtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="141.0" onAction="#inventbtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Inventory Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="employeebtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="215.0" onAction="#employeebtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Employee Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="supplierbtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="291.0" onAction="#supplierbtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Supplier Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="eventbtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="365.0" onAction="#eventbtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Events Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="orderbtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="438.0" onAction="#orderbtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Order Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="deliverybtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="511.0" onAction="#deliverybtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Delivery Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="salarybtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="325.0" layoutY="584.0" onAction="#salarybtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Salary Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="supplyloaddetailsbtn" buttonType="RAISED" cache="true" focusTraversable="false" layoutX="542.0" layoutY="66.0" onAction="#supplyloaddetailsbtnOnAction" prefHeight="45.0" prefWidth="188.0" ripplerFill="BLACK" styleClass="reportbtn" stylesheets="@../assets/styles/style.css" text="Supply Load Details">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

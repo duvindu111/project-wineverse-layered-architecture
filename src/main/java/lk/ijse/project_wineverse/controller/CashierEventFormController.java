@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import jfxtras.scene.control.LocalTimeTextField;
 import lk.ijse.project_wineverse.dto.EventDTO;
-import lk.ijse.project_wineverse.dto.tm.EventTM;
+import lk.ijse.project_wineverse.view.tdm.EventTM;
 import lk.ijse.project_wineverse.model.EmployeeModel;
 import lk.ijse.project_wineverse.model.EventModel;
 import lk.ijse.project_wineverse.util.AlertController;
@@ -126,7 +126,7 @@ public class CashierEventFormController implements Initializable {
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -137,7 +137,7 @@ public class CashierEventFormController implements Initializable {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -438,7 +438,7 @@ public class CashierEventFormController implements Initializable {
         Stage stage = new Stage();
         stage.resizableProperty().setValue(false);
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/addeventimageform.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/addeventimageform.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }

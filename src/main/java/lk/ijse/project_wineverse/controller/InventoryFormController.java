@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import lk.ijse.project_wineverse.dto.ItemDTO;
-import lk.ijse.project_wineverse.dto.tm.ItemTM;
+import lk.ijse.project_wineverse.view.tdm.ItemTM;
 import lk.ijse.project_wineverse.model.ItemModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
@@ -121,7 +121,7 @@ public class InventoryFormController {
     @FXML
     void logoutbtnMousePressed(MouseEvent event) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -133,7 +133,7 @@ public class InventoryFormController {
     @FXML
     void logoutlabelMousePressed(MouseEvent event) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 

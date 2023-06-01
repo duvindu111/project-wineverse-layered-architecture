@@ -61,8 +61,8 @@ public class LoadingFormController {
                     Stage stage = new Stage();
                     Parent root = null;
                     try {
-                        root = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
-                        stage.getIcons().add(new Image("lk.ijse.project_wineverse.assets/tick.png"));
+                        root = FXMLLoader.load(getClass().getResource("/view/loginform.fxml"));
+                        stage.getIcons().add(new Image("assets/images/tick.png"));
                         stage.setTitle("THE WINE ATTIC");
                     } catch (IOException ex) {
                         Logger.getLogger(LoadingFormController.class.getName()).log(Level.SEVERE, null, ex);

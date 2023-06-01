@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="adminchangingPane" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.project_wineverse.controller.HomeController">
+   <children>
+      <ImageView fitHeight="731.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/homelatest.jpg" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="logoutlabel1" layoutX="1174.0" layoutY="649.0" onMousePressed="#logoutlabelMousePressed" opacity="0.55" stylesheets="@../assets/styles/style.css" text="Log Out">
+         <styleClass>
+            <String fx:value="logoutlabel" />
+            <String fx:value="hover-button" />
+         </styleClass></Label>
+      <ImageView fx:id="logoutbtn1" fitHeight="38.0" fitWidth="32.0" layoutX="1226.0" layoutY="637.0" onMousePressed="#logoutbtnMousePressed" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/logout.png" />
+         </image>
+      </ImageView>
+      <PieChart fx:id="piechartincomelast5months" layoutX="672.0" layoutY="26.0" legendVisible="false" prefHeight="312.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 10;" styleClass="piecharttitle" stylesheets="@../assets/styles/style.css" title="TOP 5 SOLD ITEMS THIS MONTH" />
+      <BarChart fx:id="lowstockitems" alternativeRowFillVisible="false" layoutX="999.0" layoutY="26.0" legendSide="RIGHT" legendVisible="false" onMouseEntered="#lowstockitemsOnMouseEntered" onMouseExited="#lowstockitemsOnMouseExited" prefHeight="312.0" prefWidth="278.0" style="-fx-background-color: white; -fx-background-radius: 10;" styleClass="barcharttitle" stylesheets="@../assets/styles/style.css" title="LOW STOCK ITEMS">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </BarChart>
+      <Group layoutX="270.0" layoutY="18.0">
+         <children>
+            <Label fx:id="eventimageslabel" focusTraversable="false" layoutX="20.0" layoutY="20.0" pickOnBounds="false" prefHeight="15.0" prefWidth="46.0" styleClass="eventlabel" stylesheets="@../assets/styles/style.css" text="Label">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </Group>
+      <Label fx:id="lbllowstockitems" layoutX="999.0" layoutY="356.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 10;" textFill="RED" />
+      <AreaChart fx:id="areachart" layoutX="672.0" layoutY="359.0" onMouseClicked="#areachartOnMouseClicked" prefHeight="267.0" prefWidth="602.0" style="-fx-background-color: white; -fx-background-radius: 10;" styleClass="piecharttitle" stylesheets="@../assets/styles/style.css" title="Monthly Income Comparison">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </AreaChart>
+      <Label layoutX="1138.0" layoutY="369.0" text="Year :" textFill="RED">
+         <font>
+            <Font name="Offside" size="10.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtyear" focusTraversable="false" layoutX="1173.0" layoutY="364.0" onAction="#txtyearOnAction" onKeyTyped="#txtyearOnKeyTyped" onMouseClicked="#txtyearOnMouseClicked" prefHeight="25.0" prefWidth="76.0" promptText="Enter Year" styleClass="text1" stylesheets="@../assets/styles/style.css">
+         <font>
+            <Font name="Offside" size="10.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lblwrongyearformat" layoutX="847.0" layoutY="445.0" text="Wrong Year Format" textFill="RED" visible="false">
+         <font>
+            <Font name="Offside" size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="eventidlabel" layoutX="394.0" layoutY="640.0" opacity="0.71" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="rectangle" arcHeight="10.0" arcWidth="10.0" fill="#1f93ff00" height="619.0" layoutX="288.0" layoutY="47.0" stroke="TRANSPARENT" strokeType="INSIDE" width="342.0">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </Rectangle>
+   </children>
+</AnchorPane>

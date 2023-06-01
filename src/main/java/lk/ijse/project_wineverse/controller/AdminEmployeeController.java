@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.project_wineverse.dto.EmployeeDTO;
-import lk.ijse.project_wineverse.dto.tm.EmployeeTM;
+import lk.ijse.project_wineverse.view.tdm.EmployeeTM;
 import lk.ijse.project_wineverse.model.EmployeeModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
@@ -150,7 +150,7 @@ public class AdminEmployeeController {
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -161,7 +161,7 @@ public class AdminEmployeeController {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 

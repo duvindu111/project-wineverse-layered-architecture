@@ -87,7 +87,7 @@ public class CashierDashController {
 
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         cashchangingPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -98,7 +98,7 @@ public class CashierDashController {
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         cashDashPane.getScene().getWindow().hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/lk.ijse.project_wineverse.view/loginform.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
         Parent root1 = fxmlLoader.load();
         Stage stage = new Stage();
 
@@ -131,55 +131,55 @@ public class CashierDashController {
     }
 
     public void cashhomebtnOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/homeform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/homeform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
         BtnColorController.btncolor(cashhomebtn,cashchangingPane);
     }
 
     public void cashinventbtnOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/inventoryform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/inventoryform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
         BtnColorController.btncolor(cashinventbtn,cashchangingPane);
     }
 
     public void cashordersOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/cashierplaceorderform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/cashierplaceorderform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
         BtnColorController.btncolor(cashorderbtn,cashchangingPane);
     }
 
     public void cashpaymentsOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/cashierpaymentform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/cashierpaymentform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
     }
 
     public void cashdeliveryOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/cashierdeliveryform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/cashierdeliveryform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
         BtnColorController.btncolor(cashdelbtn,cashchangingPane);
     }
 
     public void cashcustOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/cashiercustomerform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/cashiercustomerform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
         BtnColorController.btncolor(cashcustbtn,cashchangingPane);
     }
 
     public void cashEventOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/cashiereventform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/cashiereventform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
         BtnColorController.btncolor(casheventbtn,cashchangingPane);
     }
 
     public void cashnewSupplyLoadbtnOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/lk.ijse.project_wineverse.view/addsupplyloadform.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("/view/addsupplyloadform.fxml"));
         cashchangingPane.getChildren().clear();
         cashchangingPane.getChildren().add(load);
         BtnColorController.btncolor(cashnewSupplyLoadbtn,cashchangingPane);
