@@ -1,6 +1,7 @@
 package lk.ijse.project_wineverse.dao;
 
-import lk.ijse.project_wineverse.dao.custom.impl.CashierCustomerDAOImpl;
+import lk.ijse.project_wineverse.dao.custom.impl.CustomerDAOImpl;
+import lk.ijse.project_wineverse.dao.custom.impl.EventDAOImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -14,13 +15,15 @@ public class DAOFactory {
     }
 
     public enum DAOTypes {
-        CUSTOMER
+        CUSTOMER,EVENT
     }
 
     public <T extends SuperDAO> T getDAO(DAOTypes res) {
         switch (res) {
             case CUSTOMER:
-                return (T) new CashierCustomerDAOImpl();
+                return (T) new CustomerDAOImpl();
+            case EVENT:
+                return (T) new EventDAOImpl();
             default:
                 return null;
         }

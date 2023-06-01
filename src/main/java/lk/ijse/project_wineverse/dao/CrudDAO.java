@@ -6,6 +6,7 @@ import lk.ijse.project_wineverse.entity.CashierCustomer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface CrudDAO<T> extends SuperDAO{
     public boolean save(T entity) throws SQLException, ClassNotFoundException;
@@ -17,4 +18,5 @@ public interface CrudDAO<T> extends SuperDAO{
     public boolean delete(String id) throws SQLException;
 
     public T findBy(String id) throws SQLException;
+
 }

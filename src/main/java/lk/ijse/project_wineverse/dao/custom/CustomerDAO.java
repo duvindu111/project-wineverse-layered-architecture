@@ -6,7 +6,7 @@ import lk.ijse.project_wineverse.entity.CashierCustomer;
 
 import java.sql.SQLException;
 
-public interface CashierCustomerDAO extends CrudDAO<CashierCustomer> {
+public interface CustomerDAO extends CrudDAO<CashierCustomer> {
 
     public int ordercountbycustid(String id) throws SQLException;
 

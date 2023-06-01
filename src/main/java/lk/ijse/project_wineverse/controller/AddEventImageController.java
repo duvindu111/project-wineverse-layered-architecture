@@ -21,6 +21,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.AddEventImageBO;
 import lk.ijse.project_wineverse.model.AddEventImageModel;
 import lk.ijse.project_wineverse.model.EmployeeModel;
 import lk.ijse.project_wineverse.model.EventModel;
@@ -49,10 +51,13 @@ public class AddEventImageController {
     @FXML
     private AnchorPane addeventimageancpane;
 
+    AddEventImageBO addEventImageBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EVENTIMAGE_BO);
+
     private void loadEventIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> ids = EventModel.loadIds();
+        //    List<String> ids = EventModel.loadIds();
+            List<String> ids = addEventImageBO.loadEventIds();
 
             for (String id : ids) {
                 obList.add(id);

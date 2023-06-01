@@ -17,11 +17,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.project_wineverse.bo.BOFactory;
-import lk.ijse.project_wineverse.bo.custom.CashierCustomerBO;
-import lk.ijse.project_wineverse.bo.custom.impl.CashierCustomerBOImpl;
+import lk.ijse.project_wineverse.bo.custom.CustomerBO;
 import lk.ijse.project_wineverse.dto.CustomerDTO;
 import lk.ijse.project_wineverse.view.tdm.CustomerTM;
-import lk.ijse.project_wineverse.model.CustomerModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
 import lk.ijse.project_wineverse.util.ValidateField;
@@ -102,7 +100,7 @@ public class CashierCustomerController implements Initializable {
     @FXML
     private Label lblinvalidcustid;
 
-    CashierCustomerBO cashierCustomerBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CUSTOMER_BO);
+    CustomerBO customerBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CUSTOMER_BO);
 
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
@@ -140,7 +138,7 @@ public class CashierCustomerController implements Initializable {
 
         ///////////
         String id = txtid.getText();
-        int ordercount = cashierCustomerBO.orderCountByCustID(id);
+        int ordercount = customerBO.orderCountByCustID(id);
         lbltotalordersbycustomer.setVisible(true);
         lbltotorders.setVisible(true);
         lbltotorders.setText(String.valueOf(ordercount));
@@ -163,7 +161,7 @@ public class CashierCustomerController implements Initializable {
                     if (ValidateField.contactCheck(contact)) {
                         if (ValidateField.emailCheck(email) || email.isEmpty()) {
                             try {
-                                boolean isSaved = cashierCustomerBO.saveCustomer(new CustomerDTO(id, name, email, contact));
+                                boolean isSaved = customerBO.saveCustomer(new CustomerDTO(id, name, email, contact));
                                 if (isSaved) {
                                     AlertController.confirmmessage("Customer Added Successfully");
                                     txtid.setText("");
@@ -199,7 +197,7 @@ public class CashierCustomerController implements Initializable {
     private void getAll() {
         ObservableList<CustomerTM> obList = FXCollections.observableArrayList();
         try {
-            ArrayList<CustomerDTO> all = cashierCustomerBO.getAllCustomers();
+            ArrayList<CustomerDTO> all = customerBO.getAllCustomers();
 
             for (CustomerDTO c : all) {
                 obList.add(new CustomerTM(c.getId(),c.getName(),c.getEmail(),c.getContact()));
@@ -233,8 +231,8 @@ public class CashierCustomerController implements Initializable {
         lbltotorders.setText("");
 
         try {
-            CustomerDTO customer = cashierCustomerBO.findByCustomerId(id);
-            int ordercount = cashierCustomerBO.orderCountByCustID(id);
+            CustomerDTO customer = customerBO.findByCustomerId(id);
+            int ordercount = customerBO.orderCountByCustID(id);
             if (customer != null) {
                 txtid.setText(customer.getId());
                 txtid.setDisable(true);
@@ -263,7 +261,7 @@ public class CashierCustomerController implements Initializable {
       //  ObservableList<CustomerTM> obList = CustomerModel.getAll();
 
         ObservableList<CustomerTM> obList = FXCollections.observableArrayList();
-        ArrayList<CustomerDTO> all = cashierCustomerBO.getAllCustomers();
+        ArrayList<CustomerDTO> all = customerBO.getAllCustomers();
 
         for (CustomerDTO c : all) {
             obList.add(new CustomerTM(c.getId(),c.getName(),c.getEmail(),c.getContact()));
@@ -306,7 +304,7 @@ public class CashierCustomerController implements Initializable {
                         if (ValidateField.emailCheck(email)) {
                             try {
                                 CustomerDTO customer = new CustomerDTO(id, name, email, contact);
-                                boolean isUpdated = cashierCustomerBO.updateCustomer(customer);
+                                boolean isUpdated = customerBO.updateCustomer(customer);
                                 if (isUpdated) {
                                     AlertController.confirmmessage("Customer Details Updated");
                                     txtid.setText("");
@@ -343,7 +341,7 @@ public class CashierCustomerController implements Initializable {
         boolean result = AlertController.okconfirmmessage("Are you sure you want to remove this customer?");
         if (result == true) {
             try {
-                boolean isDeleted = cashierCustomerBO.deleteCustomer(id);
+                boolean isDeleted = customerBO.deleteCustomer(id);
                 if (isDeleted) {
                     AlertController.confirmmessage("Customer Deleted Successfully");
                     txtid.setText("");

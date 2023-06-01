@@ -7,7 +7,7 @@ import lk.ijse.project_wineverse.entity.CashierCustomer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface CashierCustomerBO extends SuperBO {
+public interface CustomerBO extends SuperBO {
 
     public boolean saveCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException;
 

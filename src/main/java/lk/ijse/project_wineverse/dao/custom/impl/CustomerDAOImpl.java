@@ -1,18 +1,14 @@
 package lk.ijse.project_wineverse.dao.custom.impl;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import lk.ijse.project_wineverse.dao.custom.CashierCustomerDAO;
-import lk.ijse.project_wineverse.dto.CustomerDTO;
+import lk.ijse.project_wineverse.dao.custom.CustomerDAO;
 import lk.ijse.project_wineverse.entity.CashierCustomer;
 import lk.ijse.project_wineverse.util.CrudUtil;
-import lk.ijse.project_wineverse.view.tdm.CustomerTM;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CashierCustomerDAOImpl implements CashierCustomerDAO {
+public class CustomerDAOImpl implements CustomerDAO {
 
     public boolean save(CashierCustomer customer) throws SQLException, ClassNotFoundException{
         return CrudUtil.execute("INSERT INTO customer(cust_id,cust_name,cust_email,cust_contact) " +
