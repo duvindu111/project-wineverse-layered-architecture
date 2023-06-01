@@ -12,6 +12,7 @@ import lk.ijse.project_wineverse.view.tdm.EmployeeTM;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
@@ -96,5 +97,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return null;
     }
 
+    public List<String> loadIds() throws SQLException {
+        String sql = "SELECT emp_id FROM employee";
+        ResultSet resultSet =CrudUtil.execute(sql);
 
+        List<String> data = new ArrayList<>();
+        while (resultSet.next()) {
+            data.add(resultSet.getString(1));
+        }
+        return data;
+    }
 }

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -25,6 +26,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.SalaryBO;
 import lk.ijse.project_wineverse.dto.SalaryDTO;
 import lk.ijse.project_wineverse.view.tdm.SalaryTM;
 import lk.ijse.project_wineverse.model.EmployeeModel;
@@ -101,6 +104,8 @@ public class AdminSalaryController {
     @FXML
     private ComboBox cmbpaymethod;
 
+    SalaryBO salaryBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SALARY_BO);
+
     @FXML
     void logoutbtnMousePressed(MouseEvent event) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
@@ -152,7 +157,7 @@ public class AdminSalaryController {
     private void loadEmployeeIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> ids = EmployeeModel.loadIds();
+            List<String> ids = salaryBO.loadEmployeeIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -231,9 +236,14 @@ public class AdminSalaryController {
     }
 
     private void getAll(){
-        ObservableList<SalaryTM> obList = null;
+        ObservableList<SalaryTM> obList = FXCollections.observableArrayList();
         try {
-            obList = SalaryModel.getAll();
+            ArrayList<SalaryDTO> all = salaryBO.getAll();
+
+            for (SalaryDTO dto : all) {
+                obList.add(new SalaryTM(dto.getEmpid(),dto.getSlryid(),dto.getSlryamount(),dto.getOt(),dto.getPaymethod()));
+            }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -313,7 +323,8 @@ public class AdminSalaryController {
                 String paymethod = String.valueOf(cmbpaymethod.getValue());
 
                     SalaryDTO salary = new SalaryDTO(empid, slryid, slryamount, ot, paymethod);
-                    boolean isUpdated = SalaryModel.update(salary);
+                  //  boolean isUpdated = SalaryModel.update(salary);
+                boolean isUpdated = salaryBO.update(salary);
                     if (isUpdated) {
                         AlertController.confirmmessage("Salary Details Updated");
                         cmbempid.setValue("");
@@ -337,7 +348,8 @@ public class AdminSalaryController {
         boolean result = AlertController.okconfirmmessage("Are you sure you want to remove this salary details?");
         if(result==true) {
             try {
-                boolean isDeleted = SalaryModel.delete(slryid);
+               // boolean isDeleted = SalaryModel.delete(slryid);
+                boolean isDeleted = salaryBO.delete(slryid);
                 if (isDeleted) {
                     AlertController.confirmmessage("Salary details Deleted Successfully");
                     cmbempid.setValue("");
@@ -363,7 +375,13 @@ public class AdminSalaryController {
 
     public void txtSearchKeyTyped(KeyEvent keyEvent) throws SQLException {
         String searchValue = txtSearch.getText().trim();
-        ObservableList<SalaryTM> obList = SalaryModel.getAll();
+        ObservableList<SalaryTM> obList = FXCollections.observableArrayList();
+
+        ArrayList<SalaryDTO> all = salaryBO.getAll();
+
+        for (SalaryDTO dto : all) {
+            obList.add(new SalaryTM(dto.getEmpid(),dto.getSlryid(),dto.getSlryamount(),dto.getOt(),dto.getPaymethod()));
+        }
 
         if (!searchValue.isEmpty()) {
             ObservableList<SalaryTM> filteredData = obList.filtered(new Predicate<SalaryTM>(){

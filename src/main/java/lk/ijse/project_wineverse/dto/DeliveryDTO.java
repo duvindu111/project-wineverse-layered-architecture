@@ -2,6 +2,8 @@ package lk.ijse.project_wineverse.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -11,8 +13,8 @@ public class DeliveryDTO {
     private String delid;
     private String delsts;
     private String loc;
-    private String deldate;
-    private String duedate;
+    private LocalDate deldate;
+    private LocalDate duedate;
     private String ordid;
     private String empid;
 }

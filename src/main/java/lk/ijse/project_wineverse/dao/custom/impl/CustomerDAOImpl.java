@@ -7,6 +7,7 @@ import lk.ijse.project_wineverse.util.CrudUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerDAOImpl implements CustomerDAO {
 
@@ -74,5 +75,29 @@ public class CustomerDAOImpl implements CustomerDAO {
         return CrudUtil.execute(
                 sql,
                 id);
+    }
+
+    public List<String> loadCustomerIds() throws SQLException {
+        String sql = "SELECT cust_id FROM customer";
+        ResultSet resultSet = CrudUtil.execute(sql);
+
+        List<String> data = new ArrayList<>();
+
+        while (resultSet.next()) {
+            data.add(resultSet.getString(1));
+        }
+        return data;
+    }
+
+    public String getCustName(String cust_id) throws SQLException {
+        String sql = "SELECT cust_name FROM customer WHERE cust_id=?";
+        ResultSet resultSet = CrudUtil.execute(sql,cust_id);
+
+        if(resultSet.next()){
+            return (new String(
+                    resultSet.getString(1)
+            ));
+        }
+        return null;
     }
 }

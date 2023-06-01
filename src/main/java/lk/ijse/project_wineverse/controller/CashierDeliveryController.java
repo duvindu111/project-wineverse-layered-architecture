@@ -16,6 +16,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.DeliveryBO;
 import lk.ijse.project_wineverse.dto.DeliveryDTO;
 import lk.ijse.project_wineverse.view.tdm.DeliveryTM;
 import lk.ijse.project_wineverse.model.CashierOrderModel;
@@ -27,6 +29,9 @@ import lk.ijse.project_wineverse.util.ValidateField;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -119,6 +124,8 @@ public class CashierDeliveryController implements Initializable {
     @FXML
     private Label lblinvalidwrongduedate;
 
+    DeliveryBO deliveryBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.DELIVERY_BO);
+
     public void logoutbtnMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
@@ -159,11 +166,16 @@ public class CashierDeliveryController implements Initializable {
         String orderid = lblorderid.getText();
         String empid = cmbempid.getValue();
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localdelDate = LocalDate.parse(deldate, formatter);
+        LocalDate localdueDate = LocalDate.parse(deldate, formatter);
+
         if(ValidateField.dateCheck(deldate) || deldate.equals("Pending")) {
             if(ValidateField.dateCheck(duedate) || duedate.isEmpty()) {
-                DeliveryDTO delivery = new DeliveryDTO(delid, delsts, loc, deldate, duedate, orderid, empid);
+                DeliveryDTO delivery = new DeliveryDTO(delid, delsts, loc, localdelDate, localdueDate, orderid, empid);
                 try {
-                    boolean isUpdated = DeliveryModel.update(delivery);
+                //    boolean isUpdated = DeliveryModel.update(delivery);
+                    boolean isUpdated = deliveryBO.updateDelivery(delivery);
                     if (isUpdated) {
                         AlertController.confirmmessage("Delivery Details Updated");
                         lblorderid.setText("");
@@ -194,9 +206,11 @@ public class CashierDeliveryController implements Initializable {
         boolean result = AlertController.okconfirmmessage("Are you sure you want to cancel this delivery?");
         if(result==true) {
             try {
-                boolean isDeleted = DeliveryModel.delete(delid);
+            //    boolean isDeleted = DeliveryModel.delete(delid);
+                boolean isDeleted = deliveryBO.deleteDelivery(delid);
                 if (isDeleted) {
-                    boolean isUpdated = CashierOrderModel.updatedelivery(ordid);
+                    //boolean isUpdated = CashierOrderModel.updatedelivery(ordid);
+                    boolean isUpdated = deliveryBO.cancelDelivery(ordid);
                     AlertController.confirmmessage("Delivery Cancelled Successfully");
                     lblorderid.setText("");
                     lbldelid.setText("");
@@ -217,7 +231,8 @@ public class CashierDeliveryController implements Initializable {
     public void txtSearchByOrderOnAction(ActionEvent actionEvent) {
         String id = txtSearchByOrder.getText();
         try {
-            DeliveryDTO delivery = DeliveryModel.findById(id);
+           // DeliveryDTO delivery = DeliveryModel.findById(id);
+            DeliveryDTO delivery = deliveryBO.findByOrderID(id);
             if(delivery !=null) {
                 cmbdeliverystatus.setDisable(false);
                 txtlocation.setDisable(false);
@@ -228,8 +243,8 @@ public class CashierDeliveryController implements Initializable {
                 lbldelid.setText(delivery.getDelid());
                 cmbdeliverystatus.setValue(delivery.getDelsts());
                 txtlocation.setText(delivery.getLoc());
-                txtdelidate.setText(delivery.getDeldate());
-                txtduedate.setText(delivery.getDuedate());
+                txtdelidate.setText(String.valueOf(delivery.getDeldate()));
+                txtduedate.setText(String.valueOf(delivery.getDuedate()));
                 lblorderid.setText(delivery.getOrdid());
                 cmbempid.setValue(delivery.getEmpid());
 
@@ -246,7 +261,8 @@ public class CashierDeliveryController implements Initializable {
     public void txtSearchByDeliveryIdOnAction(ActionEvent actionEvent) {
         String delid = txtSearchByDeliveryId.getText();
         try {
-            DeliveryDTO delivery = DeliveryModel.findBydeliveryId(delid);
+           // DeliveryDTO delivery = DeliveryModel.findBydeliveryId(delid);
+            DeliveryDTO delivery = deliveryBO.findBydeliveryId(delid);
             if(delivery !=null) {
                 cmbdeliverystatus.setDisable(false);
                 txtlocation.setDisable(false);
@@ -257,8 +273,8 @@ public class CashierDeliveryController implements Initializable {
                 lbldelid.setText(delivery.getDelid());
                 cmbdeliverystatus.setValue(delivery.getDelsts());
                 txtlocation.setText(delivery.getLoc());
-                txtdelidate.setText(delivery.getDeldate());
-                txtduedate.setText(delivery.getDuedate());
+                txtdelidate.setText(String.valueOf(delivery.getDeldate()));
+                txtduedate.setText(String.valueOf(delivery.getDuedate()));
                 lblorderid.setText(delivery.getOrdid());
                 cmbempid.setValue(delivery.getEmpid());
 
@@ -277,7 +293,14 @@ public class CashierDeliveryController implements Initializable {
 
     public void txtSearchByDateOnAction(ActionEvent actionEvent) throws SQLException {
         String duedate = txtSearchByDate.getText();
-        ObservableList<DeliveryTM> obList = DeliveryModel.getByDueDate(duedate);
+       // ObservableList<DeliveryTM> obList = DeliveryModel.getByDueDate(duedate);
+
+        ObservableList<DeliveryTM> obList = FXCollections.observableArrayList();
+        ArrayList<DeliveryDTO> all = deliveryBO.getByDueDate(duedate);
+
+        for (DeliveryDTO dto : all) {
+            obList.add(new DeliveryTM(dto.getOrdid(),dto.getDelid(),dto.getDelsts(),String.valueOf(dto.getDuedate()),String.valueOf(dto.getDeldate()),dto.getLoc(),dto.getEmpid()));
+        }
 
         tblDelivery.setItems(obList);
     }
@@ -311,9 +334,15 @@ public class CashierDeliveryController implements Initializable {
     }
 
     private void getAll(){
-        ObservableList<DeliveryTM> obList = null;
+        ObservableList<DeliveryTM> obList = FXCollections.observableArrayList();
         try {
-            obList = DeliveryModel.getAll();
+            //obList = DeliveryModel.getAll();
+            ArrayList<DeliveryDTO> all = deliveryBO.getAllDeliveries();
+
+            for (DeliveryDTO dto : all) {
+                obList.add(new DeliveryTM(dto.getOrdid(),dto.getDelid(),dto.getDelsts(),String.valueOf(dto.getDuedate()),String.valueOf(dto.getDeldate()),dto.getLoc(),dto.getEmpid()));
+            }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -363,7 +392,9 @@ public class CashierDeliveryController implements Initializable {
     private void loadEmployeeIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> ids = EmployeeModel.loadIds();
+          //  List<String> ids = EmployeeModel.loadIds();
+
+            List<String> ids = deliveryBO.loadEmployeeIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -377,9 +408,13 @@ public class CashierDeliveryController implements Initializable {
 
     public void cmbSearchByDeliverySts(ActionEvent actionEvent) throws SQLException {
         String delists = String.valueOf(cmbSearchByDeliverySts.getValue());
-        ObservableList<DeliveryTM> obList = DeliveryModel.getByDeliveryStatus(delists);
+       // ObservableList<DeliveryTM> obList = DeliveryModel.getByDeliveryStatus(delists);
+        ObservableList<DeliveryTM> obList = FXCollections.observableArrayList();
 
-
+        ArrayList<DeliveryDTO> all = deliveryBO.getByDeliveryStatus(delists);
+        for (DeliveryDTO dto : all) {
+            obList.add(new DeliveryTM(dto.getOrdid(),dto.getDelid(),dto.getDelsts(),String.valueOf(dto.getDuedate()),String.valueOf(dto.getDeldate()),dto.getLoc(),dto.getEmpid()));
+        }
         tblDelivery.setItems(obList);
 
     }

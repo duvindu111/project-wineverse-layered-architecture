@@ -17,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import jfxtras.scene.control.LocalTimeTextField;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.EventBO;
 import lk.ijse.project_wineverse.dto.EventDTO;
 import lk.ijse.project_wineverse.view.tdm.EventTM;
 import lk.ijse.project_wineverse.model.EmployeeModel;
@@ -31,6 +33,8 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -124,6 +128,8 @@ public class CashierEventFormController implements Initializable {
     @FXML
     private Label invalideventidformat;
 
+    EventBO eventBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EVENT_BO);
+
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
@@ -149,7 +155,8 @@ public class CashierEventFormController implements Initializable {
     private void loadEmployeeIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> ids = EmployeeModel.loadIds();
+           // List<String> ids = EmployeeModel.loadIds();
+            List<String> ids = eventBO.loadIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -190,14 +197,21 @@ public class CashierEventFormController implements Initializable {
         String eventdate = String.valueOf(txteventdate.getValue());
         String eventtime = String.valueOf(txteventtime.getLocalTime());
 
+        DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localeventdate = LocalDate.parse(eventdate, dateformatter);
+
+        DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime localeventtime = LocalTime.parse(eventtime, timeformatter);
+
         if(eventid.isEmpty() || eventname.isEmpty() || txteventdate.getValue()==null || txteventtime.getLocalTime()==null){
             AlertController.errormessage("Event details are not complete to be saved.\nPlease make sure to fill out all the required fields.");
         }else{
             if(ValidateField.eventIdCheck(eventid)) {
-                EventDTO event = new EventDTO(eventid, eventname, eventtype, eventdate, eventtime, empid);
+                EventDTO event = new EventDTO(eventid, eventname, eventtype, localeventdate, localeventtime, empid);
 
                 try {
-                    boolean isSaved = EventModel.save(event);
+                  //  boolean isSaved = EventModel.save(event);
+                    boolean isSaved = eventBO.saveEvent(event);
                     if (isSaved) {
                         AlertController.confirmmessage("Event Created Successfully");
                         cmbempid.setValue(null);
@@ -243,9 +257,14 @@ public class CashierEventFormController implements Initializable {
     }
 
     private void getAll(){
-        ObservableList<EventTM> obList = null;
+        ObservableList<EventTM> obList = FXCollections.observableArrayList();
         try {
-            obList = EventModel.getAll();
+           // obList = EventModel.getAll();
+
+            ArrayList<EventDTO> all = eventBO.getAllEvents();
+            for (EventDTO dto : all) {
+                obList.add(new EventTM(dto.getEmpid(),dto.getEventid(),dto.getEventname(),dto.getEventtype(),String.valueOf(dto.getEventdate()),String.valueOf(dto.getEventtime())));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -284,8 +303,15 @@ public class CashierEventFormController implements Initializable {
                 String eventdate = String.valueOf(txteventdate.getValue());
                 String eventtime = String.valueOf(txteventtime.getLocalTime());
 
-                EventDTO event = new EventDTO(eventid,eventname,eventtype,eventdate,eventtime,empid);
-                boolean isUpdated = EventModel.update(event);
+                DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localeventdate = LocalDate.parse(eventdate, dateformatter);
+
+                DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                LocalTime localeventtime = LocalTime.parse(eventtime, timeformatter);
+
+                EventDTO event = new EventDTO(eventid,eventname,eventtype,localeventdate,localeventtime,empid);
+             //   boolean isUpdated = EventModel.update(event);
+                boolean isUpdated = eventBO.updateEvent(event);
                 if (isUpdated) {
                     AlertController.confirmmessage("Event Details Updated");
                     cmbempid.setValue(null);
@@ -313,7 +339,8 @@ public class CashierEventFormController implements Initializable {
         boolean result = AlertController.okconfirmmessage("Are you sure you want to remove this salary details?");
         if(result==true) {
             try {
-                boolean isDeleted = EventModel.delete(eventid);
+              //  boolean isDeleted = EventModel.delete(eventid);
+                boolean isDeleted = eventBO.deleteEvent(eventid);
                 if (isDeleted) {
                     AlertController.confirmmessage("Salary details Deleted Successfully");
                     cmbempid.setValue(null);
@@ -346,14 +373,15 @@ public class CashierEventFormController implements Initializable {
         txteventtime.setLocalTime(null);
 
         try {
-            EventDTO event = EventModel.findById(id);
+         //   EventDTO event = EventModel.findById(id);
+            EventDTO event = eventBO.findBy(id);
             if(event!=null) {
                 cmbempid.setValue(event.getEmpid());
                 txteventid.setText(event.getEventid());
                 txteventname.setText(event.getEventname());
                 txteventtype.setText(event.getEventtype());
-                txteventdate.setValue(LocalDate.parse(event.getEventdate()));
-                txteventtime.setLocalTime(LocalTime.parse(event.getEventtime()));
+                txteventdate.setValue(event.getEventdate());
+                txteventtime.setLocalTime(event.getEventtime());
 
                 txtSearch.setText("");
             }else{
@@ -373,7 +401,12 @@ public class CashierEventFormController implements Initializable {
 
     public void txtSearchKeyTyped(KeyEvent keyEvent) throws SQLException {
         String searchValue = txtSearch.getText().trim();
-        ObservableList<EventTM> obList = EventModel.getAll();
+        ObservableList<EventTM> obList = FXCollections.observableArrayList();
+
+        ArrayList<EventDTO> all = eventBO.getAllEvents();
+        for (EventDTO dto : all) {
+            obList.add(new EventTM(dto.getEmpid(),dto.getEventid(),dto.getEventname(),dto.getEventtype(),String.valueOf(dto.getEventdate()),String.valueOf(dto.getEventtime())));
+        }
 
         if (!searchValue.isEmpty()) {
             ObservableList<EventTM> filteredData = obList.filtered(new Predicate<EventTM>(){

@@ -47,7 +47,6 @@ public class DeliveryModel {
 
     public static boolean delete(String delid) throws SQLException {
         String sql = "DELETE FROM delivery WHERE delivery_id=?";
-
         return CrudUtil.execute(sql,delid);
     }
 
@@ -60,8 +59,8 @@ public class DeliveryModel {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getString(4),
-                    resultSet.getString(5),
+                    resultSet.getDate(4).toLocalDate(),
+                    resultSet.getDate(5).toLocalDate(),
                     resultSet.getString(6),
                     resultSet.getString(7)
             ));
@@ -118,8 +117,8 @@ public class DeliveryModel {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getString(4),
-                    resultSet.getString(5),
+                    resultSet.getDate(4).toLocalDate(),
+                    resultSet.getDate(5).toLocalDate(),
                     resultSet.getString(6),
                     resultSet.getString(7)
             ));

@@ -2,6 +2,10 @@ package lk.ijse.project_wineverse.dto;
 
 import lombok.*;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -11,7 +15,7 @@ public class EventDTO {
     private String eventid;
     private String eventname;
     private String eventtype;
-    private String eventdate;
-    private String eventtime;
+    private LocalDate eventdate;
+    private LocalTime eventtime;
     private String empid;
 }

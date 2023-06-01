@@ -16,6 +16,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.PlaceOrderBO;
 import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
@@ -149,6 +151,8 @@ public class CashierPlaceOrderFormController {
     @FXML
     private ImageView warningicon;
 
+    PlaceOrderBO placeOrderBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.PLACEORDER_BO);
+
     @FXML
     void initialize() {
         TimeAndDateController timeobject = new TimeAndDateController();
@@ -175,18 +179,33 @@ public class CashierPlaceOrderFormController {
 
     private void generateNextOrderId() {
         try {
-            String id = CashierOrderModel.getNextOrderId();
-            lblorderid.setText(id);
+         //   String id = CashierOrderModel.getNextOrderId();
+            String id = placeOrderBO.getNextOrderId();
+            String nextOrderId = splitOrderId(id);
+
+            lblorderid.setText(nextOrderId);
         } catch (Exception e) {
             System.out.println(e);
             new Alert(Alert.AlertType.ERROR, "Exception!").show();
         }
     }
 
+    private String splitOrderId(String currentId) {
+        if (currentId != null) {
+            String[] strings = currentId.split("ORD-");
+            int id = Integer.parseInt(strings[1]);
+            ++id;
+            String digit = String.format("%03d", id);
+            return "ORD-" + digit;
+        }
+        return "ORD-001";
+    }
+
     private void loadCustomerIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> ids = CustomerModel.loadIds();
+         //   List<String> ids = CustomerModel.loadIds();
+            List<String> ids = placeOrderBO.loadCustomerIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -201,7 +220,8 @@ public class CashierPlaceOrderFormController {
     private void loadItemCodes() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> codes = ItemModel.loadCodes();
+          //  List<String> codes = ItemModel.loadCodes();
+            List<String> codes = placeOrderBO.loadItemCodes();
 
             for (String code : codes) {
                 obList.add(code);
@@ -246,7 +266,8 @@ public class CashierPlaceOrderFormController {
         String cust_id = cmbcustid.getValue();
 
         try {
-            String name = CustomerModel.getCustName(cust_id);
+        //    String name = CustomerModel.getCustName(cust_id);
+            String name = placeOrderBO.getCustomerName(cust_id);
             lblchangingcusname.setText(name);
         } catch (Exception e) {
             System.out.println(e);
@@ -263,7 +284,9 @@ public class CashierPlaceOrderFormController {
         String itemcode = cmbitemcode.getValue();
 
         try {
-            item = ItemModel.findById(itemcode);
+         //   item = ItemModel.findById(itemcode);
+            item = placeOrderBO.findByItemCode(itemcode);
+
             lblchangingitmname.setText(item.getName());
             lblchangingunitprice.setText(String.valueOf(item.getUnitprice()));
             lblchangingcategory.setText(item.getCategory());

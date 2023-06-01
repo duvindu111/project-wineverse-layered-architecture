@@ -1,6 +1,7 @@
 package lk.ijse.project_wineverse.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.SupplierBO;
 import lk.ijse.project_wineverse.dto.SupplierDTO;
 import lk.ijse.project_wineverse.view.tdm.SupplierTM;
 import lk.ijse.project_wineverse.model.SupplierModel;
@@ -25,6 +28,7 @@ import lk.ijse.project_wineverse.util.ValidateField;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -105,6 +109,8 @@ public class AdminSuppliersFormController implements Initializable {
     @FXML
     private TableView<SupplierTM> tblSupplier;
 
+    SupplierBO supplierBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SUPPLIER_BO);
+
     public void logoutlabelMousePressed(MouseEvent mouseEvent) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
@@ -150,7 +156,8 @@ public class AdminSuppliersFormController implements Initializable {
                             SupplierDTO supplier = new SupplierDTO(id, name, address, contact, email);
 
                             try {
-                                boolean isUpdated = SupplierModel.update(supplier);
+                               // boolean isUpdated = SupplierModel.update(supplier);
+                                boolean isUpdated = supplierBO.updateSupplier(supplier);
                                 if (isUpdated) {
                                     AlertController.confirmmessage("Supplier Details Updated");
                                     txtid.setText("");
@@ -180,7 +187,7 @@ public class AdminSuppliersFormController implements Initializable {
 
     }
 
-    public void btnSaveOnAction(ActionEvent actionEvent) {
+    public void btnSaveOnAction(ActionEvent actionEvent) throws ClassNotFoundException {
         String id = txtid.getText();
         System.out.println(id +"out");
         String name = txtname.getText();
@@ -199,7 +206,8 @@ public class AdminSuppliersFormController implements Initializable {
                             SupplierDTO supplier = new SupplierDTO(id, name, address, contact, email);
 
                             try {
-                                boolean isSaved = SupplierModel.save(supplier);
+                             //   boolean isSaved = SupplierModel.save(supplier);
+                                boolean isSaved = supplierBO.saveSupplier(supplier);
                                 if (isSaved) {
                                     AlertController.confirmmessage("Supplier Added Successfully");
                                     txtid.setText("");
@@ -240,9 +248,13 @@ public class AdminSuppliersFormController implements Initializable {
     }
 
     private void getAll(){
-        ObservableList<SupplierTM> obList = null;
+        ObservableList<SupplierTM> obList = FXCollections.observableArrayList();
         try {
-            obList = SupplierModel.getAll();
+            ArrayList<SupplierDTO> all = supplierBO.getAll();
+            for (SupplierDTO dto : all) {
+                obList.add(new SupplierTM(dto.getId(),dto.getName(),dto.getAddress(),dto.getContact(),dto.getEmail()));
+            }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -259,7 +271,8 @@ public class AdminSuppliersFormController implements Initializable {
         txtemail.setText("");
 
         try {
-            SupplierDTO supplier = SupplierModel.findById(id);
+            //SupplierDTO supplier = SupplierModel.findById(id);
+            SupplierDTO supplier = supplierBO.findBy(id);
             if(supplier!=null) {
                 txtid.setText(supplier.getId());
                 txtname.setText(supplier.getName());
@@ -288,7 +301,12 @@ public class AdminSuppliersFormController implements Initializable {
 
     public void txtSearchKeyTyped(KeyEvent keyEvent) throws SQLException {
         String searchValue = txtSearch.getText().trim();
-        ObservableList<SupplierTM> obList = SupplierModel.getAll();
+        ObservableList<SupplierTM> obList = FXCollections.observableArrayList();
+
+        ArrayList<SupplierDTO> all = supplierBO.getAll();
+        for (SupplierDTO dto : all) {
+            obList.add(new SupplierTM(dto.getId(),dto.getName(),dto.getAddress(),dto.getContact(),dto.getEmail()));
+        }
 
         if (!searchValue.isEmpty()) {
             ObservableList<SupplierTM> filteredData = obList.filtered(new Predicate<SupplierTM>(){
@@ -310,7 +328,8 @@ public class AdminSuppliersFormController implements Initializable {
         if(result==true) {
 
             try {
-                boolean isDeleted = SupplierModel.delete(id);
+                //boolean isDeleted = SupplierModel.delete(id);
+                boolean isDeleted = supplierBO.delete(id);
                 if (isDeleted) {
                     AlertController.confirmmessage("Supplier Deleted Successfully");
                     txtid.setText("");
