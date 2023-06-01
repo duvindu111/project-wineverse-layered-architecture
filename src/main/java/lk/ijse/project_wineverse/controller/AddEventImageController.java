@@ -87,7 +87,8 @@ public class AddEventImageController {
             String eventid = cmbeventid.getValue();
             InputStream in = new FileInputStream(filePath);
 
-            boolean isSaved = AddEventImageModel.saveImage(eventid, in);
+        //    boolean isSaved = AddEventImageModel.saveImage(eventid, in);
+            boolean isSaved = addEventImageBO.saveEventImage(eventid,in);
             System.out.println(isSaved);
             if(isSaved){
                 AlertController.confirmmessage("Event image added successfully");
@@ -121,7 +122,7 @@ public class AddEventImageController {
         try {
             String eventid = cmbeventid.getValue();
 
-            boolean isDeleted = AddEventImageModel.deleterow(eventid);
+            boolean isDeleted = addEventImageBO.deleteEventImage(eventid);
             System.out.println(isDeleted);
             if(isDeleted){
                 AlertController.confirmmessage("Event image deleted successfully");

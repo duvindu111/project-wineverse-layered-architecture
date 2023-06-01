@@ -1,6 +1,7 @@
 package lk.ijse.project_wineverse.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.EmployeeBO;
+import lk.ijse.project_wineverse.dao.custom.EmployeeDAO;
 import lk.ijse.project_wineverse.dto.EmployeeDTO;
 import lk.ijse.project_wineverse.view.tdm.EmployeeTM;
 import lk.ijse.project_wineverse.model.EmployeeModel;
@@ -25,8 +29,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -125,6 +132,8 @@ public class AdminEmployeeController {
     @FXML
     private Label lblinvalidemployeeid;
 
+    EmployeeBO employeeBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EMPLOYEE_BO);
+
     @FXML
     void initialize() {
         setCellValueFactory();
@@ -176,7 +185,7 @@ public class AdminEmployeeController {
     public void btnUpdateOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnSaveOnAction(ActionEvent actionEvent) {
+    public void btnSaveOnAction(ActionEvent actionEvent) throws ParseException, ClassNotFoundException {
         String id = txtempid.getText();
         String name = txtempname.getText();
         String nic = txtempnic.getText();
@@ -198,10 +207,10 @@ public class AdminEmployeeController {
                                     if (ValidateField.emailCheck(email)) {
                                         if (ValidateField.nicCheck(nic)) {
 
-                                            EmployeeDTO employee = new EmployeeDTO(id, name, nic, dob, job, contact, address, email);
+                                            EmployeeDTO employee = new EmployeeDTO(id, name, nic, txtempdob.getValue(), job, contact, address, email);
 
                                             try {
-                                                boolean isSaved = EmployeeModel.save(employee);
+                                                boolean isSaved = employeeBO.saveEmployee(employee);
                                                 if (isSaved) {
                                                     AlertController.confirmmessage("New employee added successfully");
                                                     txtempid.setText(null);
@@ -266,9 +275,13 @@ public class AdminEmployeeController {
     }
 
     private void getAll(){
-        ObservableList<EmployeeTM> obList = null;
+        ObservableList<EmployeeTM> obList = FXCollections.observableArrayList();
         try {
-            obList = EmployeeModel.getAll();
+            ArrayList<EmployeeDTO> all = employeeBO.getAllEmployees();
+            for (EmployeeDTO e : all) {
+                obList.add(new EmployeeTM(e.getId(),e.getName(),e.getNic(),String.valueOf(e.getDob()),e.getJob(),e.getContact(),e.getAddress(),e.getEmail()));
+            }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -288,15 +301,15 @@ public class AdminEmployeeController {
         txtempnic.setText(null);
 
         try {
-            EmployeeDTO employee = EmployeeModel.findById(id);
+            EmployeeDTO employee = employeeBO.findByEmployee(id);
             if(employee!=null) {
                 txtempid.setText(employee.getId());
                 txtempname.setText(employee.getName());
                 txtempnic.setText(employee.getNic());
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate date = LocalDate.parse(employee.getDob(), formatter);
-                txtempdob.setValue(date);
+                /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date = LocalDate.parse(employee.getDob(), formatter);*/
+                txtempdob.setValue(employee.getDob());
 
                 txtempjob.setText(employee.getJob());
                 txtempcontact.setText(employee.getContact());
@@ -326,7 +339,12 @@ public class AdminEmployeeController {
 
     public void txtSearchKeyTyped(KeyEvent keyEvent) throws SQLException {
         String searchValue = txtSearch.getText().trim();
-        ObservableList<EmployeeTM> obList = EmployeeModel.getAll();
+
+        ObservableList<EmployeeTM> obList = FXCollections.observableArrayList();
+        ArrayList<EmployeeDTO> all = employeeBO.getAllEmployees();
+        for (EmployeeDTO e : all) {
+            obList.add(new EmployeeTM(e.getId(),e.getName(),e.getNic(),String.valueOf(e.getDob()),e.getJob(),e.getContact(),e.getAddress(),e.getEmail()));
+        }
 
         if (!searchValue.isEmpty()) {
             ObservableList<EmployeeTM> filteredData = obList.filtered(new Predicate<EmployeeTM>(){
@@ -347,7 +365,7 @@ public class AdminEmployeeController {
         boolean result = AlertController.okconfirmmessage("Are you sure you want to remove this employee?");
         if(result==true) {
             try {
-                boolean isDeleted = EmployeeModel.delete(id);
+                boolean isDeleted = employeeBO.deleteEmployee(id);
                 if (isDeleted) {
                     AlertController.confirmmessage("Employee Deleted Successfully");
                     txtempid.setText(null);
@@ -388,9 +406,9 @@ public class AdminEmployeeController {
                                     if (ValidateField.nicCheck(nic)) {
                                         if (result == true) {
 
-                                            EmployeeDTO employee = new EmployeeDTO(id, name, nic, dob, job, contact, address, email);
+                                            EmployeeDTO employee = new EmployeeDTO(id, name, nic, txtempdob.getValue(), job, contact, address, email);
                                             try {
-                                                boolean isUpdated = EmployeeModel.update(employee);
+                                                boolean isUpdated = employeeBO.updateEmployee(employee);
                                                 if (isUpdated) {
                                                     AlertController.confirmmessage("Employee Details Updated");
                                                     txtempid.setText(null);

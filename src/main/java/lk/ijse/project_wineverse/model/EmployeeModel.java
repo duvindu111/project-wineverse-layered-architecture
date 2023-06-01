@@ -75,7 +75,7 @@ public class EmployeeModel {
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(8),
-                        resultSet.getString(3),
+                        resultSet.getDate(3).toLocalDate(),
                         resultSet.getString(7),
                         resultSet.getString(5),
                         resultSet.getString(4),

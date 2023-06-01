@@ -2,6 +2,9 @@ package lk.ijse.project_wineverse.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -11,7 +14,7 @@ public class EmployeeDTO {
     private String id;
     private String name;
     private String nic;
-    private String dob;
+    private LocalDate dob;
     private String job;
     private String contact;
     private String address;

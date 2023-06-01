@@ -2,7 +2,6 @@ package lk.ijse.project_wineverse.bo.custom;
 
 import lk.ijse.project_wineverse.bo.SuperBO;
 import lk.ijse.project_wineverse.dto.CustomerDTO;
-import lk.ijse.project_wineverse.entity.CashierCustomer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

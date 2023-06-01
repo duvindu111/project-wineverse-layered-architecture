@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class CashierCustomer {
+public class Customer {
     private String cust_id;
     private String cust_name;
     private String cust_email;

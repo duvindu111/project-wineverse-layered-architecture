@@ -2,6 +2,7 @@ package lk.ijse.project_wineverse.bo;
 
 import lk.ijse.project_wineverse.bo.custom.impl.AddEventImageBOImpl;
 import lk.ijse.project_wineverse.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.project_wineverse.bo.custom.impl.EmployeeBOImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -15,7 +16,7 @@ public class BOFactory {
     }
 
     public enum BOTypes {
-        CUSTOMER_BO,EVENTIMAGE_BO
+        CUSTOMER_BO,EVENTIMAGE_BO,EMPLOYEE_BO
     }
 
     public <T extends SuperBO> T getBO(BOTypes boTypes) {
@@ -24,6 +25,8 @@ public class BOFactory {
                 return (T) new CustomerBOImpl();
             case EVENTIMAGE_BO:
                 return (T) new AddEventImageBOImpl();
+            case EMPLOYEE_BO:
+                return (T) new EmployeeBOImpl();
             default:
                 return null;
         }

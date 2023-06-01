@@ -1,7 +1,7 @@
 package lk.ijse.project_wineverse.dao.custom.impl;
 
 import lk.ijse.project_wineverse.dao.custom.CustomerDAO;
-import lk.ijse.project_wineverse.entity.CashierCustomer;
+import lk.ijse.project_wineverse.entity.Customer;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class CustomerDAOImpl implements CustomerDAO {
 
-    public boolean save(CashierCustomer customer) throws SQLException, ClassNotFoundException{
+    public boolean save(Customer customer) throws SQLException, ClassNotFoundException{
         return CrudUtil.execute("INSERT INTO customer(cust_id,cust_name,cust_email,cust_contact) " +
                 "VALUES(?,?,?,?)", customer.getCust_id(), customer.getCust_name(), customer.getCust_email(), customer.getCust_contact());
     }
@@ -26,14 +26,14 @@ public class CustomerDAOImpl implements CustomerDAO {
         return 0;
     }
 
-    public ArrayList<CashierCustomer> getAll() throws SQLException {
+    public ArrayList<Customer> getAll() throws SQLException {
         String sql = "SELECT * FROM customer";
 
-        ArrayList<CashierCustomer> arrayList = new ArrayList<>();
+        ArrayList<Customer> arrayList = new ArrayList<>();
 
         ResultSet resultSet = CrudUtil.execute(sql);
         while (resultSet.next()) {
-            arrayList.add(new CashierCustomer(
+            arrayList.add(new Customer(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -43,12 +43,12 @@ public class CustomerDAOImpl implements CustomerDAO {
         return arrayList;
     }
 
-    public CashierCustomer findBy(String id) throws SQLException {
+    public Customer findBy(String id) throws SQLException {
         String sql = "SELECT * FROM customer WHERE cust_id=?";
 
         ResultSet resultSet = CrudUtil.execute(sql,id);
         if(resultSet.next()){
-            return (new CashierCustomer(
+            return (new Customer(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -58,7 +58,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return null;
     }
 
-    public boolean update(CashierCustomer customer) throws SQLException {
+    public boolean update(Customer customer) throws SQLException {
         String sql = "UPDATE customer SET cust_name=?,cust_email=?,cust_contact=? WHERE cust_id=?";
 
         return CrudUtil.execute(
