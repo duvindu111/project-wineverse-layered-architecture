@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +17,6 @@ public class SupplyLoadDetails {
     private String item_code;
     private int supp_qty;
     private LocalDate date;
-    private Time time;
+    private LocalTime time;
     private Double price;
 }

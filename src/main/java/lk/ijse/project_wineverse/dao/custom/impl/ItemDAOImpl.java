@@ -5,7 +5,9 @@ import javafx.collections.ObservableList;
 import lk.ijse.project_wineverse.dao.custom.ItemDAO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
+import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
 import lk.ijse.project_wineverse.entity.Item;
+import lk.ijse.project_wineverse.entity.SupplyLoadDetails;
 import lk.ijse.project_wineverse.util.CrudUtil;
 import lk.ijse.project_wineverse.view.tdm.ItemTM;
 
@@ -114,6 +116,25 @@ public class ItemDAOImpl implements ItemDAO {
                 sql,
                 placeorder.getOrdereditemqty(),
                 placeorder.getOrdereditemcode()
+        );
+    }
+
+    public boolean addQty(List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException {
+        for(SupplyLoadDetails placeSupplyLoad : placeSupplyLoadList) {
+            if(!addQty(placeSupplyLoad)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean addQty(SupplyLoadDetails placeSupplyLoad) throws SQLException {
+        String sql = "UPDATE item SET item_qty = (item_qty + ?) WHERE item_code = ?";
+
+        return CrudUtil.execute(
+                sql,
+                placeSupplyLoad.getSupp_qty(),
+                placeSupplyLoad.getItem_code()
         );
     }
 }

@@ -9,6 +9,7 @@ import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class SupplyLoadDetailsBOImpl implements SupplyLoadDetailsBO {
@@ -20,7 +21,7 @@ public class SupplyLoadDetailsBOImpl implements SupplyLoadDetailsBO {
         ArrayList<SupplyLoadDetailsDTO> arrayList = new ArrayList<>();
 
         for (SupplyLoadDetails s : all) {
-            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(),s.getTime(),s.getPrice()));
+            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(), Time.valueOf(s.getTime()),s.getPrice()));
         }
         return arrayList;
     }
@@ -30,7 +31,7 @@ public class SupplyLoadDetailsBOImpl implements SupplyLoadDetailsBO {
         ArrayList<SupplyLoadDetailsDTO> arrayList = new ArrayList<>();
 
         for (SupplyLoadDetails s : all) {
-            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(),s.getTime(),s.getPrice()));
+            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(),Time.valueOf(s.getTime()),s.getPrice()));
         }
         return arrayList;
     }
@@ -40,7 +41,7 @@ public class SupplyLoadDetailsBOImpl implements SupplyLoadDetailsBO {
         ArrayList<SupplyLoadDetailsDTO> arrayList = new ArrayList<>();
 
         for (SupplyLoadDetails s : all) {
-            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(),s.getTime(),s.getPrice()));
+            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(),Time.valueOf(s.getTime()),s.getPrice()));
         }
         return arrayList;
     }
@@ -50,7 +51,7 @@ public class SupplyLoadDetailsBOImpl implements SupplyLoadDetailsBO {
         ArrayList<SupplyLoadDetailsDTO> arrayList = new ArrayList<>();
 
         for (SupplyLoadDetails s : all) {
-            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(),s.getTime(),s.getPrice()));
+            arrayList.add(new SupplyLoadDetailsDTO(s.getLoad_id(),s.getSupp_id(),s.getItem_code(),s.getSupp_qty(),s.getDate(),Time.valueOf(s.getTime()),s.getPrice()));
         }
         return arrayList;
 

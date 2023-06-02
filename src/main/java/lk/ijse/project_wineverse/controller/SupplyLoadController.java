@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.SupplyLoadBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
 import lk.ijse.project_wineverse.view.tdm.AddSupplyLoadTM;
@@ -142,10 +144,13 @@ public class SupplyLoadController {
     @FXML
     private AnchorPane adminchangingPane;
 
+    SupplyLoadBO supplyLoadBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SUPPLYLOAD_BO);
+
     private void loadCustomerIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> ids = SupplierModel.loadIds();
+        //  List<String> ids = SupplierModel.loadIds();
+            List<String> ids = supplyLoadBO.loadSupplierIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -160,7 +165,8 @@ public class SupplyLoadController {
     private void loadItemCodes() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> codes = ItemModel.loadCodes();
+          //  List<String> codes = ItemModel.loadCodes();
+            List<String> codes =supplyLoadBO.loadItemCodes();
 
             for (String code : codes) {
                 obList.add(code);
@@ -172,12 +178,26 @@ public class SupplyLoadController {
 
     private void generateNextLoadId() {
         try {
-            String id = CashierSupplyLoadModel.getNextSupplyLoadId();
-            lblloadid.setText(id);
+         // String id = CashierSupplyLoadModel.getNextSupplyLoadId();
+            String id = supplyLoadBO.getNextSupplyLoadId();
+            String nextloadid= splitOrderId(id);
+
+            lblloadid.setText(nextloadid);
         } catch (Exception e) {
             System.out.println(e);
             new Alert(Alert.AlertType.ERROR, "Exception!").show();
         }
+    }
+
+    private String splitOrderId(String currentId) {
+        if(currentId != null) {
+            String[] strings = currentId.split("LOAD-");
+            int id = Integer.parseInt(strings[1]);
+            ++id;
+            String digit=String.format("%03d", id);
+            return "LOAD-" + digit;
+        }
+        return "LOAD-001";
     }
 
     @FXML
@@ -269,7 +289,6 @@ public class SupplyLoadController {
 
                 tblplaceLoad.refresh();
             }
-
         });
     }
 
@@ -296,7 +315,8 @@ public class SupplyLoadController {
 
                 boolean isPlaced = false;
                 try {
-                    isPlaced = CashierSupplyLoadModel.placeLoad(loadid, suppid, totalprice, placeSupplyLoadList);
+              //      isPlaced = CashierSupplyLoadModel.placeLoad(loadid, suppid, totalprice, placeSupplyLoadList);
+                    isPlaced = supplyLoadBO.placeLoad(loadid, suppid, totalprice, placeSupplyLoadList);
                     if (isPlaced) {
                         AlertController.confirmmessage("Load Added Successfully");
                         generateNextLoadId();
