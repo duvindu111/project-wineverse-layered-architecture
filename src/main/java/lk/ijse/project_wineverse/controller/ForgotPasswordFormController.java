@@ -15,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.ForgotPasswordBO;
 import lk.ijse.project_wineverse.dto.SignUpDTO;
 import lk.ijse.project_wineverse.model.SignUpModel;
 import lk.ijse.project_wineverse.util.AlertController;
@@ -71,6 +73,8 @@ public class ForgotPasswordFormController {
 
     Random rand = new Random();
 
+    ForgotPasswordBO forgotPasswordBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.FORGOTPASSWORD_BO);
+
     public void timermethod(Label label){
         resendlbl.setVisible(false);
         timeSeconds.set(START_TIME);
@@ -91,7 +95,9 @@ public class ForgotPasswordFormController {
 
         if(ValidateField.emailCheck(recemailtxt.getText())) {
 
-            SignUpDTO signup = SignUpModel.findbyusername(recusername.getText());
+          //  SignUpDTO signup = SignUpModel.findbyusername(recusername.getText());
+            SignUpDTO signup = forgotPasswordBO.findByUsername(recusername.getText());
+
                 if (recemailtxt.getText().equals(signup.getEmail())) {
 
                     ////////////////////////////
@@ -135,7 +141,8 @@ public class ForgotPasswordFormController {
             String newpassword = passfield.getText();
 
             try {
-                boolean isUpdated = SignUpModel.update(username, newpassword);
+             //   boolean isUpdated = SignUpModel.update(username, newpassword);
+                boolean isUpdated = forgotPasswordBO.updatePassword(username, newpassword);
                 if (isUpdated) {
                     AlertController.confirmmessage("Password Changed");
                 }

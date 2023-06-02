@@ -24,6 +24,7 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
     ItemDAO itemDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ITEM);
     OrderDetailDAO orderDetailDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ORDER_DETAIL);
     DeliveryDAO deliveryDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.DELIVERY);
+    EmployeeDAO employeeDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.EMPLOYEE);
 
     public String getNextOrderId() throws SQLException {
         return ordersDAO.getNextOrderId();
@@ -95,5 +96,9 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
             System.out.println("finally");
             con.setAutoCommit(true);
         }
+    }
+
+    public List<String> loadEmployeeIds() throws SQLException {
+        return employeeDAO.loadIds();
     }
 }

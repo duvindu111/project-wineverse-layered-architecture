@@ -264,14 +264,23 @@ public class AdminEmployeeController {
     }
 
     private void setCellValueFactory() {
-        empcolid.setCellValueFactory(new PropertyValueFactory<>("id"));
+       /* empcolid.setCellValueFactory(new PropertyValueFactory<>("id"));
         empcolname.setCellValueFactory(new PropertyValueFactory<>("name"));
         empcoldob.setCellValueFactory(new PropertyValueFactory<>("nic"));
         empcoladdress.setCellValueFactory(new PropertyValueFactory<>("dob"));
         empcolcontact.setCellValueFactory(new PropertyValueFactory<>("job"));
         empcolemail.setCellValueFactory(new PropertyValueFactory<>("contact"));
         empcoljob.setCellValueFactory(new PropertyValueFactory<>("address"));
-        empcolnic.setCellValueFactory(new PropertyValueFactory<>("email"));
+        empcolnic.setCellValueFactory(new PropertyValueFactory<>("email"));*/
+
+        empcolid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        empcolname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        empcoldob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        empcoladdress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        empcolcontact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        empcolemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        empcoljob.setCellValueFactory(new PropertyValueFactory<>("job"));
+        empcolnic.setCellValueFactory(new PropertyValueFactory<>("nic"));
     }
 
     private void getAll(){

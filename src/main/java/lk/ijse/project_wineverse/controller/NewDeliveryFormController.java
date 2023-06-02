@@ -1,13 +1,6 @@
 package lk.ijse.project_wineverse.controller;
 
 import com.jfoenix.controls.JFXButton;
-import java.net.URL;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,15 +9,17 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.project_wineverse.bo.BOFactory;
-import lk.ijse.project_wineverse.bo.custom.NewDeliveryBO;
 import lk.ijse.project_wineverse.bo.custom.PlaceOrderBO;
-import lk.ijse.project_wineverse.bo.custom.impl.NewDeliveryBOImpl;
-import lk.ijse.project_wineverse.bo.custom.impl.PlaceOrderBOImpl;
 import lk.ijse.project_wineverse.dto.NewDeliveryDTO;
-import lk.ijse.project_wineverse.model.CashierOrderModel;
-import lk.ijse.project_wineverse.model.EmployeeModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.ValidateField;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class NewDeliveryFormController {
 
@@ -64,7 +59,7 @@ public class NewDeliveryFormController {
     @FXML
     private Label lblwrongdelid;
 
-    NewDeliveryBO newDeliveryBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.NEWDELIVERY_BO);
+    // NewDeliveryBO newDeliveryBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.NEWDELIVERY_BO);
     PlaceOrderBO placeOrderBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.PLACEORDER_BO);
 
     @FXML
@@ -95,18 +90,18 @@ public class NewDeliveryFormController {
 
     }
 
-    private void setdeliveryID(){
+    private void setdeliveryID() {
 
-            String[] strings = lblorderid.getText().split("ORD-");
-            int id = Integer.parseInt(strings[1]);
-            String digit=String.format("%03d", id);
-            txtdelid.setText("DL-"+digit);
+        String[] strings = lblorderid.getText().split("ORD-");
+        int id = Integer.parseInt(strings[1]);
+        String digit = String.format("%03d", id);
+        txtdelid.setText("DL-" + digit);
     }
 
     private void generateNextOrderId() {
         try {
-          //  String id = CashierOrderModel.getNextOrderId();
-            String id = newDeliveryBO.getNextOrderId();
+            //  String id = CashierOrderModel.getNextOrderId();
+            String id = placeOrderBO.getNextOrderId();
             String orderid = splitOrderId(id);
 
             lblorderid.setText(orderid);
@@ -130,8 +125,8 @@ public class NewDeliveryFormController {
     private void loadEmployeeIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-         //   List<String> ids = EmployeeModel.loadIds();
-            List<String> ids = newDeliveryBO.loadEmployeeIds();
+            //   List<String> ids = EmployeeModel.loadIds();
+            List<String> ids = placeOrderBO.loadEmployeeIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -144,10 +139,11 @@ public class NewDeliveryFormController {
     }
 
     NewDeliveryDTO newDelivery;
+
     public void btnAddNewOnAction(ActionEvent actionEvent) {
-        if(txtlocation.getText().isEmpty() || cmbempid.getSelectionModel().getSelectedIndex()==-1) {
+        if (txtlocation.getText().isEmpty() || cmbempid.getSelectionModel().getSelectedIndex() == -1) {
             AlertController.errormessage("Please make sure you fill out all the required fields before trying to add the delivery");
-        }else{
+        } else {
             boolean result = AlertController.okconfirmmessage("Are you sure you want to add this details as a new delivery?\nMake sure you provide correct information or you can later update info from the delivery page");
             if (result) {
                 String orderid = lblorderid.getText();
@@ -157,7 +153,7 @@ public class NewDeliveryFormController {
                 String duedate = txtduedate.getText();
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate localduedate= LocalDate.parse(duedate, formatter);
+                LocalDate localduedate = LocalDate.parse(duedate, formatter);
 
                 if (ValidateField.deliveryIdCheck(delid)) {
                     if (ValidateField.dateCheck(duedate) || txtduedate.getText().isEmpty()) {

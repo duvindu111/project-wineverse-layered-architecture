@@ -6,6 +6,7 @@ import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class OrdersDAOImpl implements OrdersDAO {
@@ -64,6 +65,33 @@ public class OrdersDAOImpl implements OrdersDAO {
             return resultSet.getString(1);
         }
         return null;
+    }
+
+    public int totalOrdersToday() throws SQLException {
+        String sql = "SELECT COUNT(order_id) FROM orders WHERE order_date=?";
+
+        String currDate = String.valueOf(LocalDate.now());
+        ResultSet resultSet=CrudUtil.execute(sql,currDate);
+
+        int count;
+        if(resultSet.next()) {
+            return count = resultSet.getInt(1);
+        }
+        return 0;
+    }
+
+    public int totalOrdersMonth() throws SQLException {
+        String sql = "SELECT COUNT(order_id) FROM orders "+
+                "WHERE YEAR(order_date) = YEAR(CURDATE()) "+
+                "AND MONTH(order_date) = MONTH(CURDATE()) ";
+
+        ResultSet resultSet=CrudUtil.execute(sql);
+
+        int count;
+        if(resultSet.next()) {
+            return count = resultSet.getInt(1);
+        }
+        return 0;
     }
 
 

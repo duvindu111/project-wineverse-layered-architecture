@@ -23,4 +23,6 @@ public interface PlaceOrderBO extends SuperBO {
     public boolean placeOrder(String orderid, String custid, Boolean delivery, String ordpay, List<PlaceOrderDTO> placeOrderList) throws SQLException, ClassNotFoundException;
 
     public void sendObject(NewDeliveryDTO newDelivery);
+
+    public List<String> loadEmployeeIds() throws SQLException;
 }

@@ -10,4 +10,8 @@ public interface OrdersDAO extends CrudDAO<Orders> {
     public boolean cancelDelivery(String ordid) throws SQLException;
 
     public String getNextOrderId() throws SQLException;
+
+    public int totalOrdersToday() throws SQLException;
+
+    public int totalOrdersMonth() throws SQLException;
 }

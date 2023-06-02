@@ -4,10 +4,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +17,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.OrderDetailBO;
+import lk.ijse.project_wineverse.dto.CustomDTO;
 import lk.ijse.project_wineverse.dto.OrderDetailDTO;
 import lk.ijse.project_wineverse.view.tdm.OrderDetailTM;
 import lk.ijse.project_wineverse.model.OrderDetailModel;
@@ -86,6 +91,8 @@ public class OrderDetailFormController {
     @FXML
     private Label lblordersthismonth;
 
+    OrderDetailBO orderDetailBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.ORDERDETAil_BO);
+
     @FXML
     void tblOnMouseClicked(MouseEvent event) {
 
@@ -99,7 +106,14 @@ public class OrderDetailFormController {
     @FXML
     void txtSearchKeyTyped(KeyEvent event) throws SQLException {
         String searchValue = txtSearch.getText().trim();
-        ObservableList<OrderDetailTM> obList = OrderDetailModel.getAll();
+     //   ObservableList<OrderDetailTM> obList = OrderDetailModel.getAll();
+        ObservableList<OrderDetailTM> obList = FXCollections.observableArrayList();
+
+        ArrayList<CustomDTO> all = orderDetailBO.getAll();
+
+        for (CustomDTO dto : all) {
+            obList.add(new OrderDetailTM(dto.getOrder_id(),dto.getItem_code(),dto.getItem_name(),String.valueOf(dto.getOrder_qty())));
+        }
 
         if (!searchValue.isEmpty()) {
             ObservableList<OrderDetailTM> filteredData = obList.filtered(new Predicate<OrderDetailTM>(){
@@ -119,15 +133,16 @@ public class OrderDetailFormController {
         String orderid = txtSearch.getText();
 
         try {
-            OrderDetailDTO orderDetail =  OrderDetailModel.fillFields(orderid);
-            if(orderDetail!=null) {
+         //   OrderDetailDTO orderDetail =  OrderDetailModel.fillFields(orderid);
+            CustomDTO dto =  orderDetailBO.fillFields(orderid);
+            if(dto!=null) {
                 lblordid.setText(orderid);
-                lblcustid.setText(orderDetail.getCustid());
-                lblcustname.setText(orderDetail.getCustname());
-                lbldelivery.setText(String.valueOf(orderDetail.getDelivery()));
-                lbldate.setText(orderDetail.getDate());
-                lbltime.setText(orderDetail.getTime());
-                lblprice.setText(String.valueOf(orderDetail.getPrice()));
+                lblcustid.setText(dto.getCust_id());
+                lblcustname.setText(dto.getCust_name());
+                lbldelivery.setText(String.valueOf(dto.getDelivery()));
+                lbldate.setText(String.valueOf(dto.getOrder_date()));
+                lbltime.setText(String.valueOf(dto.getOrder_time()));
+                lblprice.setText(String.valueOf(dto.getOrder_payment()));
 
                 orderdetailslbl.requestFocus();
 
@@ -177,10 +192,12 @@ public class OrderDetailFormController {
 
     int monthly_count;
     private void dailyAndMonthlyOrderCount() throws SQLException {
-        int daily_count = OrderDetailModel.totalOrdersToday();
+     //   int daily_count = OrderDetailModel.totalOrdersToday();
+        int daily_count = orderDetailBO.totalOrdersToday();
         lblcounttoday.setText(String.valueOf(daily_count));
 
-        monthly_count = OrderDetailModel.totalOrdersMonth();
+     //   monthly_count = OrderDetailModel.totalOrdersMonth();
+        monthly_count = orderDetailBO.totalOrdersMonth();
     }
 
     private void setCellValueFactory() {
@@ -191,9 +208,14 @@ public class OrderDetailFormController {
     }
 
     private void getAll(){
-        ObservableList<OrderDetailTM> obList = null;
+        ObservableList<OrderDetailTM> obList = FXCollections.observableArrayList();
         try {
-            obList = OrderDetailModel.getAll();
+          //  obList = OrderDetailModel.getAll();
+            ArrayList<CustomDTO> all = orderDetailBO.getAll();
+
+            for (CustomDTO dto : all) {
+                obList.add(new OrderDetailTM(dto.getOrder_id(),dto.getItem_code(),dto.getItem_name(),String.valueOf(dto.getOrder_qty())));
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -209,14 +231,15 @@ public class OrderDetailFormController {
         String orderid=columns.get(0).getCellData(row).toString();
         lblordid.setText(orderid);
 
-        OrderDetailDTO orderDetail =  OrderDetailModel.fillFields(orderid);
+      //  OrderDetailDTO orderDetail =  OrderDetailModel.fillFields(orderid);
+        CustomDTO dto =  orderDetailBO.fillFields(orderid);
 
-        lblcustid.setText(orderDetail.getCustid());
-        lblcustname.setText(orderDetail.getCustname());
-        lbldelivery.setText(String.valueOf(orderDetail.getDelivery()));
-        lbldate.setText(orderDetail.getDate());
-        lbltime.setText(orderDetail.getTime());
-        lblprice.setText(String.valueOf(orderDetail.getPrice()));
+        lblcustid.setText(dto.getCust_id());
+        lblcustname.setText(dto.getCust_name());
+        lbldelivery.setText(String.valueOf(dto.getDelivery()));
+        lbldate.setText(String.valueOf(dto.getOrder_date()));
+        lbltime.setText(String.valueOf(dto.getOrder_time()));
+        lblprice.setText(String.valueOf(dto.getOrder_payment()));
     }
 
     public void txtSearchOnClicked(MouseEvent mouseEvent) {
@@ -250,12 +273,16 @@ public class OrderDetailFormController {
 
             String date = txtSearchdate.getText();
             if(ValidateField.dateCheck(date)) {
-                ObservableList<OrderDetailTM> obList = OrderDetailModel.searchbyorderdate(date);
+                ObservableList<OrderDetailTM> obList = FXCollections.observableArrayList();
+                ArrayList<CustomDTO> all = orderDetailBO.searchbyorderdate(date);
+
+                for (CustomDTO dto : all) {
+                    obList.add(new OrderDetailTM(dto.getOrder_id(),dto.getItem_code(),dto.getItem_name(),String.valueOf(dto.getOrder_qty())));
+                }
                 tblOrderDetail.setItems(obList);
             }else{
                 AlertController.errormessage("Wrong Date Format\nRequired format : (yyyy-mm-dd)");
             }
-
     }
 
     public void txtSearchdateKeyTyped(KeyEvent keyEvent) {

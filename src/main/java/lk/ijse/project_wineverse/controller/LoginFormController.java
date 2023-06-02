@@ -14,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.LoginBO;
 import lk.ijse.project_wineverse.dto.SignUpDTO;
 import lk.ijse.project_wineverse.model.SignUpModel;
 import lk.ijse.project_wineverse.util.AlertController;
@@ -68,6 +70,8 @@ public class LoginFormController {
     @FXML
     private TextField showpasstxt;
 
+    LoginBO loginBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.LOGIN_BO);
+
     @FXML
     void initialize() {
         assert loginAncPane != null : "fx:id=\"loginAncPane\" was not injected: check your FXML file 'loginform.fxml'.";
@@ -113,7 +117,8 @@ public class LoginFormController {
         }
 
         try {
-            SignUpDTO signup = SignUpModel.findbyusername(username);
+         //   SignUpDTO signup = SignUpModel.findbyusername(username);
+            SignUpDTO signup = loginBO.findByUsername(username);
 
             if (signup == null) {
                 AlertController.errormessage("Wrong/Empty Username");

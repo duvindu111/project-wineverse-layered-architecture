@@ -12,6 +12,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.SignUpBO;
 import lk.ijse.project_wineverse.dto.SignUpDTO;
 import lk.ijse.project_wineverse.model.SignUpModel;
 import lk.ijse.project_wineverse.util.AlertController;
@@ -79,6 +81,8 @@ public class SignUpFormController {
     @FXML
     private Label passlabel;
 
+    SignUpBO signUpBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.SIGNUP_BO);
+
     @FXML
     void loginbtnOnAction(ActionEvent event) {
 
@@ -111,7 +115,7 @@ public class SignUpFormController {
 
     }
 
-    public void createbtnOnAction(ActionEvent actionEvent) {
+    public void createbtnOnAction(ActionEvent actionEvent) throws ClassNotFoundException {
         String username = signupusername.getText();
         String password = signuppassword.getText();
         String job_title = signupjobtitle.getValue();
@@ -122,11 +126,11 @@ public class SignUpFormController {
                 SignUpDTO signup = new SignUpDTO(username, password, job_title, email);
                 try {
                     if (signuppassword.getText().equals(confirmpassword.getText())) {
-                        boolean isSaved = SignUpModel.save(signup);
+                   //     boolean isSaved = SignUpModel.save(signup);
+                        boolean isSaved = signUpBO.save(signup);
                         if (isSaved) {
                             AlertController.confirmmessage("Account Created");
 
-                            ////////
                             Stage stage = new Stage();
                             Parent root = null;
                             try {

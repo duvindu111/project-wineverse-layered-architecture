@@ -5,9 +5,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.ItemBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.view.tdm.ItemTM;
 import lk.ijse.project_wineverse.model.ItemModel;
@@ -118,6 +122,8 @@ public class InventoryFormController {
     @FXML
     private Label lblinvalidqty;
 
+    ItemBO itemBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.ITEM_BO);
+
     @FXML
     void logoutbtnMousePressed(MouseEvent event) throws IOException {
         adminchangingPane.getScene().getWindow().hide();
@@ -144,8 +150,6 @@ public class InventoryFormController {
 
     @FXML
     void initialize() {
-//        TimeAndDateController timeobject = new TimeAndDateController();
-//        timeobject.timenow(time,date);
 
         wrongitemcodeformat.setVisible(false);
 
@@ -197,7 +201,8 @@ public class InventoryFormController {
                         if(ValidateField.numberCheck(qty)) {
                             ItemDTO item = new ItemDTO(id, name, unitprice, category, qty);
 
-                            boolean isSaved = ItemModel.save(item);
+                       //     boolean isSaved = ItemModel.save(item);
+                            boolean isSaved = itemBO.saveItem(item);
                             if (isSaved) {
                                 AlertController.confirmmessage("Item Added Successfully");
                                 txtid.setText("");
@@ -262,9 +267,14 @@ public class InventoryFormController {
     }
 
     private void getAll(){
-        ObservableList<ItemTM> obList = null;
+        ObservableList<ItemTM> obList = FXCollections.observableArrayList();
         try {
-            obList = ItemModel.getAll();
+          //  obList = ItemModel.getAll();
+            ArrayList<ItemDTO> all = itemBO.getAll();
+
+            for (ItemDTO dto : all) {
+                obList.add(new ItemTM(dto.getCode(),dto.getName(),Double.valueOf(dto.getUnitprice()),dto.getCategory(),Integer.valueOf(dto.getQuantity())));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -290,7 +300,8 @@ public class InventoryFormController {
                 }else{
                     ItemDTO item = new ItemDTO(id, name, unitprice, category, quantity);
 
-                    boolean isUpdated = ItemModel.update(item);
+                //    boolean isUpdated = ItemModel.update(item);
+                    boolean isUpdated = itemBO.update(item);
                     if (isUpdated) {
                         AlertController.confirmmessage("Item Details Updated");
                         txtid.setText("");
@@ -317,7 +328,13 @@ public class InventoryFormController {
 
     public void txtSearchKeyTyped(KeyEvent keyEvent) throws SQLException {
         String searchValue = txtSearch.getText().trim();
-        ObservableList<ItemTM> obList = ItemModel.getAll();
+        ObservableList<ItemTM> obList = FXCollections.observableArrayList();
+
+        ArrayList<ItemDTO> all = itemBO.getAll();
+
+        for (ItemDTO dto : all) {
+            obList.add(new ItemTM(dto.getCode(),dto.getName(),Double.valueOf(dto.getUnitprice()),dto.getCategory(),Integer.valueOf(dto.getQuantity())));
+        }
 
         if (!searchValue.isEmpty()) {
             ObservableList<ItemTM> filteredData = obList.filtered(new Predicate<ItemTM>(){
@@ -348,7 +365,8 @@ public class InventoryFormController {
         txtquantity.setText(null);
 
         try {
-            ItemDTO item = ItemModel.findById(id);
+          //  ItemDTO item = ItemModel.findById(id);
+            ItemDTO item = itemBO.findByItemCode(id);
             if(item!=null) {
                 txtid.setText(item.getCode());
                 txtname.setText(item.getName());
@@ -372,7 +390,8 @@ public class InventoryFormController {
         if(result==true) {
 
             try {
-                boolean isDeleted = ItemModel.delete(id);
+             //   boolean isDeleted = ItemModel.delete(id);
+                boolean isDeleted = itemBO.deleteItem(id);
                 if (isDeleted) {
                     AlertController.confirmmessage("Item Deleted Successfully");
                     txtid.setText(null);
