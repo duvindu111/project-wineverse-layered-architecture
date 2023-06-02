@@ -2,6 +2,7 @@ package lk.ijse.project_wineverse.dao.custom.impl;
 
 import lk.ijse.project_wineverse.dao.custom.ItemDAO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
+import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.entity.Item;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
@@ -58,5 +59,24 @@ public class ItemDAOImpl implements ItemDAO {
             data.add(resultSet.getString(1));
         }
         return data;
+    }
+
+    public boolean updateQty(List<PlaceOrderDTO> placeOrderList) throws SQLException {
+        for(PlaceOrderDTO placeorder : placeOrderList) {
+            if(!updateQty(placeorder)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean updateQty(PlaceOrderDTO placeorder) throws SQLException {
+        String sql = "UPDATE item SET item_qty = (item_qty - ?) WHERE item_code = ?";
+
+        return CrudUtil.execute(
+                sql,
+                placeorder.getOrdereditemqty(),
+                placeorder.getOrdereditemcode()
+        );
     }
 }

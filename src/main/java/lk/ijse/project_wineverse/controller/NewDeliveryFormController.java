@@ -3,6 +3,8 @@ package lk.ijse.project_wineverse.controller;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -13,6 +15,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.NewDeliveryBO;
+import lk.ijse.project_wineverse.bo.custom.impl.NewDeliveryBOImpl;
+import lk.ijse.project_wineverse.bo.custom.impl.PlaceOrderBOImpl;
 import lk.ijse.project_wineverse.dto.NewDeliveryDTO;
 import lk.ijse.project_wineverse.model.CashierOrderModel;
 import lk.ijse.project_wineverse.model.EmployeeModel;
@@ -57,6 +63,7 @@ public class NewDeliveryFormController {
     @FXML
     private Label lblwrongdelid;
 
+    NewDeliveryBO newDeliveryBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.NEWDELIVERY_BO);
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
@@ -96,18 +103,33 @@ public class NewDeliveryFormController {
 
     private void generateNextOrderId() {
         try {
-            String id = CashierOrderModel.getNextOrderId();
-            lblorderid.setText(id);
+          //  String id = CashierOrderModel.getNextOrderId();
+            String id = newDeliveryBO.getNextOrderId();
+            String orderid = splitOrderId(id);
+
+            lblorderid.setText(orderid);
         } catch (Exception e) {
             System.out.println(e);
             new Alert(Alert.AlertType.ERROR, "Exception!").show();
         }
     }
 
+    private static String splitOrderId(String currentId) {
+        if (currentId != null) {
+            String[] strings = currentId.split("ORD-");
+            int id = Integer.parseInt(strings[1]);
+            ++id;
+            String digit = String.format("%03d", id);
+            return "ORD-" + digit;
+        }
+        return "ORD-001";
+    }
+
     private void loadEmployeeIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
-            List<String> ids = EmployeeModel.loadIds();
+         //   List<String> ids = EmployeeModel.loadIds();
+            List<String> ids = newDeliveryBO.loadEmployeeIds();
 
             for (String id : ids) {
                 obList.add(id);
@@ -132,11 +154,14 @@ public class NewDeliveryFormController {
                 String empid = cmbempid.getValue();
                 String duedate = txtduedate.getText();
 
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localduedate= LocalDate.parse(duedate, formatter);
+
                 if (ValidateField.deliveryIdCheck(delid)) {
                     if (ValidateField.dateCheck(duedate) || txtduedate.getText().isEmpty()) {
-                        newDelivery = new NewDeliveryDTO(orderid, delid, location, empid, duedate);
+                        newDelivery = new NewDeliveryDTO(orderid, delid, location, empid, localduedate);
 
-                        CashierOrderModel.sendObject(newDelivery);
+                        PlaceOrderBOImpl.sendObject(newDelivery);
 
                         newdeliveryAncPane.getScene().getWindow().hide();
 

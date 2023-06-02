@@ -15,7 +15,17 @@ import java.util.ArrayList;
 public class DeliveryDAOImpl implements DeliveryDAO {
     @Override
     public boolean save(Delivery entity) throws SQLException, ClassNotFoundException {
-        return false;
+        String sql = "INSERT INTO delivery(delivery_id,location,due_date,order_id,emp_id)" +
+                "VALUES (?,?,?,?,?)";
+
+        return CrudUtil.execute(
+                sql,
+                entity.getDelivery_id(),
+                entity.getLocation(),
+                entity.getDue_date(),
+                entity.getOrder_id(),
+                entity.getEmp_id()
+        );
     }
 
     @Override

@@ -398,7 +398,7 @@ public class CashierPlaceOrderFormController {
         lbltotalpay.setText(String.valueOf(netTotal));
     }
 
-    public void btnplaceorderOnAction(ActionEvent actionEvent) throws JRException, MessagingException {
+    public void btnplaceorderOnAction(ActionEvent actionEvent) throws JRException, MessagingException, ClassNotFoundException {
         String orderid = lblorderid.getText();
         String custid = cmbcustid.getValue();
         Boolean delivery = radiodelivery.isSelected();
@@ -419,7 +419,7 @@ public class CashierPlaceOrderFormController {
         boolean isPlaced = false;
         if (ValidateField.priceCheck(ordpay)) {
             try {
-                isPlaced = CashierOrderModel.placeOrder(orderid, custid, delivery, ordpay, placeOrderList);
+                isPlaced = placeOrderBO.placeOrder(orderid, custid, delivery, ordpay, placeOrderList);
                 if (isPlaced) {
                     AlertController.confirmmessage("Order Placed");
                     String custId = cmbcustid.getValue();

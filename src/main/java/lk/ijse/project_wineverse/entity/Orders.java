@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +14,8 @@ import java.time.LocalDate;
 public class Orders {
     private String order_id;
     private String cust_id;
-    private boolean delivery;
-    private LocalDate date;
-    private Time time;
+    private Boolean delivery;
+    private LocalDate order_date;
+    private LocalTime order_time;
+    private Double order_payment;
 }
