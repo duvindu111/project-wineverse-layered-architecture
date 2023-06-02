@@ -47,7 +47,7 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
     }
 
     static NewDeliveryDTO gotnewdelivery;
-    public static void sendObject(NewDeliveryDTO newDelivery) {
+    public void sendObject(NewDeliveryDTO newDelivery) {
         gotnewdelivery = newDelivery;
     }
 

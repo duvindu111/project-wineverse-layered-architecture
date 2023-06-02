@@ -2,6 +2,7 @@ package lk.ijse.project_wineverse.bo.custom;
 
 import lk.ijse.project_wineverse.bo.SuperBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
+import lk.ijse.project_wineverse.dto.NewDeliveryDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 
 import java.sql.SQLException;
@@ -20,4 +21,6 @@ public interface PlaceOrderBO extends SuperBO {
     public ItemDTO findByItemCode(String id) throws SQLException;
 
     public boolean placeOrder(String orderid, String custid, Boolean delivery, String ordpay, List<PlaceOrderDTO> placeOrderList) throws SQLException, ClassNotFoundException;
+
+    public void sendObject(NewDeliveryDTO newDelivery);
 }

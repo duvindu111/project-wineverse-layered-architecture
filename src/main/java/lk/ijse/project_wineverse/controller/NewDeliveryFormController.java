@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.NewDeliveryBO;
+import lk.ijse.project_wineverse.bo.custom.PlaceOrderBO;
 import lk.ijse.project_wineverse.bo.custom.impl.NewDeliveryBOImpl;
 import lk.ijse.project_wineverse.bo.custom.impl.PlaceOrderBOImpl;
 import lk.ijse.project_wineverse.dto.NewDeliveryDTO;
@@ -64,6 +65,7 @@ public class NewDeliveryFormController {
     private Label lblwrongdelid;
 
     NewDeliveryBO newDeliveryBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.NEWDELIVERY_BO);
+    PlaceOrderBO placeOrderBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.PLACEORDER_BO);
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
@@ -161,7 +163,7 @@ public class NewDeliveryFormController {
                     if (ValidateField.dateCheck(duedate) || txtduedate.getText().isEmpty()) {
                         newDelivery = new NewDeliveryDTO(orderid, delid, location, empid, localduedate);
 
-                        PlaceOrderBOImpl.sendObject(newDelivery);
+                        placeOrderBO.sendObject(newDelivery);
 
                         newdeliveryAncPane.getScene().getWindow().hide();
 
