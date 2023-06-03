@@ -1,5 +1,6 @@
 package lk.ijse.project_wineverse.dao.custom.impl;
 
+import javafx.scene.chart.XYChart;
 import lk.ijse.project_wineverse.dao.custom.OrdersDAO;
 import lk.ijse.project_wineverse.entity.Orders;
 import lk.ijse.project_wineverse.util.CrudUtil;
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrdersDAOImpl implements OrdersDAO {
 
@@ -92,6 +94,20 @@ public class OrdersDAOImpl implements OrdersDAO {
             return count = resultSet.getInt(1);
         }
         return 0;
+    }
+
+    public List<XYChart.Data<String, Double>> getDataToAreaChart(String year) throws SQLException {
+        String sql= "SELECT MONTHNAME(order_date) AS month,SUM(order_payment) AS total_income FROM orders WHERE YEAR(order_date)=? GROUP BY month ORDER BY month desc";
+
+        List<XYChart.Data<String, Double>> data = new ArrayList<>();
+        ResultSet resultSet = CrudUtil.execute(sql,year);
+
+        while(resultSet.next()){
+            String month = resultSet.getString("month");
+            double income = resultSet.getDouble("total_income");
+            data.add(new XYChart.Data<>(month, income));
+        }
+        return data;
     }
 
 

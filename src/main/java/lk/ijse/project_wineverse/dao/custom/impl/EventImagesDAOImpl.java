@@ -1,13 +1,18 @@
 package lk.ijse.project_wineverse.dao.custom.impl;
 
+import javafx.scene.image.Image;
+import javafx.util.Pair;
 import lk.ijse.project_wineverse.dao.custom.EventImagesDAO;
 import lk.ijse.project_wineverse.entity.Customer;
 import lk.ijse.project_wineverse.entity.EventImages;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventImagesDAOImpl implements EventImagesDAO {
 
@@ -51,5 +56,19 @@ public class EventImagesDAOImpl implements EventImagesDAO {
     @Override
     public EventImages findBy(String id) throws SQLException {
         return null;
+    }
+
+    public List<Pair<String, Image>> eventDataWithIds() throws SQLException {
+        String sql = "SELECT event_id,image FROM event_images";
+        ResultSet resultSet = CrudUtil.execute(sql);
+        List<Pair<String, Image>> data = new ArrayList<>();
+        while (resultSet.next()) {
+            String eventid=resultSet.getString(1);
+            byte[]imageData=resultSet.getBytes(2);
+            Image image=new Image(new ByteArrayInputStream(imageData));
+            Pair<String, Image> eventImage = new Pair<>(eventid, image);
+            data.add(eventImage);
+        }
+        return data;
     }
 }

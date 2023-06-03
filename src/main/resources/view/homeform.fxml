@@ -37,17 +37,6 @@
          </image>
       </ImageView>
       <PieChart fx:id="piechartincomelast5months" layoutX="672.0" layoutY="26.0" legendVisible="false" prefHeight="312.0" prefWidth="310.0" style="-fx-background-color: white; -fx-background-radius: 10;" styleClass="piecharttitle" stylesheets="@../assets/styles/style.css" title="TOP 5 SOLD ITEMS THIS MONTH" />
-      <BarChart fx:id="lowstockitems" alternativeRowFillVisible="false" layoutX="999.0" layoutY="26.0" legendSide="RIGHT" legendVisible="false" onMouseEntered="#lowstockitemsOnMouseEntered" onMouseExited="#lowstockitemsOnMouseExited" prefHeight="312.0" prefWidth="278.0" style="-fx-background-color: white; -fx-background-radius: 10;" styleClass="barcharttitle" stylesheets="@../assets/styles/style.css" title="LOW STOCK ITEMS">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </BarChart>
       <Group layoutX="270.0" layoutY="18.0">
          <children>
             <Label fx:id="eventimageslabel" focusTraversable="false" layoutX="20.0" layoutY="20.0" pickOnBounds="false" prefHeight="15.0" prefWidth="46.0" styleClass="eventlabel" stylesheets="@../assets/styles/style.css" text="Label">
@@ -57,7 +46,6 @@
             </Label>
          </children>
       </Group>
-      <Label fx:id="lbllowstockitems" layoutX="999.0" layoutY="356.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 10;" textFill="RED" />
       <AreaChart fx:id="areachart" layoutX="672.0" layoutY="359.0" onMouseClicked="#areachartOnMouseClicked" prefHeight="267.0" prefWidth="602.0" style="-fx-background-color: white; -fx-background-radius: 10;" styleClass="piecharttitle" stylesheets="@../assets/styles/style.css" title="Monthly Income Comparison">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
@@ -91,5 +79,17 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </Rectangle>
+      <BarChart fx:id="lowstockitems" alternativeRowFillVisible="false" layoutX="999.0" layoutY="26.0" legendSide="RIGHT" legendVisible="false" onMouseEntered="#lowstockitemsOnMouseEntered" onMouseExited="#lowstockitemsOnMouseExited" prefHeight="312.0" prefWidth="278.0" style="-fx-background-color: white; -fx-background-radius: 10;" styleClass="barcharttitle" stylesheets="@../assets/styles/style.css" title="LOW STOCK ITEMS">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </BarChart>
+      <Label fx:id="lbllowstockitems" layoutX="999.0" layoutY="356.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 10;" textFill="RED" />
    </children>
 </AnchorPane>

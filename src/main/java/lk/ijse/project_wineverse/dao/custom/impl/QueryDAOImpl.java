@@ -2,6 +2,7 @@ package lk.ijse.project_wineverse.dao.custom.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import lk.ijse.project_wineverse.dao.custom.QueryDAO;
 import lk.ijse.project_wineverse.dto.OrderDetailDTO;
 import lk.ijse.project_wineverse.entity.Custom;
@@ -79,6 +80,31 @@ public class QueryDAOImpl implements QueryDAO{
             custom.setItem_name(resultSet.getString(3));
             custom.setOrder_qty(resultSet.getInt(4));
             all.add(custom);
+        }
+        return all;
+    }
+
+    public ArrayList<PieChart.Data> getDataToPieChart() throws SQLException {
+        String sql="SELECT item.item_name,COUNT(order_detail.item_code) "+
+                "FROM order_detail "+
+                "INNER JOIN item "+
+                "ON item.item_code = order_detail.item_code " +
+                "INNER JOIN orders " +
+                "ON order_detail.order_id=orders.order_id " +
+                "WHERE MONTH(orders.order_date) = MONTH(CURRENT_DATE()) " +
+                "GROUP BY item.item_name " +
+                "LIMIT 5 ";
+
+        ArrayList<PieChart.Data> all = new ArrayList<>();
+        ResultSet resultSet = CrudUtil.execute(sql);
+
+        while(resultSet.next()){
+            all.add(
+                    new PieChart.Data(
+                            resultSet.getString(1),
+                            resultSet.getInt(2)
+                    )
+            );
         }
         return all;
     }

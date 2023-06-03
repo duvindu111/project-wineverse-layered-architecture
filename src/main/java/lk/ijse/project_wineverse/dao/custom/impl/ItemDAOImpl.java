@@ -2,6 +2,7 @@ package lk.ijse.project_wineverse.dao.custom.impl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 import lk.ijse.project_wineverse.dao.custom.ItemDAO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
@@ -136,5 +137,23 @@ public class ItemDAOImpl implements ItemDAO {
                 placeSupplyLoad.getSupp_qty(),
                 placeSupplyLoad.getItem_code()
         );
+    }
+
+    public ArrayList<XYChart.Series<String, Integer>> getDataToBarChart() throws SQLException {
+        String sql="SELECT item_name,item_qty FROM item WHERE item_qty<=100 ";
+
+        ArrayList<XYChart.Series<String, Integer>> all = new ArrayList<>();
+        ResultSet resultSet = CrudUtil.execute(sql);
+        // Creating a new series object
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+
+        while(resultSet.next()){
+            String itemName = resultSet.getString("item_name");
+            int itemQty = resultSet.getInt("item_qty");
+            series.getData().add(new XYChart.Data<>(itemName, itemQty));
+        }
+
+        all.add(series);
+        return all;
     }
 }

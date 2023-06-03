@@ -3,6 +3,7 @@ package lk.ijse.project_wineverse.controller;
 import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,6 +30,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import lk.ijse.project_wineverse.bo.BOFactory;
+import lk.ijse.project_wineverse.bo.custom.HomeBO;
 import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.model.*;
 import lk.ijse.project_wineverse.util.ValidateField;
@@ -92,6 +95,8 @@ public class HomeController {
 
     private static final int UPDATE_INTERVAL = 5000; // in milliseconds
 
+    HomeBO homeBO = BOFactory.getBOFactory().getBO(BOFactory.BOTypes.HOME_BO);
+
     @FXML
     void initialize() throws SQLException, FileNotFoundException {
 //        TimeAndDateController timeobject = new TimeAndDateController();
@@ -144,13 +149,23 @@ public class HomeController {
     }
 
     public void setDataToPieChart() throws SQLException {
-        ObservableList<PieChart.Data> pieChartData = OrderDetailModel.getDataToPieChart();
+     //   ObservableList<PieChart.Data> pieChartData = OrderDetailModel.getDataToPieChart();
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        ArrayList<PieChart.Data> all = homeBO.getDataToPieChart();
+
+        pieChartData.addAll(all);
 
         piechartincomelast5months.setData(pieChartData);
     }
 
     public void setDataToBarChart() throws SQLException {
-        ObservableList<XYChart.Series<String, Integer>> barChartData = ItemModel.getDataToBarChart();
+      //  ObservableList<XYChart.Series<String, Integer>> barChartData = ItemModel.getDataToBarChart();
+        ObservableList<XYChart.Series<String, Integer>> barChartData = FXCollections.observableArrayList();
+
+        ArrayList<XYChart.Series<String, Integer>> all = homeBO.getDataToBarChart();
+
+        barChartData.addAll(all);
 
         lowstockitems.setData(barChartData);
     }
@@ -158,7 +173,8 @@ public class HomeController {
     List<XYChart.Data<String, Double>> data;
     public void setDataToAreaChart() throws SQLException {
         String year=txtyear.getText();
-         data = CashierOrderModel.getDataToAreaChart(year);
+       //  data = CashierOrderModel.getDataToAreaChart(year);
+        data = homeBO.getDataToAreaChart(year);
 
         XYChart.Series<String, Double> series = new XYChart.Series<>(year, FXCollections.observableArrayList(data));
 
@@ -192,7 +208,8 @@ public class HomeController {
 
     public void setImage() {
         try {
-            List<Pair<String, Image>> imageData = AddEventImageModel.eventDataWithIds();
+         //   List<Pair<String, Image>> imageData = AddEventImageModel.eventDataWithIds();
+            List<Pair<String, Image>> imageData = homeBO.eventDataWithIds();
             Pair<String, Image> eventImage = imageData.get(currentIndex);
             String eventId = eventImage.getKey();
             Image image = eventImage.getValue();
@@ -255,7 +272,12 @@ public class HomeController {
     }
 
     public void getDataToLowStockItemsLabel() throws SQLException {
-        ObservableList<XYChart.Series<String, Integer>> barChartData = ItemModel.getDataToBarChart();
+      //  ObservableList<XYChart.Series<String, Integer>> barChartData = ItemModel.getDataToBarChart();
+
+        ArrayList<XYChart.Series<String, Integer>> all = homeBO.getDataToBarChart();
+        ObservableList<XYChart.Series<String, Integer>> barChartData = FXCollections.observableArrayList();
+
+        barChartData.addAll(all);
 
         for (XYChart.Series<String, Integer> series : barChartData) {
             for (XYChart.Data<String, Integer> data : series.getData()) {
