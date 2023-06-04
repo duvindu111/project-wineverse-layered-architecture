@@ -1,5 +1,6 @@
 package lk.ijse.project_wineverse.bo.custom.impl;
 
+import lk.ijse.project_wineverse.bo.custom.OrderDetailBO;
 import lk.ijse.project_wineverse.dao.DAOFactory;
 import lk.ijse.project_wineverse.dao.custom.OrderDetailDAO;
 import lk.ijse.project_wineverse.dao.custom.OrdersDAO;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class OrderDetailBOImpl {
+public class OrderDetailBOImpl implements OrderDetailBO {
 
     QueryDAO queryDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.QUERY);
     OrdersDAO ordersDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ORDERS);
@@ -42,6 +43,7 @@ public class OrderDetailBOImpl {
        dto.setCust_name(custom.getCust_name());
        dto.setDelivery(custom.getDelivery());
        dto.setOrder_date(custom.getOrder_date());
+       dto.setOrder_time(custom.getOrder_time());
        dto.setOrder_payment(custom.getOrder_payment());
 
        return dto;

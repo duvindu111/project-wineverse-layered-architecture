@@ -25,4 +25,6 @@ public interface PlaceOrderBO extends SuperBO {
     public void sendObject(NewDeliveryDTO newDelivery);
 
     public List<String> loadEmployeeIds() throws SQLException;
+
+    public String getEmailByCustID(String custId) throws SQLException;
 }

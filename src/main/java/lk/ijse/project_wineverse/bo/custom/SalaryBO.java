@@ -16,4 +16,6 @@ public interface SalaryBO extends SuperBO {
     public boolean update(SalaryDTO dto) throws SQLException;
 
     public boolean delete(String id) throws SQLException;
+
+    public boolean save(SalaryDTO dto) throws SQLException, ClassNotFoundException;
 }

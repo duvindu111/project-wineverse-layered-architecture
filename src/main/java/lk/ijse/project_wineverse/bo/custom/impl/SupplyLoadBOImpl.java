@@ -6,9 +6,10 @@ import lk.ijse.project_wineverse.dao.custom.ItemDAO;
 import lk.ijse.project_wineverse.dao.custom.SupplierDAO;
 import lk.ijse.project_wineverse.dao.custom.SupplyLoadDetailsDAO;
 import lk.ijse.project_wineverse.db.DBConnection;
+import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
+import lk.ijse.project_wineverse.entity.Item;
 import lk.ijse.project_wineverse.entity.SupplyLoadDetails;
-import lk.ijse.project_wineverse.model.ItemModel;
 import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.Connection;
@@ -75,5 +76,14 @@ public class SupplyLoadBOImpl implements SupplyLoadBO {
             System.out.println("finally");
             con.setAutoCommit(true);
         }
+    }
+
+    public  String getSupplierName(String supp_id) throws SQLException {
+        return supplierDAO.getSupplierName(supp_id);
+    }
+
+    public ItemDTO findBy(String id) throws SQLException {
+        Item itm =  itemDAO.findBy(id);
+        return new ItemDTO(itm.getItem_code(),itm.getItem_name(),String.valueOf(itm.getUnit_price()),itm.getItem_category(),String.valueOf(itm.getUnit_price()));
     }
 }

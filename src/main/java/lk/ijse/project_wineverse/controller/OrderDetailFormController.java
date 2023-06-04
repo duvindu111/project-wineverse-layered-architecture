@@ -20,9 +20,7 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.OrderDetailBO;
 import lk.ijse.project_wineverse.dto.CustomDTO;
-import lk.ijse.project_wineverse.dto.OrderDetailDTO;
 import lk.ijse.project_wineverse.view.tdm.OrderDetailTM;
-import lk.ijse.project_wineverse.model.OrderDetailModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.ValidateField;
 

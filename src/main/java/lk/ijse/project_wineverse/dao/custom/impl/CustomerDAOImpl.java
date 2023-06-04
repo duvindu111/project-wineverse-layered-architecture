@@ -100,4 +100,16 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
         return null;
     }
+
+    public String getEmailByCustID(String custId) throws SQLException {
+        String sql = "SELECT cust_email FROM customer WHERE cust_id=?";
+        ResultSet resultSet = CrudUtil.execute(sql,custId);
+
+        if(resultSet.next()){
+            return (new String(
+                    resultSet.getString(1)
+            ));
+        }
+        return null;
+    }
 }

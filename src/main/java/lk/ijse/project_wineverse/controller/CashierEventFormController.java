@@ -21,8 +21,6 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.EventBO;
 import lk.ijse.project_wineverse.dto.EventDTO;
 import lk.ijse.project_wineverse.view.tdm.EventTM;
-import lk.ijse.project_wineverse.model.EmployeeModel;
-import lk.ijse.project_wineverse.model.EventModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
 import lk.ijse.project_wineverse.util.ValidateField;
@@ -196,11 +194,12 @@ public class CashierEventFormController implements Initializable {
         String eventtype = txteventtype.getText();
         String eventdate = String.valueOf(txteventdate.getValue());
         String eventtime = String.valueOf(txteventtime.getLocalTime());
+        System.out.println(eventtime);
 
         DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localeventdate = LocalDate.parse(eventdate, dateformatter);
 
-        DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
         LocalTime localeventtime = LocalTime.parse(eventtime, timeformatter);
 
         if(eventid.isEmpty() || eventname.isEmpty() || txteventdate.getValue()==null || txteventtime.getLocalTime()==null){

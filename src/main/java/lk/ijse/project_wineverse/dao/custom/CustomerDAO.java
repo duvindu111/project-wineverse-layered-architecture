@@ -14,4 +14,6 @@ public interface CustomerDAO extends CrudDAO<Customer> {
 
     public String getCustName(String cust_id) throws SQLException;
 
+    public String getEmailByCustID(String custId) throws SQLException;
+
 }

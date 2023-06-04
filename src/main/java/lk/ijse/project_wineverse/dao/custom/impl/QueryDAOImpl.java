@@ -55,7 +55,8 @@ public class QueryDAOImpl implements QueryDAO{
             custom.setCust_name(resultSet.getString(2));
             custom.setDelivery(resultSet.getBoolean(3));
             custom.setOrder_date(localDate);
-            custom.setOrder_payment(resultSet.getDouble(5));
+            custom.setOrder_time(resultSet.getTime(5).toLocalTime());
+            custom.setOrder_payment(resultSet.getDouble(6));
             return custom;
         }
         return null;

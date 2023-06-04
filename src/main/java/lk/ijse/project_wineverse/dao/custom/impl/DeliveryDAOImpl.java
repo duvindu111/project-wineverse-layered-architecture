@@ -52,12 +52,12 @@ public class DeliveryDAOImpl implements DeliveryDAO {
         ResultSet resultSet = CrudUtil.execute(sql);
         while (resultSet.next()) {
             all.add(new Delivery(
-                    resultSet.getString(6),
                     resultSet.getString(1),
                     resultSet.getString(2),
-                    resultSet.getDate(5).toLocalDate(),
-                    resultSet.getDate(4).toLocalDate(),
                     resultSet.getString(3),
+                    resultSet.getDate(4).toLocalDate(),
+                    resultSet.getDate(5).toLocalDate(),
+                    resultSet.getString(6),
                     resultSet.getString(7)
             ));
         }

@@ -20,7 +20,6 @@ import lk.ijse.project_wineverse.bo.custom.EmployeeBO;
 import lk.ijse.project_wineverse.dao.custom.EmployeeDAO;
 import lk.ijse.project_wineverse.dto.EmployeeDTO;
 import lk.ijse.project_wineverse.view.tdm.EmployeeTM;
-import lk.ijse.project_wineverse.model.EmployeeModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
 import lk.ijse.project_wineverse.util.ValidateField;

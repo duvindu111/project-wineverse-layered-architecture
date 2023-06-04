@@ -53,9 +53,9 @@ public class SupplierDAOImpl implements SupplierDAO {
             all.add(new Supplier(
                     resultSet.getString(1),
                     resultSet.getString(2),
-                    resultSet.getString(5),
+                    resultSet.getString(3),
                     resultSet.getString(4),
-                    resultSet.getString(3)
+                    resultSet.getString(5)
             ));
         }
         return all;
@@ -94,5 +94,17 @@ public class SupplierDAOImpl implements SupplierDAO {
             data.add(resultSet.getString(1));
         }
         return data;
+    }
+
+    public  String getSupplierName(String supp_id) throws SQLException {
+        String sql = "SELECT supp_name FROM supplier WHERE supp_id=?";
+        ResultSet resultSet = CrudUtil.execute(sql,supp_id);
+
+        if(resultSet.next()){
+            return (new String(
+                    resultSet.getString(1)
+            ));
+        }
+        return null;
     }
 }

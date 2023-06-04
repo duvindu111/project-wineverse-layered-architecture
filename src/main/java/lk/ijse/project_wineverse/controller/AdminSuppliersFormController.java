@@ -20,7 +20,6 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.SupplierBO;
 import lk.ijse.project_wineverse.dto.SupplierDTO;
 import lk.ijse.project_wineverse.view.tdm.SupplierTM;
-import lk.ijse.project_wineverse.model.SupplierModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
 import lk.ijse.project_wineverse.util.ValidateField;

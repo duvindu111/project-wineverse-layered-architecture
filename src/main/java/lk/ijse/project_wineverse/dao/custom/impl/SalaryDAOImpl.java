@@ -3,6 +3,7 @@ package lk.ijse.project_wineverse.dao.custom.impl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lk.ijse.project_wineverse.dao.custom.SalaryDAO;
+import lk.ijse.project_wineverse.dto.SalaryDTO;
 import lk.ijse.project_wineverse.entity.Salary;
 import lk.ijse.project_wineverse.util.CrudUtil;
 import lk.ijse.project_wineverse.view.tdm.SalaryTM;
@@ -14,7 +15,17 @@ import java.util.ArrayList;
 public class SalaryDAOImpl implements SalaryDAO {
     @Override
     public boolean save(Salary entity) throws SQLException, ClassNotFoundException {
-        return false;
+        String sql = "INSERT INTO salary(emp_id,salary_id,salary_amount,OT,payment_method) " +
+                "VALUES(?,?,?,?,?)";
+
+        return CrudUtil.execute(
+                sql,
+                entity.getEmp_id(),
+                entity.getSalary_id(),
+                entity.getSalary_amount(),
+                entity.getOT(),
+                entity.getPayment_method()
+        );
     }
 
     @Override

@@ -22,9 +22,6 @@ import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.view.tdm.PlaceOrderTM;
-import lk.ijse.project_wineverse.model.CashierOrderModel;
-import lk.ijse.project_wineverse.model.CustomerModel;
-import lk.ijse.project_wineverse.model.ItemModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.EmailAttachment;
 import lk.ijse.project_wineverse.util.ValidateField;
@@ -461,7 +458,7 @@ public class CashierPlaceOrderFormController {
 
                     boolean result2 = AlertController.okconfirmmessage("do you want to send the bill to the customer via email?");
                     if (result2) {
-                        String email = CustomerModel.getEmailByCustID(custId);
+                        String email = placeOrderBO.getEmailByCustID(custId);
                         try {
                             System.out.println(email);
                             Map<String, Object> parameters = new HashMap<>();

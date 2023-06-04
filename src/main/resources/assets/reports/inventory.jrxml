@@ -84,7 +84,7 @@
 			</staticText>
 			<image>
 				<reportElement x="21" y="10" width="124" height="124" uuid="637b3bd2-43c0-4f81-82e5-d4fedf7d24dd"/>
-				<imageExpression><![CDATA["lk.ijse.project_wineverse.assets/logo_new.png"]]></imageExpression>
+				<imageExpression><![CDATA["assets/images/logo_new.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

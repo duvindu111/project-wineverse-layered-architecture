@@ -28,7 +28,6 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.ItemBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.view.tdm.ItemTM;
-import lk.ijse.project_wineverse.model.ItemModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
 import lk.ijse.project_wineverse.util.ValidateField;

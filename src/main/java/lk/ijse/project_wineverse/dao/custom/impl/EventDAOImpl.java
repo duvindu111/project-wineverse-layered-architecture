@@ -16,7 +16,7 @@ import java.util.List;
 public class EventDAOImpl implements EventDAO {
 
     public List<String> loadIds() throws SQLException {
-        String sql = "SELECT event_id FROM event";
+        String sql = "SELECT emp_id FROM employee";
         ResultSet resultSet = CrudUtil.execute(sql);
 
         List<String> data = new ArrayList<>();

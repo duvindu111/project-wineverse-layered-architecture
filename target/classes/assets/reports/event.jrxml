@@ -89,7 +89,7 @@
 			</staticText>
 			<image>
 				<reportElement x="21" y="10" width="124" height="124" uuid="248c2037-1b41-4772-8de7-b0eb899ea2b5"/>
-				<imageExpression><![CDATA["lk.ijse.project_wineverse.assets/logo_new.png"]]></imageExpression>
+				<imageExpression><![CDATA["assets/images/logo_new.png"]]></imageExpression>
 			</image>
 			<textField pattern="MMMMM dd, yyyy">
 				<reportElement x="440" y="20" width="100" height="20" uuid="b7ebfe4f-618f-4008-9685-929a17a433b1"/>

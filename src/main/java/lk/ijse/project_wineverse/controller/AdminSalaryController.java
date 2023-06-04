@@ -30,8 +30,6 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.SalaryBO;
 import lk.ijse.project_wineverse.dto.SalaryDTO;
 import lk.ijse.project_wineverse.view.tdm.SalaryTM;
-import lk.ijse.project_wineverse.model.EmployeeModel;
-import lk.ijse.project_wineverse.model.SalaryModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.TextFieldBorderController;
 import lk.ijse.project_wineverse.util.ValidateField;
@@ -207,7 +205,7 @@ public class AdminSalaryController {
             }else{
                 if(ValidateField.salaryIdCheck(slryid)) {
                         SalaryDTO salary = new SalaryDTO(empid, slryid, slryamount, ot, paymethod);
-                        boolean isSaved = SalaryModel.save(salary);
+                        boolean isSaved = salaryBO.save(salary);
                         if (isSaved) {
                             AlertController.confirmmessage("New salary details added successfully");
                             cmbempid.setValue("");

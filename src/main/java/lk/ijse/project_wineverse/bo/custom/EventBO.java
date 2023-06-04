@@ -1,5 +1,6 @@
 package lk.ijse.project_wineverse.bo.custom;
 
+import lk.ijse.project_wineverse.bo.SuperBO;
 import lk.ijse.project_wineverse.dao.SuperDAO;
 import lk.ijse.project_wineverse.dto.EventDTO;
 
@@ -7,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface EventBO extends SuperDAO {
+public interface EventBO extends SuperBO {
 
     public List<String> loadIds() throws SQLException;
 

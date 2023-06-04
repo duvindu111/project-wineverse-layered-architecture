@@ -10,8 +10,10 @@ import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.entity.Delivery;
 import lk.ijse.project_wineverse.entity.Item;
 import lk.ijse.project_wineverse.entity.Orders;
+import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -100,5 +102,9 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
 
     public List<String> loadEmployeeIds() throws SQLException {
         return employeeDAO.loadIds();
+    }
+
+    public String getEmailByCustID(String custId) throws SQLException {
+        return customerDAO.getEmailByCustID(custId);
     }
 }

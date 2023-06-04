@@ -20,9 +20,6 @@ import lk.ijse.project_wineverse.bo.custom.SupplyLoadBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
 import lk.ijse.project_wineverse.view.tdm.AddSupplyLoadTM;
-import lk.ijse.project_wineverse.model.CashierSupplyLoadModel;
-import lk.ijse.project_wineverse.model.ItemModel;
-import lk.ijse.project_wineverse.model.SupplierModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.ValidateField;
 
@@ -348,7 +345,7 @@ public class SupplyLoadController {
         String supp_id = cmbsuppid.getValue();
 
         try {
-            String name = SupplierModel.getSupplierName(supp_id);
+            String name = supplyLoadBO.getSupplierName(supp_id);
             lblchangingsuppname.setText(name);
         } catch (Exception e) {
             System.out.println(e);
@@ -363,7 +360,7 @@ public class SupplyLoadController {
         String itemcode = cmbitemcode.getValue();
 
         try {
-            item = ItemModel.findById(itemcode);
+            item = supplyLoadBO.findBy(itemcode);
             lblchangingitmname.setText(item.getName());
             lblchangingcategory.setText(item.getCategory());
 

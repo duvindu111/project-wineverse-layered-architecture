@@ -20,9 +20,6 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.DeliveryBO;
 import lk.ijse.project_wineverse.dto.DeliveryDTO;
 import lk.ijse.project_wineverse.view.tdm.DeliveryTM;
-import lk.ijse.project_wineverse.model.CashierOrderModel;
-import lk.ijse.project_wineverse.model.DeliveryModel;
-import lk.ijse.project_wineverse.model.EmployeeModel;
 import lk.ijse.project_wineverse.util.AlertController;
 import lk.ijse.project_wineverse.util.ValidateField;
 

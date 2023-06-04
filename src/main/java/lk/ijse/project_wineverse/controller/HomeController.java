@@ -33,7 +33,6 @@ import javafx.util.Pair;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.HomeBO;
 import lk.ijse.project_wineverse.db.DBConnection;
-import lk.ijse.project_wineverse.model.*;
 import lk.ijse.project_wineverse.util.ValidateField;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -119,7 +118,7 @@ public class HomeController {
         lowstockitems.getXAxis().setStyle("-fx-background-color: white");
         lowstockitems.getYAxis().setStyle("-fx-background-color: white");
 
-        data = CashierOrderModel.getDataToAreaChart(String.valueOf(2023));
+        data = homeBO.getDataToAreaChart(String.valueOf(2023));
         XYChart.Series<String, Double> series = new XYChart.Series<>(String.valueOf(2023), FXCollections.observableArrayList(data));
         areachart.getData().add(series);
 

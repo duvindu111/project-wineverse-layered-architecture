@@ -40,4 +40,8 @@ public class SalaryBOImpl implements SalaryBO {
     public boolean delete(String id) throws SQLException {
         return salaryDAO.delete(id);
     }
+
+    public boolean save(SalaryDTO dto) throws SQLException, ClassNotFoundException {
+        return salaryDAO.save(new Salary(dto.getEmpid(),dto.getSlryid(),dto.getSlryamount(),dto.getOt(),dto.getPaymethod()));
+    }
 }
