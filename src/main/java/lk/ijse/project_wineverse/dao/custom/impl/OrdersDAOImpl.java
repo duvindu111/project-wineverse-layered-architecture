@@ -3,7 +3,7 @@ package lk.ijse.project_wineverse.dao.custom.impl;
 import javafx.scene.chart.XYChart;
 import lk.ijse.project_wineverse.dao.custom.OrdersDAO;
 import lk.ijse.project_wineverse.entity.Orders;
-import lk.ijse.project_wineverse.util.CrudUtil;
+import lk.ijse.project_wineverse.dao.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

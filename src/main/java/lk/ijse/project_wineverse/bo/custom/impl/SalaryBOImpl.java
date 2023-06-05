@@ -4,12 +4,9 @@ import lk.ijse.project_wineverse.bo.custom.SalaryBO;
 import lk.ijse.project_wineverse.dao.DAOFactory;
 import lk.ijse.project_wineverse.dao.custom.EmployeeDAO;
 import lk.ijse.project_wineverse.dao.custom.SalaryDAO;
-import lk.ijse.project_wineverse.dao.custom.impl.SalaryDAOImpl;
 import lk.ijse.project_wineverse.dto.SalaryDTO;
 import lk.ijse.project_wineverse.entity.Salary;
-import lk.ijse.project_wineverse.util.CrudUtil;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

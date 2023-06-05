@@ -11,8 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.PlaceOrderBO;
 import lk.ijse.project_wineverse.dto.NewDeliveryDTO;
-import lk.ijse.project_wineverse.util.AlertController;
-import lk.ijse.project_wineverse.util.ValidateField;
+import lk.ijse.project_wineverse.controller.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.ValidateField;
 
 import java.net.URL;
 import java.sql.SQLException;

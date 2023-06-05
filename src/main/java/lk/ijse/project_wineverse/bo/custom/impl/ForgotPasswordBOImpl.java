@@ -4,9 +4,7 @@ import lk.ijse.project_wineverse.dao.DAOFactory;
 import lk.ijse.project_wineverse.dao.custom.UserDAO;
 import lk.ijse.project_wineverse.dto.SignUpDTO;
 import lk.ijse.project_wineverse.entity.User;
-import lk.ijse.project_wineverse.util.CrudUtil;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ForgotPasswordBOImpl {

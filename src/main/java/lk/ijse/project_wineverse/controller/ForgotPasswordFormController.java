@@ -18,8 +18,8 @@ import javafx.util.Duration;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.ForgotPasswordBO;
 import lk.ijse.project_wineverse.dto.SignUpDTO;
-import lk.ijse.project_wineverse.util.AlertController;
-import lk.ijse.project_wineverse.util.ValidateField;
+import lk.ijse.project_wineverse.controller.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.ValidateField;
 
 import javax.mail.MessagingException;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package lk.ijse.project_wineverse.util;
+package lk.ijse.project_wineverse.controller.util;
 
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;

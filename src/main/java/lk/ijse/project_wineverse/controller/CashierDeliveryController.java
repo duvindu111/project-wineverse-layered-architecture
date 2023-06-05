@@ -20,8 +20,8 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.DeliveryBO;
 import lk.ijse.project_wineverse.dto.DeliveryDTO;
 import lk.ijse.project_wineverse.view.tdm.DeliveryTM;
-import lk.ijse.project_wineverse.util.AlertController;
-import lk.ijse.project_wineverse.util.ValidateField;
+import lk.ijse.project_wineverse.controller.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.ValidateField;
 
 import java.io.IOException;
 import java.net.URL;

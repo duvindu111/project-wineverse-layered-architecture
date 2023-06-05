@@ -4,14 +4,9 @@ import lk.ijse.project_wineverse.bo.custom.AddEventImageBO;
 import lk.ijse.project_wineverse.dao.DAOFactory;
 import lk.ijse.project_wineverse.dao.custom.EventDAO;
 import lk.ijse.project_wineverse.dao.custom.EventImagesDAO;
-import lk.ijse.project_wineverse.dto.EventImageDTO;
-import lk.ijse.project_wineverse.entity.EventImages;
-import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.io.InputStream;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddEventImageBOImpl implements AddEventImageBO {

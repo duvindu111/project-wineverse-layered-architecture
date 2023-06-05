@@ -1,4 +1,4 @@
-package lk.ijse.project_wineverse.util;
+package lk.ijse.project_wineverse.controller.util;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

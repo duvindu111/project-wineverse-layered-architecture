@@ -1,12 +1,8 @@
 package lk.ijse.project_wineverse.dao.custom.impl;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import lk.ijse.project_wineverse.dao.custom.SupplierDAO;
-import lk.ijse.project_wineverse.dto.SupplierDTO;
 import lk.ijse.project_wineverse.entity.Supplier;
-import lk.ijse.project_wineverse.util.CrudUtil;
-import lk.ijse.project_wineverse.view.tdm.SupplierTM;
+import lk.ijse.project_wineverse.dao.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

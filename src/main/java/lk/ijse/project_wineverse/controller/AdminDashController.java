@@ -18,8 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import lk.ijse.project_wineverse.util.BtnColorController;
-import lk.ijse.project_wineverse.util.LogOutController;
+import lk.ijse.project_wineverse.controller.util.BtnColorController;
+import lk.ijse.project_wineverse.controller.util.LogOutController;
 
 import java.awt.*;
 import java.io.IOException;

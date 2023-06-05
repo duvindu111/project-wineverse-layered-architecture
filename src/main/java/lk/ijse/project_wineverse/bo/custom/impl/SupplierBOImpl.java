@@ -5,7 +5,6 @@ import lk.ijse.project_wineverse.dao.DAOFactory;
 import lk.ijse.project_wineverse.dao.custom.SupplierDAO;
 import lk.ijse.project_wineverse.dto.SupplierDTO;
 import lk.ijse.project_wineverse.entity.Supplier;
-import lk.ijse.project_wineverse.util.CrudUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

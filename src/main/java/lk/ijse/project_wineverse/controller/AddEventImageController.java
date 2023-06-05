@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.AddEventImageBO;
-import lk.ijse.project_wineverse.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.AlertController;
 
 public class AddEventImageController {
 

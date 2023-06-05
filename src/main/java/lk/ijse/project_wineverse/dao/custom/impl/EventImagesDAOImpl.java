@@ -3,9 +3,8 @@ package lk.ijse.project_wineverse.dao.custom.impl;
 import javafx.scene.image.Image;
 import javafx.util.Pair;
 import lk.ijse.project_wineverse.dao.custom.EventImagesDAO;
-import lk.ijse.project_wineverse.entity.Customer;
 import lk.ijse.project_wineverse.entity.EventImages;
-import lk.ijse.project_wineverse.util.CrudUtil;
+import lk.ijse.project_wineverse.dao.util.CrudUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

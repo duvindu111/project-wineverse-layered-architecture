@@ -1,4 +1,4 @@
-package lk.ijse.project_wineverse.util;
+package lk.ijse.project_wineverse.controller.util;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;

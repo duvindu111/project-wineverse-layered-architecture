@@ -1,4 +1,4 @@
-package lk.ijse.project_wineverse.util;
+package lk.ijse.project_wineverse.controller.util;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;

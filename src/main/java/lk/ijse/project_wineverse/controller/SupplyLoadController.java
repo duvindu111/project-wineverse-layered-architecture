@@ -20,8 +20,8 @@ import lk.ijse.project_wineverse.bo.custom.SupplyLoadBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
 import lk.ijse.project_wineverse.view.tdm.AddSupplyLoadTM;
-import lk.ijse.project_wineverse.util.AlertController;
-import lk.ijse.project_wineverse.util.ValidateField;
+import lk.ijse.project_wineverse.controller.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.ValidateField;
 
 import java.io.IOException;
 import java.net.URL;

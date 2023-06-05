@@ -1,16 +1,11 @@
 package lk.ijse.project_wineverse.dao.custom.impl;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import lk.ijse.project_wineverse.dao.custom.ItemDAO;
-import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
-import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
 import lk.ijse.project_wineverse.entity.Item;
 import lk.ijse.project_wineverse.entity.SupplyLoadDetails;
-import lk.ijse.project_wineverse.util.CrudUtil;
-import lk.ijse.project_wineverse.view.tdm.ItemTM;
+import lk.ijse.project_wineverse.dao.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

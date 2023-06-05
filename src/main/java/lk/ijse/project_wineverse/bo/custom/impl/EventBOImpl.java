@@ -5,9 +5,7 @@ import lk.ijse.project_wineverse.dao.DAOFactory;
 import lk.ijse.project_wineverse.dao.custom.EventDAO;
 import lk.ijse.project_wineverse.dto.EventDTO;
 import lk.ijse.project_wineverse.entity.Event;
-import lk.ijse.project_wineverse.util.CrudUtil;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

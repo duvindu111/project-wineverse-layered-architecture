@@ -1,4 +1,4 @@
-package lk.ijse.project_wineverse.util;
+package lk.ijse.project_wineverse.dao.util;
 
 import lk.ijse.project_wineverse.db.DBConnection;
 

@@ -20,8 +20,8 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.SupplyLoadDetailsBO;
 import lk.ijse.project_wineverse.dto.SupplyLoadDetailsDTO;
 import lk.ijse.project_wineverse.view.tdm.SupplyLoadDetailTM;
-import lk.ijse.project_wineverse.util.AlertController;
-import lk.ijse.project_wineverse.util.ValidateField;
+import lk.ijse.project_wineverse.controller.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.ValidateField;
 
 public class SupplyLoadDetailsController {
 

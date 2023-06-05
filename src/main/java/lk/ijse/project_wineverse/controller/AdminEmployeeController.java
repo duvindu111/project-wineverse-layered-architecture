@@ -17,12 +17,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.EmployeeBO;
-import lk.ijse.project_wineverse.dao.custom.EmployeeDAO;
 import lk.ijse.project_wineverse.dto.EmployeeDTO;
 import lk.ijse.project_wineverse.view.tdm.EmployeeTM;
-import lk.ijse.project_wineverse.util.AlertController;
-import lk.ijse.project_wineverse.util.TextFieldBorderController;
-import lk.ijse.project_wineverse.util.ValidateField;
+import lk.ijse.project_wineverse.controller.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.TextFieldBorderController;
+import lk.ijse.project_wineverse.controller.util.ValidateField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,9 +29,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 

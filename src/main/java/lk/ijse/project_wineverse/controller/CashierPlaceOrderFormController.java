@@ -22,9 +22,9 @@ import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.view.tdm.PlaceOrderTM;
-import lk.ijse.project_wineverse.util.AlertController;
-import lk.ijse.project_wineverse.util.EmailAttachment;
-import lk.ijse.project_wineverse.util.ValidateField;
+import lk.ijse.project_wineverse.controller.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.EmailAttachment;
+import lk.ijse.project_wineverse.controller.util.ValidateField;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 

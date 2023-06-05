@@ -5,10 +5,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.image.Image;
 import javafx.util.Pair;
 import lk.ijse.project_wineverse.bo.SuperBO;
-import lk.ijse.project_wineverse.util.CrudUtil;
 
-import java.io.ByteArrayInputStream;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

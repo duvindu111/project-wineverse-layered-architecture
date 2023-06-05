@@ -17,7 +17,7 @@ import javafx.util.Duration;
 import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.LoginBO;
 import lk.ijse.project_wineverse.dto.SignUpDTO;
-import lk.ijse.project_wineverse.util.AlertController;
+import lk.ijse.project_wineverse.controller.util.AlertController;
 
 import java.io.IOException;
 import java.net.URL;

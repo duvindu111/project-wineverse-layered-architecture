@@ -1,4 +1,4 @@
-package lk.ijse.project_wineverse.util;
+package lk.ijse.project_wineverse.controller.util;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
