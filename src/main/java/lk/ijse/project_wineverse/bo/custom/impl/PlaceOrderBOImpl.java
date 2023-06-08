@@ -62,7 +62,7 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
             boolean isSaved = ordersDAO.save(new Orders(orderid, custid, delivery, LocalDate.now(), LocalTime.now(), Double.valueOf(ordpay)));
             if (isSaved) {
                 //   boolean isUpdated = ItemModel.updateQty(placeOrderList);
-                boolean isUpdated = itemDAO.updateQty(placeOrderList);
+                boolean isUpdated = updateQty(placeOrderList);
                 if (isUpdated) {
                     //  boolean isOrdered = AdminOrderDetailModel.save(orderid, placeOrderList);
                     boolean isOrdered = orderDetailDAO.saveOrderDetails(orderid, placeOrderList);
@@ -96,6 +96,15 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
             System.out.println("finally");
             con.setAutoCommit(true);
         }
+    }
+
+    public boolean updateQty(List<PlaceOrderDTO> placeOrderList) throws SQLException {
+        for(PlaceOrderDTO placeorder : placeOrderList) {
+            if(!itemDAO.updateQty(placeorder)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public List<String> loadEmployeeIds() throws SQLException {

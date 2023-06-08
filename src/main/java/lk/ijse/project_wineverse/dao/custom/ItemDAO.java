@@ -14,9 +14,9 @@ public interface ItemDAO extends CrudDAO<Item> {
 
     public List<String> loadItemCodes() throws SQLException;
 
-    public boolean updateQty(List<PlaceOrderDTO> placeOrderList) throws SQLException;
+    public boolean updateQty(PlaceOrderDTO placeorder) throws SQLException;
 
-    public boolean addQty(List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException;
+    public boolean addQty(SupplyLoadDetails placeSupplyLoad) throws SQLException;
 
     public ArrayList<XYChart.Series<String, Integer>> getDataToBarChart() throws SQLException;
 

@@ -2,6 +2,8 @@ package lk.ijse.project_wineverse.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,5 +16,4 @@ public class OrderDetailDTO {
     private String date;
     private String time;
     private Double price;
-
 }

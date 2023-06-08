@@ -96,16 +96,7 @@ public class ItemDAOImpl implements ItemDAO {
         return data;
     }
 
-    public boolean updateQty(List<PlaceOrderDTO> placeOrderList) throws SQLException {
-        for(PlaceOrderDTO placeorder : placeOrderList) {
-            if(!updateQty(placeorder)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean updateQty(PlaceOrderDTO placeorder) throws SQLException {
+    public boolean updateQty(PlaceOrderDTO placeorder) throws SQLException {
         String sql = "UPDATE item SET item_qty = (item_qty - ?) WHERE item_code = ?";
 
         return CrudUtil.execute(
@@ -115,16 +106,7 @@ public class ItemDAOImpl implements ItemDAO {
         );
     }
 
-    public boolean addQty(List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException {
-        for(SupplyLoadDetails placeSupplyLoad : placeSupplyLoadList) {
-            if(!addQty(placeSupplyLoad)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean addQty(SupplyLoadDetails placeSupplyLoad) throws SQLException {
+    public boolean addQty(SupplyLoadDetails placeSupplyLoad) throws SQLException {
         String sql = "UPDATE item SET item_qty = (item_qty + ?) WHERE item_code = ?";
 
         return CrudUtil.execute(
