@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface OrderDetailDAO extends CrudDAO<OrderDetail> {
 
-    public boolean saveOrderDetails(String orderid, List<PlaceOrderDTO> placeOrderList) throws SQLException;
-}
+    public boolean saveOrderDetails(String orderid, PlaceOrderDTO placeOrder) throws SQLException;
+
+    }

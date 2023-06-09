@@ -11,16 +11,7 @@ import java.util.List;
 
 public class OrderDetailDAOImpl implements OrderDetailDAO {
 
-    public boolean saveOrderDetails(String orderid, List<PlaceOrderDTO> placeOrderList) throws SQLException {
-        for(PlaceOrderDTO placeOrder : placeOrderList) {
-            if(!saveOrderDetails(orderid, placeOrder)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean saveOrderDetails(String orderid, PlaceOrderDTO placeOrder) throws SQLException {
+    public boolean saveOrderDetails(String orderid, PlaceOrderDTO placeOrder) throws SQLException {
         String sql = "INSERT INTO order_detail(order_id,item_code,order_qty)" +
                 "VALUES(?, ?, ?)";
 

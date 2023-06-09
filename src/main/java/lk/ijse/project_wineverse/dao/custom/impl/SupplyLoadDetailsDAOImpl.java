@@ -124,16 +124,7 @@ public class SupplyLoadDetailsDAOImpl implements SupplyLoadDetailsDAO {
         return null;
     }
 
-    public boolean savesupplyloaddetails(SupplyLoadDetails sld, List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException {
-        for(SupplyLoadDetails placeSupplyLoad : placeSupplyLoadList) {
-            if(!savesupplyloaddetails(sld.getLoad_id(),sld.getSupp_id(),String.valueOf(sld.getPrice()),sld.getDate(),sld.getTime(),placeSupplyLoad)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean savesupplyloaddetails(String loadid, String suppid, String totalprice, LocalDate now, LocalTime now1, SupplyLoadDetails placeSupplyLoad) throws SQLException {
+    public boolean savesupplyloaddetails(String loadid, String suppid, String totalprice, LocalDate now, LocalTime now1, SupplyLoadDetails placeSupplyLoad) throws SQLException {
         String sql = "INSERT INTO supply_load_details(load_id,supp_id,item_code,supp_qty,load_date,load_time,price)" +
                 "VALUES(?,?,?,?,?,?,?)";
 

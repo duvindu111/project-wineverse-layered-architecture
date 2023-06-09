@@ -57,7 +57,7 @@ public class SupplyLoadBOImpl implements SupplyLoadBO {
                 s.setSupp_qty(dto.getSuppqty());
                 placeLoadEntityList.add(s);
             }
-            boolean isSaved = supplyLoadDetailsDAO.savesupplyloaddetails(sld,placeLoadEntityList);
+            boolean isSaved = savesupplyloaddetails(sld,placeLoadEntityList);
             if(isSaved) {
                 boolean isUpdated = addQty(placeLoadEntityList);
                 if(isUpdated) {
@@ -74,6 +74,15 @@ public class SupplyLoadBOImpl implements SupplyLoadBO {
             System.out.println("finally");
             con.setAutoCommit(true);
         }
+    }
+
+    public boolean savesupplyloaddetails(SupplyLoadDetails sld, List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException {
+        for(SupplyLoadDetails placeSupplyLoad : placeSupplyLoadList) {
+            if(!supplyLoadDetailsDAO.savesupplyloaddetails(sld.getLoad_id(),sld.getSupp_id(),String.valueOf(sld.getPrice()),sld.getDate(),sld.getTime(),placeSupplyLoad)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean addQty(List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException {
