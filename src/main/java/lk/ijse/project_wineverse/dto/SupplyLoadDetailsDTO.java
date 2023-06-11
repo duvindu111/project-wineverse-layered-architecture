@@ -18,4 +18,10 @@ public class SupplyLoadDetailsDTO {
     private LocalDate date;
     private Time time;
     private Double price;
+
+    public SupplyLoadDetailsDTO(String loadid, String suppid, String totalprice) {
+        this.load_id=loadid;
+        this.supp_id=suppid;
+        this.price= Double.valueOf(totalprice);
+    }
 }

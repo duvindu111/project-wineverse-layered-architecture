@@ -9,6 +9,7 @@ import lk.ijse.project_wineverse.dto.NewDeliveryDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.entity.Delivery;
 import lk.ijse.project_wineverse.entity.Item;
+import lk.ijse.project_wineverse.entity.OrderDetail;
 import lk.ijse.project_wineverse.entity.Orders;
 
 import java.sql.Connection;
@@ -100,7 +101,8 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
 
     public boolean saveOrderDetails(String orderid, List<PlaceOrderDTO> placeOrderList) throws SQLException {
         for(PlaceOrderDTO placeOrder : placeOrderList) {
-            if(!orderDetailDAO.saveOrderDetails(orderid, placeOrder)) {
+            OrderDetail orderDetail = new OrderDetail(placeOrder.getOrdereditemcode(),placeOrder.getOrdereditemqty());
+            if(!orderDetailDAO.saveOrderDetails(orderid, orderDetail)) {
                 return false;
             }
         }
@@ -109,7 +111,8 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
 
     public boolean updateQty(List<PlaceOrderDTO> placeOrderList) throws SQLException {
         for(PlaceOrderDTO placeorder : placeOrderList) {
-            if(!itemDAO.updateQty(placeorder)) {
+            OrderDetail orderDetail = new OrderDetail(placeorder.getOrdereditemcode(),placeorder.getOrdereditemqty());
+            if(!itemDAO.updateQty(orderDetail)) {
                 return false;
             }
         }

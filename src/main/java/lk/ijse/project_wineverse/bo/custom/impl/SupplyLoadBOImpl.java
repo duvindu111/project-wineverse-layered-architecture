@@ -8,6 +8,7 @@ import lk.ijse.project_wineverse.dao.custom.SupplyLoadDetailsDAO;
 import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
+import lk.ijse.project_wineverse.dto.SupplyLoadDetailsDTO;
 import lk.ijse.project_wineverse.entity.Item;
 import lk.ijse.project_wineverse.entity.SupplyLoadDetails;
 
@@ -42,24 +43,26 @@ public class SupplyLoadBOImpl implements SupplyLoadBO {
             con = DBConnection.getInstance().getConnection();
             con.setAutoCommit(false);
 
-            SupplyLoadDetails sld = new SupplyLoadDetails();
+            /*SupplyLoadDetails sld = new SupplyLoadDetails();
             sld.setLoad_id(loadid);
             sld.setSupp_id(suppid);
             sld.setPrice(Double.parseDouble(totalprice));
             sld.setDate(LocalDate.now());
-            sld.setTime(LocalTime.now());
+            sld.setTime(LocalTime.now());*/
 
-            List<SupplyLoadDetails> placeLoadEntityList = new ArrayList<>();
+            SupplyLoadDetailsDTO supplyLoadDetailsDTO = new SupplyLoadDetailsDTO(loadid,suppid,totalprice);
+
+           /* List<SupplyLoadDetails> placeLoadEntityList = new ArrayList<>();
 
             for (PlaceSupplyLoadDTO dto : placeSupplyLoadList) {
                 SupplyLoadDetails s = new SupplyLoadDetails();
                 s.setItem_code(dto.getItemcode());
                 s.setSupp_qty(dto.getSuppqty());
                 placeLoadEntityList.add(s);
-            }
-            boolean isSaved = savesupplyloaddetails(sld,placeLoadEntityList);
+            }*/
+            boolean isSaved = savesupplyloaddetails(supplyLoadDetailsDTO,placeSupplyLoadList);
             if(isSaved) {
-                boolean isUpdated = addQty(placeLoadEntityList);
+                boolean isUpdated = addQty(placeSupplyLoadList);
                 if(isUpdated) {
                     con.commit();
                     return true;
@@ -76,18 +79,19 @@ public class SupplyLoadBOImpl implements SupplyLoadBO {
         }
     }
 
-    public boolean savesupplyloaddetails(SupplyLoadDetails sld, List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException {
-        for(SupplyLoadDetails placeSupplyLoad : placeSupplyLoadList) {
-            if(!supplyLoadDetailsDAO.savesupplyloaddetails(sld.getLoad_id(),sld.getSupp_id(),String.valueOf(sld.getPrice()),sld.getDate(),sld.getTime(),placeSupplyLoad)) {
+    public boolean savesupplyloaddetails(SupplyLoadDetailsDTO dto, List<PlaceSupplyLoadDTO> dtolist) throws SQLException {
+        for(PlaceSupplyLoadDTO psld : dtolist) {
+            if(!supplyLoadDetailsDAO.savesupplyloaddetails(new SupplyLoadDetails(dto.getLoad_id(),dto.getSupp_id(),psld.getItemcode(), psld.getSuppqty(),LocalDate.now(),LocalTime.now(),dto.getPrice()))) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean addQty(List<SupplyLoadDetails> placeSupplyLoadList) throws SQLException {
-        for(SupplyLoadDetails placeSupplyLoad : placeSupplyLoadList) {
-            if(!itemDAO.addQty(placeSupplyLoad)) {
+    public boolean addQty(List<PlaceSupplyLoadDTO> placeSupplyLoadDTOList) throws SQLException {
+        for(PlaceSupplyLoadDTO dto : placeSupplyLoadDTOList) {
+            SupplyLoadDetails sld = new SupplyLoadDetails(dto.getItemcode(),dto.getSuppqty());
+            if(!itemDAO.addQty(sld)) {
                 return false;
             }
         }

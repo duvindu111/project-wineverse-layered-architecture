@@ -19,4 +19,9 @@ public class SupplyLoadDetails {
     private LocalDate date;
     private LocalTime time;
     private Double price;
+
+    public SupplyLoadDetails(String itemcode, Integer suppqty) {
+        this.item_code=itemcode;
+        this.supp_qty=suppqty;
+    }
 }

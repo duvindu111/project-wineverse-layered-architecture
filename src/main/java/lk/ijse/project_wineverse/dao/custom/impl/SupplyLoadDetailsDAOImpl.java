@@ -124,19 +124,19 @@ public class SupplyLoadDetailsDAOImpl implements SupplyLoadDetailsDAO {
         return null;
     }
 
-    public boolean savesupplyloaddetails(String loadid, String suppid, String totalprice, LocalDate now, LocalTime now1, SupplyLoadDetails placeSupplyLoad) throws SQLException {
+    public boolean savesupplyloaddetails(SupplyLoadDetails placeSupplyLoad) throws SQLException {
         String sql = "INSERT INTO supply_load_details(load_id,supp_id,item_code,supp_qty,load_date,load_time,price)" +
                 "VALUES(?,?,?,?,?,?,?)";
 
         return CrudUtil.execute(
                 sql,
-                loadid,
-                suppid,
+                placeSupplyLoad.getLoad_id(),
+                placeSupplyLoad.getSupp_id(),
                 placeSupplyLoad.getItem_code(),
                 placeSupplyLoad.getSupp_qty(),
-                now,
-                now1,
-                totalprice
+                placeSupplyLoad.getDate(),
+                placeSupplyLoad.getTime(),
+                placeSupplyLoad.getPrice()
         );
     }
 }

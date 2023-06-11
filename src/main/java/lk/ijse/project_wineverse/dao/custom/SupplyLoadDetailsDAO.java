@@ -19,5 +19,5 @@ public interface SupplyLoadDetailsDAO extends CrudDAO<SupplyLoadDetails> {
 
     public String getNextSupplyLoadId() throws SQLException;
 
-    public boolean savesupplyloaddetails(String loadid, String suppid, String totalprice, LocalDate now, LocalTime now1, SupplyLoadDetails placeSupplyLoad) throws SQLException;
+    public boolean savesupplyloaddetails(SupplyLoadDetails supplyLoadDetails) throws SQLException;
 }

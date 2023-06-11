@@ -11,15 +11,15 @@ import java.util.List;
 
 public class OrderDetailDAOImpl implements OrderDetailDAO {
 
-    public boolean saveOrderDetails(String orderid, PlaceOrderDTO placeOrder) throws SQLException {
+    public boolean saveOrderDetails(String orderid, OrderDetail orderDetail ) throws SQLException {
         String sql = "INSERT INTO order_detail(order_id,item_code,order_qty)" +
                 "VALUES(?, ?, ?)";
 
         return CrudUtil.execute(
                 sql,
                 orderid,
-                placeOrder.getOrdereditemcode(),
-                placeOrder.getOrdereditemqty()
+                orderDetail.getItem_code(),
+                orderDetail.getOrder_qty()
         );
     }
 

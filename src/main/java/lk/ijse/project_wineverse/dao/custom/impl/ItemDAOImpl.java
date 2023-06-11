@@ -4,6 +4,7 @@ import javafx.scene.chart.XYChart;
 import lk.ijse.project_wineverse.dao.custom.ItemDAO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.entity.Item;
+import lk.ijse.project_wineverse.entity.OrderDetail;
 import lk.ijse.project_wineverse.entity.SupplyLoadDetails;
 import lk.ijse.project_wineverse.dao.util.CrudUtil;
 
@@ -96,13 +97,13 @@ public class ItemDAOImpl implements ItemDAO {
         return data;
     }
 
-    public boolean updateQty(PlaceOrderDTO placeorder) throws SQLException {
+    public boolean updateQty(OrderDetail orderDetail) throws SQLException {
         String sql = "UPDATE item SET item_qty = (item_qty - ?) WHERE item_code = ?";
 
         return CrudUtil.execute(
                 sql,
-                placeorder.getOrdereditemqty(),
-                placeorder.getOrdereditemcode()
+                orderDetail.getOrder_qty(),
+                orderDetail.getItem_code()
         );
     }
 
