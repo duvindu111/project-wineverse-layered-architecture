@@ -3,6 +3,7 @@ package lk.ijse.project_wineverse.bo.custom;
 import lk.ijse.project_wineverse.bo.SuperBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
+import lk.ijse.project_wineverse.dto.SupplyLoadDetailsDTO;
 import lk.ijse.project_wineverse.entity.Item;
 
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public interface SupplyLoadBO extends SuperBO {
 
     public String getNextSupplyLoadId() throws SQLException;
 
-    public boolean placeLoad(String loadid, String suppid, String totalprice, List<PlaceSupplyLoadDTO> placeSupplyLoadList) throws SQLException;
+    public boolean placeLoad(SupplyLoadDetailsDTO dto) throws SQLException;
 
     public  String getSupplierName(String supp_id) throws SQLException;
 

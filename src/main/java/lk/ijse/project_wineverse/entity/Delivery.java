@@ -13,8 +13,8 @@ public class Delivery {
     private String delivery_id;
     private String delivery_status;
     private String location;
-    private LocalDate delivered_date;
-    private LocalDate due_date;
+    private String delivered_date;
+    private String due_date;
     private String order_id;
     private String emp_id;
 }

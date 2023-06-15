@@ -163,13 +163,9 @@ public class CashierDeliveryController implements Initializable {
         String orderid = lblorderid.getText();
         String empid = cmbempid.getValue();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localdelDate = LocalDate.parse(deldate, formatter);
-        LocalDate localdueDate = LocalDate.parse(deldate, formatter);
-
         if(ValidateField.dateCheck(deldate) || deldate.equals("Pending")) {
             if(ValidateField.dateCheck(duedate) || duedate.isEmpty()) {
-                DeliveryDTO delivery = new DeliveryDTO(delid, delsts, loc, localdelDate, localdueDate, orderid, empid);
+                DeliveryDTO delivery = new DeliveryDTO(delid, delsts, loc, deldate, duedate, orderid, empid);
                 try {
                 //    boolean isUpdated = DeliveryModel.update(delivery);
                     boolean isUpdated = deliveryBO.updateDelivery(delivery);

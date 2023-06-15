@@ -20,6 +20,7 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.PlaceOrderBO;
 import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.dto.ItemDTO;
+import lk.ijse.project_wineverse.dto.OrderDetailDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.view.tdm.PlaceOrderTM;
 import lk.ijse.project_wineverse.controller.util.AlertController;
@@ -416,7 +417,7 @@ public class CashierPlaceOrderFormController {
         boolean isPlaced = false;
         if (ValidateField.priceCheck(ordpay)) {
             try {
-                isPlaced = placeOrderBO.placeOrder(orderid, custid, delivery, ordpay, placeOrderList);
+                isPlaced = placeOrderBO.placeOrder(new OrderDetailDTO(orderid,custid,delivery,ordpay,placeOrderList));
                 if (isPlaced) {
                     AlertController.confirmmessage("Order Placed");
                     String custId = cmbcustid.getValue();

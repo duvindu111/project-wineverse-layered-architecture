@@ -19,6 +19,7 @@ import lk.ijse.project_wineverse.bo.BOFactory;
 import lk.ijse.project_wineverse.bo.custom.SupplyLoadBO;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.PlaceSupplyLoadDTO;
+import lk.ijse.project_wineverse.dto.SupplyLoadDetailsDTO;
 import lk.ijse.project_wineverse.view.tdm.AddSupplyLoadTM;
 import lk.ijse.project_wineverse.controller.util.AlertController;
 import lk.ijse.project_wineverse.controller.util.ValidateField;
@@ -313,7 +314,7 @@ public class SupplyLoadController {
                 boolean isPlaced = false;
                 try {
               //      isPlaced = CashierSupplyLoadModel.placeLoad(loadid, suppid, totalprice, placeSupplyLoadList);
-                    isPlaced = supplyLoadBO.placeLoad(loadid, suppid, totalprice, placeSupplyLoadList);
+                    isPlaced = supplyLoadBO.placeLoad(new SupplyLoadDetailsDTO(loadid,suppid,totalprice,placeSupplyLoadList));
                     if (isPlaced) {
                         AlertController.confirmmessage("Load Added Successfully");
                         generateNextLoadId();

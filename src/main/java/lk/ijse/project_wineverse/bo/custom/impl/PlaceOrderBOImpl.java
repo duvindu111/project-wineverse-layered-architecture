@@ -6,6 +6,7 @@ import lk.ijse.project_wineverse.dao.custom.*;
 import lk.ijse.project_wineverse.db.DBConnection;
 import lk.ijse.project_wineverse.dto.ItemDTO;
 import lk.ijse.project_wineverse.dto.NewDeliveryDTO;
+import lk.ijse.project_wineverse.dto.OrderDetailDTO;
 import lk.ijse.project_wineverse.dto.PlaceOrderDTO;
 import lk.ijse.project_wineverse.entity.Delivery;
 import lk.ijse.project_wineverse.entity.Item;
@@ -53,28 +54,28 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
         gotnewdelivery = newDelivery;
     }
 
-    public boolean placeOrder(String orderid, String custid, Boolean delivery, String ordpay, List<PlaceOrderDTO> placeOrderList) throws SQLException, ClassNotFoundException {
+    public boolean placeOrder(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
         Connection con = null;
         try {
             con = DBConnection.getInstance().getConnection();
             con.setAutoCommit(false);
 
             //   boolean isSaved = save(orderid, custid, delivery, LocalDate.now(), LocalTime.now(), ordpay);
-            boolean isSaved = ordersDAO.save(new Orders(orderid, custid, delivery, LocalDate.now(), LocalTime.now(), Double.valueOf(ordpay)));
+            boolean isSaved = ordersDAO.save(new Orders(dto.getOrderId(), dto.getCustid(), dto.getDelivery(), LocalDate.now(), LocalTime.now(), dto.getPrice()));
             if (isSaved) {
                 //   boolean isUpdated = ItemModel.updateQty(placeOrderList);
-                boolean isUpdated = updateQty(placeOrderList);
+                boolean isUpdated = updateQty(dto.getPlaceOrderDTOList());
                 if (isUpdated) {
                     //  boolean isOrdered = AdminOrderDetailModel.save(orderid, placeOrderList);
-                    boolean isOrdered = saveOrderDetails(orderid, placeOrderList);
+                    boolean isOrdered = saveOrderDetails(dto);
                     if (isOrdered) {
-                        if (delivery) {
+                        if (dto.getDelivery()) {
                             Delivery entity = new Delivery();
                             entity.setOrder_id(gotnewdelivery.getOrderid());
                             entity.setDelivery_id(gotnewdelivery.getDelid());
                             entity.setLocation(gotnewdelivery.getLocation());
                             entity.setEmp_id(gotnewdelivery.getEmpid());
-                            entity.setDue_date(gotnewdelivery.getDuedate());
+                            entity.setDue_date(String.valueOf(gotnewdelivery.getDuedate()));
 
                             boolean isDelivered = deliveryDAO.save(entity);
                             if (isDelivered) {
@@ -99,10 +100,10 @@ public class PlaceOrderBOImpl implements PlaceOrderBO {
         }
     }
 
-    public boolean saveOrderDetails(String orderid, List<PlaceOrderDTO> placeOrderList) throws SQLException {
-        for(PlaceOrderDTO placeOrder : placeOrderList) {
+    public boolean saveOrderDetails(OrderDetailDTO dto) throws SQLException {
+        for(PlaceOrderDTO placeOrder : dto.getPlaceOrderDTOList()) {
             OrderDetail orderDetail = new OrderDetail(placeOrder.getOrdereditemcode(),placeOrder.getOrdereditemqty());
-            if(!orderDetailDAO.saveOrderDetails(orderid, orderDetail)) {
+            if(!orderDetailDAO.saveOrderDetails(dto.getOrderId(), orderDetail)) {
                 return false;
             }
         }

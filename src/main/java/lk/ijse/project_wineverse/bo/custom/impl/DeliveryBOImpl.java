@@ -9,6 +9,7 @@ import lk.ijse.project_wineverse.dto.DeliveryDTO;
 import lk.ijse.project_wineverse.entity.Delivery;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class DeliveryBOImpl implements DeliveryBO {
     OrdersDAO ordersDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.ORDERS);
     EmployeeDAO employeeDAO = DAOFactory.getDAOFactory().getDAO(DAOFactory.DAOTypes.EMPLOYEE);
     public boolean updateDelivery(DeliveryDTO dto) throws SQLException {
-        return deliveryDAO.update(new Delivery(dto.getDelid(),dto.getDelsts(),dto.getLoc(),dto.getDeldate(),dto.getDuedate(),dto.getOrdid(),dto.getEmpid()));
+        return deliveryDAO.update(new Delivery(dto.getDelid(),dto.getDelsts(),dto.getLoc(),String.valueOf(dto.getDeldate()),String.valueOf(dto.getDuedate()),dto.getOrdid(),dto.getEmpid()));
     }
 
     public boolean deleteDelivery(String id) throws SQLException {
@@ -31,7 +32,7 @@ public class DeliveryBOImpl implements DeliveryBO {
 
     public DeliveryDTO findByOrderID(String id) throws SQLException {
         Delivery del = deliveryDAO.findBy(id);
-        return new DeliveryDTO(del.getDelivery_id(),del.getDelivery_status(),del.getLocation(),del.getDelivered_date(),del.getDue_date(),del.getOrder_id(),del.getEmp_id());
+        return new DeliveryDTO(del.getDelivery_id(),del.getDelivery_status(),del.getLocation(), del.getDelivered_date(),del.getDue_date(),del.getOrder_id(),del.getEmp_id());
     }
 
     public DeliveryDTO findBydeliveryId(String delid) throws SQLException {

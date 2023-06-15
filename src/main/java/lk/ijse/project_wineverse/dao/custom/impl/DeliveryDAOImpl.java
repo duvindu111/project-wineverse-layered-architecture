@@ -51,8 +51,8 @@ public class DeliveryDAOImpl implements DeliveryDAO {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getDate(4).toLocalDate(),
-                    resultSet.getDate(5).toLocalDate(),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
                     resultSet.getString(6),
                     resultSet.getString(7)
             ));
@@ -80,8 +80,8 @@ public class DeliveryDAOImpl implements DeliveryDAO {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getDate(4).toLocalDate(),
-                    resultSet.getDate(5).toLocalDate(),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
                     resultSet.getString(6),
                     resultSet.getString(7)
             ));
@@ -98,8 +98,8 @@ public class DeliveryDAOImpl implements DeliveryDAO {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getDate(4).toLocalDate(),
-                    resultSet.getDate(5).toLocalDate(),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
                     resultSet.getString(6),
                     resultSet.getString(7)
             ));
@@ -118,8 +118,8 @@ public class DeliveryDAOImpl implements DeliveryDAO {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getDate(4).toLocalDate(),
-                    resultSet.getDate(5).toLocalDate(),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
                     resultSet.getString(6),
                     resultSet.getString(7)
             ));
@@ -138,8 +138,8 @@ public class DeliveryDAOImpl implements DeliveryDAO {
                     resultSet.getString(6),
                     resultSet.getString(1),
                     resultSet.getString(2),
-                    resultSet.getDate(5).toLocalDate(),
-                    resultSet.getDate(4).toLocalDate(),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
                     resultSet.getString(3),
                     resultSet.getString(7)
             ));

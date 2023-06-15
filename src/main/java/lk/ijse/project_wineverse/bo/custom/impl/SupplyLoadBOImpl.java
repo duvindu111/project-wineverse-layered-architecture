@@ -37,32 +37,17 @@ public class SupplyLoadBOImpl implements SupplyLoadBO {
         return supplyLoadDetailsDAO.getNextSupplyLoadId();
     }
 
-    public boolean placeLoad(String loadid, String suppid, String totalprice, List<PlaceSupplyLoadDTO> placeSupplyLoadList) throws SQLException {
+    public boolean placeLoad(SupplyLoadDetailsDTO dto) throws SQLException {
         Connection con = null;
         try {
             con = DBConnection.getInstance().getConnection();
             con.setAutoCommit(false);
 
-            /*SupplyLoadDetails sld = new SupplyLoadDetails();
-            sld.setLoad_id(loadid);
-            sld.setSupp_id(suppid);
-            sld.setPrice(Double.parseDouble(totalprice));
-            sld.setDate(LocalDate.now());
-            sld.setTime(LocalTime.now());*/
+            //SupplyLoadDetailsDTO supplyLoadDetailsDTO = new SupplyLoadDetailsDTO(dto.getLoad_id(),dto.getSupp_id(),String.valueOf(dto.getPrice()));
 
-            SupplyLoadDetailsDTO supplyLoadDetailsDTO = new SupplyLoadDetailsDTO(loadid,suppid,totalprice);
-
-           /* List<SupplyLoadDetails> placeLoadEntityList = new ArrayList<>();
-
-            for (PlaceSupplyLoadDTO dto : placeSupplyLoadList) {
-                SupplyLoadDetails s = new SupplyLoadDetails();
-                s.setItem_code(dto.getItemcode());
-                s.setSupp_qty(dto.getSuppqty());
-                placeLoadEntityList.add(s);
-            }*/
-            boolean isSaved = savesupplyloaddetails(supplyLoadDetailsDTO,placeSupplyLoadList);
+            boolean isSaved = savesupplyloaddetails(dto);
             if(isSaved) {
-                boolean isUpdated = addQty(placeSupplyLoadList);
+                boolean isUpdated = addQty(dto.getPlaceSupplyLoadDTOList());
                 if(isUpdated) {
                     con.commit();
                     return true;
@@ -79,8 +64,8 @@ public class SupplyLoadBOImpl implements SupplyLoadBO {
         }
     }
 
-    public boolean savesupplyloaddetails(SupplyLoadDetailsDTO dto, List<PlaceSupplyLoadDTO> dtolist) throws SQLException {
-        for(PlaceSupplyLoadDTO psld : dtolist) {
+    public boolean savesupplyloaddetails(SupplyLoadDetailsDTO dto) throws SQLException {
+        for(PlaceSupplyLoadDTO psld : dto.getPlaceSupplyLoadDTOList()) {
             if(!supplyLoadDetailsDAO.savesupplyloaddetails(new SupplyLoadDetails(dto.getLoad_id(),dto.getSupp_id(),psld.getItemcode(), psld.getSuppqty(),LocalDate.now(),LocalTime.now(),dto.getPrice()))) {
                 return false;
             }
